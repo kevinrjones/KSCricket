@@ -1,0 +1,65 @@
+[versions]
+apache_poi_version = "5.4.0"
+arrow_version = "2.0.1"
+catalogUpdateVersion_version = "0.8.5"
+hikari_version = "6.2.1"
+jooq_version = "3.20.0"
+koin_version = "4.0.2"
+kotlin_version = "2.1.10"
+kotlinx_datetime_version = "0.6.2"
+kotlinx_serialization_version = "1.8.0"
+ktor_version = "3.1.0"
+logback_version = "1.5.16"
+mariaDb_version = "3.5.2"
+prometheus_version = "1.14.4"
+updateVersion_version = "0.52.0"
+
+[libraries]
+apache-poi = { module = "org.apache.poi:poi", version.ref = "apache_poi_version" }
+apache-poi-ooxml = { module = "org.apache.poi:poi-ooxml", version.ref = "apache_poi_version" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow_version" }
+hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikari_version" }
+jooq = { module = "org.jooq:jooq", version.ref = "jooq_version" }
+jooq-codeGen = { module = "org.jooq:jooq-codegen", version.ref = "jooq_version" }
+jooq-meta = { module = "org.jooq:jooq-meta", version.ref = "jooq_version" }
+koin = { module = "io.insert-koin:koin-ktor", version.ref = "koin_version" }
+koin-logger = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin_version" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin_version" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization_version" }
+kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime_version" }
+ktor-client-apacheJvm = { module = "io.ktor:ktor-client-apache-jvm", version.ref = "ktor_version" }
+ktor-client-coreJvm = { module = "io.ktor:ktor-client-core-jvm", version.ref = "ktor_version" }
+ktor-networkTlsCertificate = { module = "io.ktor:ktor-network-tls-certificates", version.ref = "ktor_version" }
+ktor-server-authJvm = { module = "io.ktor:ktor-server-auth-jvm", version.ref = "ktor_version" }
+ktor-server-callIdJvm = { module = "io.ktor:ktor-server-call-id-jvm", version.ref = "ktor_version" }
+ktor-server-callLoggingJvm = { module = "io.ktor:ktor-server-call-logging-jvm", version.ref = "ktor_version" }
+ktor-server-compressionJvm = { module = "io.ktor:ktor-server-compression-jvm", version.ref = "ktor_version" }
+ktor-server-contetnNegotiationJvm = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktor_version" }
+ktor-server-coreJvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor_version" }
+ktor-server-csrf-jvm = { module = "io.ktor:ktor-server-csrf-jvm", version.ref = "ktor_version" }
+ktor-server-hostCcmmon = { module = "io.ktor:ktor-server-host-common-jvm", version.ref = "ktor_version" }
+ktor-server-jwtJvm = { module = "io.ktor:ktor-server-auth-jwt", version.ref = "ktor_version" }
+ktor-server-kotlinx-jsonJvm = { module = "io.ktor:ktor-serialization-kotlinx-json-jvm", version.ref = "ktor_version" }
+ktor-server-metrics-micrometerJvm = { module = "io.ktor:ktor-server-metrics-micrometer-jvm", version.ref = "ktor_version" }
+ktor-server-metricsJvm = { module = "io.ktor:ktor-server-metrics-jvm", version.ref = "ktor_version" }
+ktor-server-nettyJvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor_version" }
+ktor-server-resourcesJvm = { module = "io.ktor:ktor-server-resources-jvm", version.ref = "ktor_version" }
+ktor-server-statusPages = { module = "io.ktor:ktor-server-status-pages-jvm", version.ref = "ktor_version" }
+ktor-server-swaggerJvm = { module = "io.ktor:ktor-server-swagger-jvm", version.ref = "ktor_version" }
+ktor-server-testHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor_version" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback_version" }
+mariadb = { module = "org.mariadb.jdbc:mariadb-java-client", version.ref = "mariaDb_version" }
+micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "prometheus_version" }
+
+[bundles]
+apache-poi = [
+    "apache-poi",
+    "apache-poi-ooxml",
+]
+
+[plugins]
+catalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.ref = "catalogUpdateVersion_version" }
+jooq = { id = "org.jooq.jooq-codegen-gradle", version.ref = "jooq_version" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin_version" }
+ktorPlugin = { id = "io.ktor.plugin", version.ref = "ktor_version" }
+versionUpdate = { id = "com.github.ben-manes.versions", version.ref = "updateVersion_version" }

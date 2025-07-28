@@ -1,0 +1,41 @@
+<section id="biography">
+  <ng-container *ngIf="(playerBiography$ | async) as  playerBiography">
+    <table>
+      <tbody>
+      <tr>
+        <td>Name:</td>
+        <td>{{ playerBiography.playerDetails.fullName }}</td>
+        </tr>
+      <tr>
+        <td>Date of Birth:</td>
+        <td>{{ playerBiography.playerDetails.birthDate }}</td>
+      </tr>
+      <tr>
+        <td>Died:</td>
+        <td>{{ playerBiography.playerDetails.dateDied }}</td>
+      </tr>
+      <tr>
+        <td>Batting:</td>
+        <td>{{ playerBiography.playerDetails.battingHand }}</td>
+      </tr>
+      <tr>
+        <td>Bowling:</td>
+        <td>{{ playerBiography.playerDetails.bowlingMode }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</section>
+
+<!--<section id="biography">-->
+<!--  <table>-->
+<!--    <tr *ngFor="let playerDetails of (playerBiography$ | async)?.playerDetails; index as ndx">-->
+<!--      <td><span *ngIf="ndx == 0">Name:</span></td>-->
+<!--      <td>{{ playerDetails.fullName }}</td>-->
+<!--      <td>{{ playerDetails.birthDate }}</td>-->
+<!--      <td>{{ playerDetails.dateDied }}</td>-->
+<!--      <td>{{ playerDetails.battingHand }}</td>-->
+<!--      <td>{{ playerDetails.bowlingMode }}</td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</section>-->

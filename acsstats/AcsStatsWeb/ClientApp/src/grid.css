@@ -1,0 +1,397 @@
+.main-outer {
+  display: grid;
+  grid-template-columns: 1rem 1fr 1rem;
+  column-gap: 1rem;
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+app-root {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 0 1em;
+}
+
+app-root > app-header,
+app-root > app-nav-menu,
+app-root > main {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+app-get-batting-records, app-get-bowling-records, app-get-fielding-records, app-get-fow-records, app-get-team-records {
+  display: flex;
+  justify-content: center;
+  /*display: block;*/
+  /*font-size: 1rem;*/
+  /*width: 100%;*/
+}
+
+app-records-ui {
+  width: 50%;
+}
+
+app-search-header {
+  grid-row-start: 1;
+  display: grid;
+  grid: auto-flow min-content/repeat(3, 1fr);
+  gap: 0.5rem;
+  row-gap: 1rem;
+  grid-column: 1/7;
+}
+
+.limit {
+  grid-column: 1/span 1;
+}
+
+.record {
+  display: grid;
+  grid: auto-flow min-content/repeat(7, minmax(0, 1fr));
+  gap: 1rem;
+  row-gap: 0.1rem;
+  margin: 1rem;
+}
+
+
+#record-limit > label {
+  padding-right: 0.5rem;
+}
+
+#homeoraway-value label, #result-value label {
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
+#homeoraway-value label:nth-child(1) {
+  padding-left: 0;
+}
+
+#homeoraway-value label:nth-child(5) {
+  padding-left: 15px;
+}
+
+#record-country-grounds > select {
+  max-width: 12.5em;
+}
+
+#daterange-label {
+  display: none;
+}
+
+.result label {
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.view-row {
+  grid-row-start: 10;
+}
+
+.view-format {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+app-search-header {
+}
+
+
+#record-limit {
+  grid-row-start: 2;
+  grid-column-start: 1;
+}
+
+.teamrow {
+  grid-row-start: 4;
+}
+
+#record-teams {
+  grid-column: 1/span 2;
+}
+
+#record-opposition {
+  grid-column: 8/span 2;
+}
+
+.result-row, .teamrow {
+  padding-top: 2rem;
+}
+.homeoraway-row {
+  grid-row: 5;
+  padding-top: 2rem;
+}
+
+#homeoraway-label {
+  grid-column: 1;
+}
+
+#homeoraway-value {
+  grid-column: 2/ span 2;
+}
+
+
+.country-ground-row {
+  grid-row: 6;
+}
+
+#record-homeaway {
+}
+
+#record-country-grounds {
+  grid-column: 8/ span 2;
+}
+
+.daterange {
+  grid-row: 7;
+  padding-top: 2rem;
+}
+
+#daterange-label {
+  grid-column: 1/ span 1;
+}
+
+#startdate {
+  grid-column: 1/span 2;
+}
+
+#enddate {
+  grid-column: 8/span 2;
+}
+
+#season-label {
+  grid-column-end: span 1;
+}
+
+#season-value {
+  grid-row: 8;
+  grid-column: 1/span 2;
+}
+
+.result {
+  grid-row: 9;
+}
+
+#result-label {
+  grid-column-end: span 1;
+}
+
+#result-value {
+  grid-column-end: span 7;
+}
+
+.buttons {
+  grid-row-start: 11;
+}
+
+#view-format-label {
+  padding-top: 1rem;
+}
+
+#buttons-submit {
+  grid-column-end: span 3;
+}
+
+#buttons-reset {
+  grid-column-end: span 3;
+}
+
+@media screen and (min-width: 700px) {
+
+  #record-limit {
+    grid-row-start: 1;
+    grid-column-start: 11;
+  }
+
+  .teamrow {
+    grid-row-start: 2;
+  }
+
+  #record-teams {
+    grid-column: 1/span 2;
+  }
+
+  #record-opposition {
+    grid-column: 5/span 2;
+  }
+
+  .homeoraway-row {
+    grid-row: 3;
+  }
+
+  #homeoraway-label {
+    grid-column: 1;
+  }
+
+  #homeoraway-value {
+    grid-column: 2/ -1;
+  }
+
+  .country-ground-row {
+    grid-row: 4;
+  }
+
+  #record-homeaway {
+  }
+
+  #record-country-grounds {
+    grid-column: 3/span 2;
+  }
+
+  #record-country-grounds mat-form-field {
+    width: 100%;
+  }
+
+  .daterange {
+    grid-row: 5;
+  }
+
+  #daterange-label {
+    display: inline-block;
+  }
+
+  #season-value {
+    grid-row: 5;
+    grid-column: 10/span 2;
+  }
+
+  #startdate {
+    grid-column: 2/span 2;
+  }
+
+  #enddate {
+    grid-column: 6/span 2;
+  }
+
+  #season-label {
+    grid-column-end: span 1;
+  }
+
+  #season-value {
+    grid-column: 10/span 2;
+  }
+
+  .result-row {
+    grid-row: 6;
+  }
+
+  #result-label {
+    grid-column-end: span 1;
+  }
+
+  #result-value {
+    grid-column-end: span 7;
+  }
+
+  .view-row {
+    grid-row: 7;
+  }
+
+  .extra-details-row {
+    grid-row: 8;
+  }
+
+  .view-format {
+  }
+
+}
+
+@media screen and (min-width: 900px) {
+
+  #record-limit {
+    grid-column-start: 9;
+  }
+
+  #record-opposition {
+    grid-column: 3/span 2;
+  }
+
+  #homeoraway-label {
+    grid-column: 1;
+  }
+
+  #homeoraway-value {
+    grid-column: 2/ -1;
+  }
+
+  #record-country-grounds {
+    grid-column: 3/span 2;
+  }
+
+  #enddate {
+    grid-column: 4/span 2;
+  }
+
+  #season-value {
+    grid-column: 6/span 2;
+  }
+
+  .view-format {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  .main-outer {
+    grid-template-columns: [first] 1rem auto 2rem;
+  }
+
+
+}
+
+@media screen and (min-width: 1250px) {
+
+  #record-limit {
+    grid-column-start: 8;
+  }
+
+}
+
+@media screen and (min-width: 1650px) {
+
+  app-get-batting-records, app-get-bowling-records, app-get-fielding-records, app-get-fow-records, app-get-team-records {
+    /*width: 50%;*/
+  }
+}
+
+@media screen and (min-width: 1400px) {
+
+  #isForWicket {
+    grid-column-end: span 2;
+  }
+
+  #record-limit {
+    grid-column: 7/ span 1;
+  }
+
+  #isTeamBattingRecord {
+    grid-column: 1/span 2;
+  }
+
+}
+
+#format, #format1, #byWicket {
+  display: grid;
+  grid-column-gap: 1rem;
+}
+
+
+.view-format-group1 {
+  grid-column-start: 1;
+}
+
+.view-format-group2 {
+  grid-column-start: 3;
+}
+
+.view-format-group3 {
+  grid-column-start: 5;
+}
+
+.view-format-group4 {
+  grid-column-start: 7;
+}
+
+

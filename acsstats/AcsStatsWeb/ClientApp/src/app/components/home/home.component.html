@@ -1,0 +1,14 @@
+<div class="text-center">
+  <h1 class="display-4">Welcome</h1>
+
+  <ul *ngIf="authenticated$ | async">
+    <li><a [routerLink]="['records/battingrecords']">Batting Records</a></li>
+    <li><a [routerLink]="['records/bowlingrecords']">Bowling Records</a></li>
+    <li><a [routerLink]="['records/teamrecords']">Team Records</a></li>
+    <li><a [routerLink]="['records/fieldingrecords']">Fielding Records</a></li>
+    <li><a [routerLink]="['records/fowrecords']">Partnership Records</a></li>
+    <li><a [routerLink]="['scorecard/bydecade/men']">Men's Archive</a></li>
+    <li><a [routerLink]="['scorecard/bydecade/women']">Women's Archive</a></li>
+    <li><a [routerLink]="['search/card']">Search</a></li>
+  </ul>
+</div>

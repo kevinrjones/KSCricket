@@ -1,0 +1,91 @@
+<section id="overall">
+  <!--  [ngClass]="isNotFirstClass(form) ? 'hidden' : ''"-->
+  <div class="collapse-container">
+    <app-collapse (hideOrShow)="hideOrShow()" [hidden]="hideOverall"></app-collapse>
+    <table [ngClass]="hideOverall ? 'hidden' : ''" class="player-details">
+      <thead>
+      <tr>
+        <th colspan="3">Overall Details</th>
+        <th colspan="9">Batting</th>
+        <th></th>
+        <th colspan="9">Bowling</th>
+      </tr>
+      <tr>
+        <th class="teamname">Team</th>
+        <th class="matchType">Match Type</th>
+        <th class="align-numeric-cell matches">Matches</th>
+        <th class="align-numeric-cell innings">Innings</th>
+        <th class="align-numeric-cell batRuns">Runs</th>
+        <th class="align-numeric-cell notOuts">Not Outs</th>
+        <th class="align-numeric-cell notOuts">HS</th>
+        <th class="align-numeric-cell average">Avg</th>
+        <th class="align-numeric-cell batBalls">Balls</th>
+        <th class="align-numeric-cell hundreds">Hundreds</th>
+        <th class="align-numeric-cell fifties">Fifties</th>
+        <th class="align-numeric-cell batFours">Fours</th>
+        <th class="align-numeric-cell batSixes">Sixes</th>
+        <th>-</th>
+        <th class="align-numeric-cell bowlBalls">Balls</th>
+        <th class="align-numeric-cell maidens">Maidens</th>
+        <th class="align-numeric-cell bowlRuns">Runs</th>
+        <th class="align-numeric-cell wickets">Wickets</th>
+        <th class="align-numeric-cell average">Avg</th>
+        <th class="align-numeric-cell bowlFours">Fours</th>
+        <th class="align-numeric-cell bowlSixes">Sixes</th>
+        <th class="align-numeric-cell bowlBalls">Wides</th>
+        <th class="align-numeric-cell noBalls">No Balls</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let rows of playerOverall$ | async">
+        <tr *ngFor="let row of rows; index as ndx">
+          <td [ngClass]="totalRowClass(row)" class="teamname">{{ row.team }}</td>
+          <td [ngClass]="totalRowClass(row)"
+              class="matchType">{{ toMatchTypeDescription(rows.length, row.matchType, ndx) }}
+          </td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell matches">{{ row.matches }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell innings">{{ row.innings }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell batRuns">{{ row.runs }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell notOuts">{{ row.notouts }}</td>
+          <td [ngClass]="totalRowClass(row)"
+              class="align-numeric-cell highestScore">{{ getHighestScore(row.highestScore) }}
+          </td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell average">{{ getBattingAverage(row) }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell batBalls">{{ row.balls }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell hundreds">{{ row.hundreds }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell fifties">{{ row.fifties }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell batFours">{{ row.fours }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell batSixes">{{ row.sixes }}</td>
+          <td [ngClass]="totalRowClass(row)" class="align-numeric-cell"></td>
+
+
+          <ng-container *ngIf="row.bowlingBalls != 0; else noBowling">
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell bowlBalls">{{ row.bowlingBalls }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell maidens">{{ row.maidens }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell bowlRuns">{{ row.bowlingRuns }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell wickets">{{ row.wickets }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell average">{{ getBowlingAverage(row) }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell bowlFours">{{ row.bowlingFours }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell bowlSixes">{{ row.bowlingSixes }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell bowlBalls">{{ row.wides }}</td>
+            <td [ngClass]="totalRowClass(row)" class="align-numeric-cell noBalls">{{ row.noBalls }}</td>
+          </ng-container>
+
+          <ng-template #noBowling>
+            <td [ngClass]="totalRowClass(row)" class="bowlBalls">-</td>
+            <td [ngClass]="totalRowClass(row)" class="bowlRuns">-</td>
+            <td [ngClass]="totalRowClass(row)" class="maidens">-</td>
+            <td [ngClass]="totalRowClass(row)" class="wickets">-</td>
+            <td [ngClass]="totalRowClass(row)" class="average">-</td>
+            <td [ngClass]="totalRowClass(row)" class="bowlFours">-</td>
+            <td [ngClass]="totalRowClass(row)" class="bowlSixes">-</td>
+            <td [ngClass]="totalRowClass(row)" class="bowlBalls">-</td>
+            <td [ngClass]="totalRowClass(row)" class="noBalls">-</td>
+          </ng-template>
+        </tr>
+        <tr class="separator">&nbsp;</tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</section>

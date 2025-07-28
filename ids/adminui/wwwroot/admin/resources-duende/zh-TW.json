@@ -1,0 +1,40 @@
+{
+  "Permission": {
+    "UserManager": "User Manager",
+    "UserManagerReadOnly": "User Manager Read Only",
+    "Auditer": "Auditer",
+    "All": "All",
+    "AllReadOnly": "All Read Only",
+    "AuthorizationServerManager": "IdentityServer Manager",
+    "AuthorizationServerManagerReadOnly": "IdentityServer Manager Read Only"
+  },
+  "ServerDependent": {
+    "LandingPage": {
+      "IntroParagraph1": "用於 IdentityServer 的領先用戶和配置管理工具。",
+      "IdentityServerError": "無法聯繫 IdentityServer{{error}}。更多幫助請點擊<a href='{{link}}' target='_blank'>這裡</a>。"
+    },
+    "Users": {
+      "Applications": {
+        "Access": "用戶已同意或當前擁有 IdentityServer 令牌的應用程式。",
+        "DataEncrypted": "由於 IdentityServer 資料保護配置，範圍可能不會顯示在這裡。"
+      }
+    },
+    "UserDetails": {
+      "EnabledTwoFactorHelp": "根據您的 IdentityServer 實作，這可能沒有任何效果。"
+    },
+    "Notifications": {
+      "Support": "如需更多幫助，請發送電子郵件至 support@identityserver.com 聯繫我們。"
+    },
+    "InitialAdminCreation": {
+      "LoginMessage": "您現在可以登入 AdminUI 並管理您的 IdentityServer 解決方案。"
+    },
+    "Clients": {
+      "Saml": {
+        "RequireRequestDestinationHelp": "傳入請求需要一個目的地，以便 IdentityServer 可以確認它是預定的接收者",
+        "SignAssertionsHelp": "使 IdentityServer 簽署 SAML 訊息和斷言（推薦）",
+        "EncryptAssertionsHelp": "使 IdentityServer 使用服務提供者的公鑰加密發送給服務提供者的斷言",
+        "RequireSignedArtifactResponsesHelp": "使 IdentityServer 簽署發送給服務提供者的 Artifact 回應"
+      }
+    }
+  }
+}

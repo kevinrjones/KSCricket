@@ -1,0 +1,16 @@
+
+#page-size-container {
+  grid-row-start: 1;
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+
+
+#page-size-container > label {
+  padding-right: 0.5rem;
+}
+
+.page-container {
+  max-width: 7rem;
+  width: 7rem;
+}

@@ -1,0 +1,27 @@
+<table class="matchlist">
+  <thead>
+  <tr>
+    <td>Date</td>
+    <td>Tournament</td>
+    <td>Match</td>
+    <td>Ground</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let match of matchList$ | async">
+    <td>
+      {{ match.matchDate }}
+    </td>
+    <td>
+      <a [routerLink]="['/scorecard/tournament/', getEncodedValue(match.tournament)]">{{ match.matchTitle }}</a>
+    </td>
+    <td>
+      <a [routerLink]="['/scorecard/cardbyid', match.caId]">{{ match.homeTeamName }}
+        v {{ match.awayTeamName }}</a>
+    </td>
+    <td>
+      at <a [routerLink]="['/location/', match.locationId]">{{ match.ground }}</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

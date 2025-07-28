@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let tournament of byYearList$ | async">
+    <a [routerLink]="['/scorecard/tournament/' + getEncodedValue(tournament)]">{{ tournament }}</a>
+  </li>
+</ul>

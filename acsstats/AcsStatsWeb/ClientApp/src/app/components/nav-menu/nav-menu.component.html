@@ -1,0 +1,27 @@
+<header>
+  <div class="bg-brand-700">
+    <p-menubar [model]="topLevelMenu" styleClass="my-menubar" class="my-menubar">
+      <ng-template #start>
+        <a class="navbar-brand" href="#"><img src="assets/KnowledgeSpikeThumbnail.png"></a>
+      </ng-template>
+      <ng-template #end>
+        <ng-container *ngIf="anonymous$ | async">
+          <p-menu #userMenu [model]="notLoggedInMenu" popup></p-menu>
+          <p-button type="button" (click)="userMenu.toggle($event)" class="my-auth-popup">
+            <span class="user-icon"><fa-icon [icon]="faUser"></fa-icon></span>
+            Anonymous
+            <fa-icon [icon]="faAngleDown"></fa-icon>
+          </p-button>
+        </ng-container>
+        <ng-container #end *ngIf="authenticated$ | async">
+          <p-menu #userMenu [model]="loggedInMenu" popup></p-menu>
+          <p-button type="button" (click)="userMenu.toggle($event)" class="my-auth-popup">
+            <span class="user-icon"><fa-icon [icon]="faUser"></fa-icon></span>
+            {{ name$ | async }}
+            <fa-icon [icon]="faAngleDown"></fa-icon>
+          </p-button>
+        </ng-container>
+      </ng-template>
+    </p-menubar>
+  </div>
+</header>

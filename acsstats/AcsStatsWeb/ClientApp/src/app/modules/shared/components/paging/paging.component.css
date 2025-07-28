@@ -1,0 +1,166 @@
+nav > div > input {
+  max-width: 3rem;
+  max-height: 1.5rem;
+}
+
+.item-information {
+  grid-column-end: span 2;
+}
+
+nav > ul {
+  list-style: none;
+  grid-column-start: 4;
+  grid-column-end: span 4;
+  display: flex;
+  padding-left: 0;
+}
+
+.pageSize {
+  grid-column: 9;
+  grid-column-end: span 2;
+}
+
+.pageSize > select {
+  margin-left: 5px;
+  border-radius: 6px;
+}
+
+nav > ul > li {
+  display: inline-block;
+}
+
+nav > ul > input {
+  max-width: 3rem;
+  max-height: 1.5rem;
+}
+
+button {
+  background-color: var(--bg-brand-700);
+  color: white;
+  margin-left: -4px;
+  border-top: none;
+  border-bottom: none;
+  height: 2.7rem;
+  padding: 0.65rem .85rem;
+
+}
+
+/* todo: media query this */
+.page-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.item {
+  position: relative;
+  display: block;
+  border-top: none;
+  border-bottom: none;
+}
+
+.item-left {
+  border-radius: 6px 0 0 6px;
+}
+
+.item-right {
+  border-radius: 0 6px 6px 0;
+}
+
+.item-disabled {
+  background-color: darkgreen;
+  color: lightgray;
+  cursor: default;
+}
+
+.item-goto {
+  grid-column-start: 11;
+  grid-column-end: span 2;
+}
+
+.pageSizeValues, .goto-page-number {
+  margin-left: 0.5rem;
+  height: 2.4rem;
+  max-height: 10rem !important;
+}
+
+.pageSizeValues {
+  width: 5rem;
+}
+
+.item-goto > input {
+  margin-left: 0.5rem;
+  height: 2.4rem;
+}
+
+.button-right {
+  text-align: right !important;
+  padding-right: 0.3em;
+}
+
+#next-button {
+  margin: 0;
+}
+
+.button-left {
+  text-align: left !important;
+  padding-left: 0.3em;
+}
+
+.hidePage {
+  display: none;
+}
+
+.page-information, .item-information {
+  padding-top: 0.4rem;
+}
+
+.page-information > span, .item-information > span {
+  font-weight: bold;
+  padding-left: 0;
+}
+
+@media screen and (min-width: 1400px) {
+  .page-container {
+    display: grid;
+    column-gap: 2rem;
+  }
+}
+
+.page-container {
+  /*max-width: 6rem;*/
+}
+
+a.data-export-selector {
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+
+}
+
+.data-export-selector {
+  color: white;
+  background-color: var(--bg-brand-700);
+  display: block;
+}
+
+
+#export-select {
+  border-radius: 0;
+}
+
+a.export-first {
+  /*padding: 0 0 5px;*/
+  padding: 0.5rem;
+}
+
+a.export-other {
+  border-top: 1px solid var(--bg-brand-900);
+  padding: 0.5rem;
+}
+

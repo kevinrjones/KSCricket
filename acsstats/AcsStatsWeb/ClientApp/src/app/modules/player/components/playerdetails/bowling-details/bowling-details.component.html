@@ -1,0 +1,60 @@
+<section id="bowling">
+  <h3>Bowling</h3>
+  <ng-container *ngFor="let matchType of listOfSortedMatchType; index as ndx">
+    <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+      <section *ngIf="(playerBowlingOverall[matchType] != null)">
+        <div class="collapse-container">
+          <app-collapse (hideOrShow)="hideOrShow(ndx)" [hidden]="getShouldHide(ndx)"></app-collapse>
+          <section class="title">{{ getTitle(matchType) }}</section>
+          <table [ngClass]="getShouldHide(ndx) ? 'hidden' : ''" class="player-details">
+            <thead>
+            <tr>
+              <td class="align-text-cell teamname">Team</td>
+              <td class="align-text-cell opponents">Opponents</td>
+              <td class="align-text-cell ground">Ground</td>
+              <td class="align-numeric-cell startDate">Start Date</td>
+              <td class="align-numeric-cell overs playerDetailsHeader">Overs</td>
+              <td class="align-numeric-cell maidens playerDetailsHeader">Maidens (Dots)</td>
+              <td class="align-numeric-cell bowlRuns playerDetailsHeader">Runs</td>
+              <td class="align-numeric-cell wickets playerDetailsHeader">Wickets</td>
+              <td class="align-numeric-cell wides">Wds</td>
+              <td class="align-numeric-cell noBalls">NBs</td>
+              <td class="align-numeric-cell bowlFours">4s</td>
+              <td class="align-numeric-cell bowlSixes">6s</td>
+              <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let row of playerBowlingOverall[matchType]" [ngClass]="getRowClass(row.matchId,row.matchType)">
+              <td class="align-text-cell teamname">{{ getStringValueOrEmpty(row.matchId, row.team) }}</td>
+              <td class="align-text-cell opponents">{{ getStringValueOrEmpty(row.matchId, row.opponents) }}</td>
+              <td class="align-text-cell ground">{{ getStringValueOrEmpty(row.matchId, row.ground) }}</td>
+              <td
+                class="align-numeric-cell startDate">{{ getStringValueOrEmpty(row.matchId, asDate(row.matchStartDate)) }}
+              </td>
+              <td class="align-numeric-cell overs">{{ caluclateOvers(row.balls, row.ballsPerOver) }}</td>
+              <td
+                class="align-numeric-cell maidens">{{ row.balls == 0 ? "-" : row.maidens }} {{ row.balls == 0 ? "" : getDots(row.dots) }}
+              </td>
+              <td class="align-numeric-cell bowlRuns">{{ row.balls == 0 ? "-" : row.runs }}</td>
+              <td class="align-numeric-cell wickets">{{ row.balls == 0 ? "-" : row.wickets }}</td>
+              <td class="align-numeric-cell wides">{{ row.balls == 0 ? "-" : row.wides }}</td>
+              <td class="align-numeric-cell noBalls">{{ row.balls == 0 ? "-" : row.noBalls }}</td>
+              <td class="align-numeric-cell bowlFours">{{ row.balls == 0 ? "-" : row.fours }}</td>
+              <td class="align-numeric-cell bowlSixes">{{ row.balls == 0 ? "-" : row.sixes }}</td>
+              <td *ngIf="row.matchId != previousMatchId" class="align-text-cell" nowrap="nowrap">
+                <a [routerLink]="getMatchLink(row)" class="record-item-header-link btn-link">
+                  <fa-icon [icon]="faLink"></fa-icon>
+                </a>
+              </td>
+              <td *ngIf="row.matchId == previousMatchId" class="align-text-cell" nowrap="nowrap">
+              </td>
+              {{ setPreviousMatchId(row.matchId) }}
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+</section>

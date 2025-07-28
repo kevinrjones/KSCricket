@@ -1,0 +1,23 @@
+<div [formGroup]="parentFormGroup" class="my-select-container">
+  <p-iftalabel>
+    <p-select formControlName="matchType" [options]="matchTypes" optionLabel="name"
+              optionValue="key" class="my-select" id="matchtype-select"/>
+    <label for="matchtype-select">Match Type</label>
+  </p-iftalabel>
+</div>
+<div [formGroup]="parentFormGroup" class="my-select-container">
+  <p-iftalabel>
+    <p-select formControlName="matchSubType" [options]="(matchSubTypes$ | async)!"
+              optionLabel="name" optionValue="key" class="my-select" id="match-subtype-select"/>
+    <label for="match-subtype-select">Competition</label>
+  </p-iftalabel>
+</div>
+<div [formGroup]="parentFormGroup" id="page-size-container" class="page-container">
+  <p-iftalabel>
+    <p-select formControlName="pageSize" [options]="pageSizes" optionLabel="name"
+              optionValue="key" class="my-select" id="pageSize"/>
+    <label for="pageSize">Page Size</label>
+  </p-iftalabel>
+</div>
+
+

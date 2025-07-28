@@ -1,0 +1,41 @@
+<section [innerHTML]="getDisplayText()" class="searchResultHeader"></section>
+<table class="matchlist">
+  <thead>
+  <tr>
+    <th>
+      <a (click)="sort(importedSortOrder.name)" class="list-item-header-link btn-link">Name
+        <fa-icon *ngIf="importedSortOrder.name == sortOrder" [icon]="getSortClass(importedSortOrder.name)"></fa-icon>
+      </a>
+    </th>
+    <th>Teams</th>
+    <th>
+      <a (click)="sort(importedSortOrder.debutDate)" class="list-item-header-link btn-link">Debut
+        <fa-icon *ngIf="importedSortOrder.debutDate == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.debutDate)"></fa-icon>
+      </a>
+    </th>
+    <th>
+      <a (click)="sort(importedSortOrder.activeUntilDate)" class="list-item-header-link btn-link">Active Until
+        <fa-icon *ngIf="importedSortOrder.activeUntilDate == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.activeUntilDate)"></fa-icon>
+      </a>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of (players$ | async)?.sqlResults?.data">
+    <td>
+      <a [routerLink]="['/player/' + player.id]">{{ player.fullName }}</a>
+    </td>
+    <td>
+      {{ player.teams }}
+    </td>
+    <td>
+      {{ player.debut }}
+    </td>
+    <td>
+      {{ player.activeUntil }}
+    </td>
+  </tr>
+  </tbody>
+</table>

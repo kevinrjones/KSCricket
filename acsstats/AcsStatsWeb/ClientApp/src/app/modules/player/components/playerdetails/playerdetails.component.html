@@ -1,0 +1,144 @@
+<app-player-biography [playerBiography$]="playerBiography$"></app-player-biography>
+<app-overall-details [listOfSortedMatchType]="listOfSortedMatchType"
+                     [playerOverall$]="playerOverall$"></app-overall-details>
+
+<p-tabs value="1">
+  <p-tablist>
+    <p-tab value="10"><span class="match-type-tab-title">First Class</span></p-tab>
+    <p-tab value="11"><span class="match-type-tab-title">Limited Overs</span></p-tab>
+    <p-tab value="12"><span class="match-type-tab-title">Other</span></p-tab>
+  </p-tablist>
+  <p-tabpanels>
+    <p-tabpanel value="10">
+      <p-tabs value="1002">
+        <p-tablist>
+            <ng-container *ngFor="let matchType of listOfSortedFCMatchType; index as ndx">
+            <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+              <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+                <p-tab *ngIf="(playerBattingOverall[matchType] != null)" [value]=ndx>
+                  <span class="match-label-tab-title">{{ matchLabelFromMatchType(matchType) }}</span>
+                </p-tab>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </p-tablist>
+        <p-tabpanels>
+          <ng-container *ngFor="let matchType of listOfSortedFCMatchType; index as ndx">
+            <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+              <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+                <p-tabpanel *ngIf="(playerBattingOverall[matchType] != null)" [value]=ndx>
+                  <p-tabs value=1>
+                    <p-tablist>
+                      <p-tab value="20"><span class="batting-bowling-label-tab-title">Batting</span></p-tab>
+                      <p-tab value="21"><span class="batting-bowling-label-tab-title">Bowling</span></p-tab>
+                    </p-tablist>
+                    <p-tabpanels>
+                      <p-tabpanel value="20">
+                        <app-mt-batting-details [matchType]="matchType"
+                                                [playerBattingDetails]="playerBattingOverall[matchType]">
+                        </app-mt-batting-details>
+                      </p-tabpanel>
+                      <p-tabpanel value="21">
+                        <app-mt-bowling-details [matchType]="matchType"
+                                                [playerBowlingDetails]="playerBowlingOverall[matchType]"></app-mt-bowling-details>
+                      </p-tabpanel>
+
+                    </p-tabpanels>
+                  </p-tabs>
+                </p-tabpanel>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </p-tabpanels>
+      </p-tabs>
+    </p-tabpanel>
+    <p-tabpanel value="11">
+      <p-tabs value="1002">
+        <p-tablist>
+          <ng-container *ngFor="let matchType of listOfSortedListAMatchType; index as ndx">
+            <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+              <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+                <p-tab *ngIf="(playerBattingOverall[matchType] != null)" [value]=ndx>
+                  <span class="match-label-tab-title">{{ matchLabelFromMatchType(matchType) }}</span>
+                </p-tab>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </p-tablist>
+        <p-tabpanels>
+          <ng-container *ngFor="let matchType of listOfSortedListAMatchType; index as ndx">
+            <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+              <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+                <p-tabpanel *ngIf="(playerBattingOverall[matchType] != null)" [value]=ndx>
+                  <p-tabs value=1>
+                    <p-tablist>
+                      <p-tab value="20"><span class="batting-bowling-label-tab-title">Batting</span></p-tab>
+                      <p-tab value="21"><span class="batting-bowling-label-tab-title">Bowling</span></p-tab>
+                    </p-tablist>
+                    <p-tabpanels>
+                      <p-tabpanel value="20">
+                        <app-mt-batting-details [matchType]="matchType"
+                                                [playerBattingDetails]="playerBattingOverall[matchType]">
+                        </app-mt-batting-details>
+                      </p-tabpanel>
+                      <p-tabpanel value="21">
+                        <app-mt-bowling-details [matchType]="matchType"
+                                                [playerBowlingDetails]="playerBowlingOverall[matchType]"></app-mt-bowling-details>
+                      </p-tabpanel>
+
+                    </p-tabpanels>
+                  </p-tabs>
+                </p-tabpanel>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </p-tabpanels>
+      </p-tabs>
+    </p-tabpanel>
+    <p-tabpanel value="12">
+      <p-tabs value="1002">
+        <p-tablist>
+          <ng-container *ngFor="let matchType of listOfOtherMatchType; index as ndx">
+            <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+              <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+                <p-tab *ngIf="(playerBattingOverall[matchType] != null)" [value]=ndx>
+                  <span class="match-label-tab-title">{{ matchLabelFromMatchType(matchType) }}</span>
+                </p-tab>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </p-tablist>
+        <p-tabpanels>
+          <ng-container *ngFor="let matchType of listOfOtherMatchType; index as ndx">
+            <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+              <ng-container *ngIf="(playerBowlingOverall$ | async) as  playerBowlingOverall">
+                <p-tabpanel *ngIf="(playerBattingOverall[matchType] != null)" [value]=ndx>
+                  <p-tabs value=1>
+                    <p-tablist>
+                      <p-tab value="20"><span class="batting-bowling-label-tab-title">Batting</span></p-tab>
+                      <p-tab value="21"><span class="batting-bowling-label-tab-title">Bowling</span></p-tab>
+                    </p-tablist>
+                    <p-tabpanels>
+                      <p-tabpanel value="20">
+                        <app-mt-batting-details [matchType]="matchType"
+                                                [playerBattingDetails]="playerBattingOverall[matchType]">
+                        </app-mt-batting-details>
+                      </p-tabpanel>
+                      <p-tabpanel value="21">
+                        <app-mt-bowling-details [matchType]="matchType"
+                                                [playerBowlingDetails]="playerBowlingOverall[matchType]"></app-mt-bowling-details>
+                      </p-tabpanel>
+
+                    </p-tabpanels>
+                  </p-tabs>
+                </p-tabpanel>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </p-tabpanels>
+      </p-tabs>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>
+
+

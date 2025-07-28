@@ -1,0 +1,119 @@
+<app-records-search-header name="{{urlRoot}}"></app-records-search-header>
+<form (ngSubmit)="find()" [formGroup]="recordsForm">
+  <div class="record">
+    <app-search-header [matchSubTypes$]="matchSubTypes$"
+                       [parentFormGroup]="recordsForm"></app-search-header>
+    <div class="limit" id="record-limit">
+      <p-iftalabel>
+        <p-inputNumber formControlName="limit" id="limits" required="true"></p-inputNumber>
+        <label for="limits">{{ limitText }}</label>
+      </p-iftalabel>
+    </div>
+    <div class="teamrow my-select-container" id="record-teams">
+      <p-iftalabel>
+        <p-select formControlName="teamId" [options]="(teams$ | async)!"
+                  optionLabel="name" optionValue="id" class="my-select" id="team-select"/>
+        <label for="team-select">Team</label>
+      </p-iftalabel>
+    </div>
+    <div class="teamrow my-select-container" id="record-opposition">
+      <p-iftalabel>
+        <p-select formControlName="opponentsId" [options]="(teams$ | async)!"
+                  optionLabel="name" optionValue="id" class="my-select" id="opponents-select"/>
+        <label for="opponents-select">Opposition</label>
+      </p-iftalabel>
+    </div>
+    <section [ngClass]="!isNotInternational() ? 'hidden' : 'replacement'" class="homeoraway-row"></section>
+    <section [ngClass]="isNotInternational() ? 'hidden' : ''" class="homeoraway-row" id="homeoraway-label">
+      Home or Away?
+    </section>
+    <section [ngClass]="isNotInternational() ? 'hidden' : ''" class="homeoraway-row" id="homeoraway-value">
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="homeVenue" inputId="homeVenue" formControlName="homeVenue" value="false" binary="true"/>
+        <label for="homeVenue" class="my-label">Home Venue</label>
+      </div>
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="awayVenue" inputId="awayVenue" formControlName="awayVenue" value="false" binary="true"/>
+        <label for="awayVenue" class="my-label">Away Venue</label>
+      </div>
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="nuetralVenue" inputId="neutralVenue" formControlName="neutralVenue" value="false"
+                    binary="true"/>
+        <label for="nuetralVenue" class="my-label">Neutral Venue</label>
+      </div>
+    </section>
+    <section class="country-ground-row my-select-container" id="record-homeaway">
+      <p-iftalabel>
+        <p-select formControlName="hostCountryId" [options]="(countries$ | async)!"
+                  optionLabel="name" optionValue="id" class="my-select" id="host-select"/>
+        <label for="host-select">Host</label>
+      </p-iftalabel>
+    </section>
+    <section class="country-ground-row" id="record-country-grounds">
+      <p-iftalabel>
+        <p-autocomplete formControlName="groundId" [suggestions]="(filteredGrounds$ | async)!" [dropdown]="true"
+                        (completeMethod)="complete($event)"
+                        optionLabel="knownAs" id="ground-select"></p-autocomplete>
+        <label for="ground-select">Grounds</label>
+      </p-iftalabel>
+    </section>
+    <section class="daterange" id="daterange-label">
+      Date Range
+    </section>
+    <section class="daterange" id="startdate">
+      <p-iftalabel>
+        <p-date-picker formControlName="startDate" id="startdateid" dateFormat="yy-mm-dd"></p-date-picker>
+        <label for="startdateid">Start Date</label>
+      </p-iftalabel>
+    </section>
+    <section class="daterange" id="enddate">
+      <p-iftalabel>
+        <p-date-picker formControlName="endDate" id="enddateid" dateFormat="yy-mm-dd"></p-date-picker>
+        <label for="enddateid">End Date</label>
+      </p-iftalabel>
+    </section>
+    <section class="daterange" id="season-value">
+      <p-iftalabel>
+        <p-select formControlName="season" [options]="(seriesDates$ | async)!"
+                  class="my-select" id="season-select"/>
+        <label for="season-select">Season</label>
+      </p-iftalabel>
+    </section>
+    <section class="result-label result-row" id="result-label">
+      Result
+    </section>
+    <section class="result-row" id="result-value">
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="matchWon" inputId="matchWon" formControlName="matchWon" value="1" binary="true"/>
+        <label for="matchWon" class="my-label">Won</label>
+      </div>
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="matchLost" inputId="matchLost" formControlName="matchLost" value="1" binary="true"/>
+        <label for="matchLost" class="my-label">Lost</label>
+      </div>
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="matchDrawn" inputId="matchWon" formControlName="matchDrawn" value="1" binary="true"/>
+        <label for="matchDrawn" class="my-label">{{ getLabelForDraw() }}</label>
+      </div>
+      <div class="internal-form-field my-checkbox-container">
+        <p-checkbox id="matchTied" inputId="matchWon" formControlName="matchTied" value="1" binary="true"/>
+        <label for="matchTied" class="my-label">Tied</label>
+      </div>
+    </section>
+    <section class="view-row" id="view-format-label">
+      View format
+    </section>
+    <ng-container *ngTemplateOutlet="selectList; context: {form: recordsForm}"></ng-container>
+    <div class="buttons" id="buttons-submit">
+      <p-button [disabled]="!recordsForm.valid" color="button" id="submit" type="submit">
+        Display the Data
+      </p-button>
+    </div>
+    <div class="buttons" id="buttons-reset">
+      <p-button (click)="reset()" id="reset">Reset this form</p-button>
+    </div>
+    <div class="buttons" id="buttons-home">
+      <a [routerLink]="'/'" class="p-button">Records Home</a>
+    </div>
+  </div>
+</form>

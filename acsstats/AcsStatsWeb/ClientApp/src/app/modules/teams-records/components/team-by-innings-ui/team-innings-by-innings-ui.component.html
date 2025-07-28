@@ -1,0 +1,97 @@
+<h2>{{ title }}</h2>
+
+<app-records-header (first)="navigate(0)" (goto)="gotoPage($event)"
+                    (last)="navigate($event)" (next)="navigate($event)" (pageSizeChange)="pageSizeChange($event)"
+                    (previous)="navigate($event)"
+                    [currentPage]="currentPage"
+                    [exportParams]=findTeamParams
+                    [pageSize]="pageSize" [recordSummary$]="teamSummary$" [returnUrl]="'/records/teamrecords'"
+                    [totalItems]="count" [venue]="venue">
+</app-records-header>
+
+<table class="table table-striped table-hover table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th class="record-item-index-cell"></th>
+    <th class="record-item-index-cell align-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.team == sortOrder}" (click)="sort(importedSortOrder.team)" class="record-item-header-link">Team
+        <fa-icon *ngIf="importedSortOrder.team == sortOrder" [icon]="getSortClass(importedSortOrder.team)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.runs == sortOrder}" (click)="sort(importedSortOrder.runs)" class="record-item-header-link">Score
+        <fa-icon *ngIf="importedSortOrder.runs == sortOrder" [icon]="getSortClass(importedSortOrder.runs)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.balls == sortOrder}" (click)="sort(importedSortOrder.balls)" class="record-item-header-link">{{ getOversHeader() }}
+        <fa-icon *ngIf="importedSortOrder.balls == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.balls)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.rpo == sortOrder}" (click)="sort(importedSortOrder.rpo)" class="record-item-header-link">RPO
+        <fa-icon *ngIf="importedSortOrder.rpo == sortOrder" [icon]="getSortClass(importedSortOrder.rpo)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showInnings" class="align-numeric-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}" (click)="sort(importedSortOrder.innings)" class="record-item-header-link">Innings
+        <fa-icon *ngIf="importedSortOrder.innings == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.innings)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-text-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.result == sortOrder}" (click)="sort(importedSortOrder.result)" class="record-item-header-link">Result
+        <fa-icon *ngIf="importedSortOrder.result == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.result)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-text-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}" (click)="sort(importedSortOrder.opponents)" class="record-item-header-link">Opponents
+        <fa-icon *ngIf="importedSortOrder.opponents == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.opponents)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-text-cell record-item-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.ground == sortOrder}" (click)="sort(importedSortOrder.ground)" class="record-item-header-link">Ground
+        <fa-icon *ngIf="importedSortOrder.ground == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.ground)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-text-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.matchStartDate == sortOrder}" (click)="sort(importedSortOrder.matchStartDate)" class="record-item-header-link">Start Date
+        <fa-icon *ngIf="importedSortOrder.matchStartDate == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.matchStartDate)"></fa-icon>
+      </a>
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of (teamUIModel$ | async)?.sqlResults?.data; index as ndx;">
+    <td>{{ getIndex(ndx) }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.team == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.team }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.runs == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ getScore(row.totalRuns, row.totalWickets, row.allOut, row.declared) }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.balls == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ getOversDisplay(row.ballsBowled, row.ballsPerOver) }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.rpo == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.rpo == null || row.rpo == 0.00 ? "-" : row.rpo.toFixed(2) }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}" *ngIf="showInnings" class="align-numeric-cell" nowrap="nowrap">{{ row.innings }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.result == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.resultString }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}" class="align-text-cell text-opponents" nowrap="nowrap">{{ row.opponents }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.ground == sortOrder}" class="align-text-cell text-ground" nowrap="nowrap">{{ row.ground }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.matchStartDate == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.matchDate }}</td>
+    <td class="align-text-cell" nowrap="nowrap">
+      <a [routerLink]="getMatchLink(row)" class="record-item-header-link btn-link">
+        <fa-icon [icon]="faLink"></fa-icon>
+      </a>
+    </td>
+
+  </tr>
+  </tbody>
+</table>
+
+<app-records-footer (first)="navigate(0)" (goto)="gotoPage($event)" (last)="navigate($event)"
+                    (next)="navigate($event)" (previous)="navigate($event)" [currentPage]="currentPage"
+                    [pageSize]="pageSize"
+                    [totalItems]="count"></app-records-footer>

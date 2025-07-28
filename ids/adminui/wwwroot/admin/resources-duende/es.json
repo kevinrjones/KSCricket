@@ -1,0 +1,40 @@
+{
+  "Permission": {
+    "UserManager": "User Manager",
+    "UserManagerReadOnly": "User Manager Read Only",
+    "Auditer": "Auditer",
+    "All": "All",
+    "AllReadOnly": "All Read Only",
+    "AuthorizationServerManager": "IdentityServer Manager",
+    "AuthorizationServerManagerReadOnly": "IdentityServer Manager Read Only"
+  },
+  "ServerDependent": {
+    "LandingPage": {
+      "IntroParagraph1": "La herramienta líder en gestión de usuarios y configuraciones para IdentityServer.",
+      "IdentityServerError": "No se puede contactar con IdentityServer{{error}}. Más ayuda se puede encontrar <a href='{{link}}' target='_blank'>aquí</a>."
+    },
+    "Users": {
+      "Applications": {
+        "Access": "Aplicaciones a las que el usuario ha dado consentimiento o actualmente tiene tokens del lado de IdentityServer.",
+        "DataEncrypted": "Es posible que los alcances no se muestren aquí debido a la configuración de protección de datos de IdentityServer."
+      }
+    },
+    "UserDetails": {
+      "EnabledTwoFactorHelp": "Dependiendo de su implementación de IdentityServer, esto puede no tener ningún efecto."
+    },
+    "Notifications": {
+      "Support": "Envíanos un mensaje a support@identityserver.com para más asistencia."
+    },
+    "InitialAdminCreation": {
+      "LoginMessage": "Ahora puedes iniciar sesión en AdminUI y gestionar tu solución IdentityServer."
+    },
+    "Clients": {
+      "Saml": {
+        "RequireRequestDestinationHelp": "Las solicitudes entrantes requieren un destino para que IdentityServer pueda confirmar que es el destinatario previsto",
+        "SignAssertionsHelp": "Hace que IdentityServer firme tanto los mensajes SAML como las afirmaciones (recomendado)",
+        "EncryptAssertionsHelp": "Hace que IdentityServer encripte las afirmaciones enviadas al Proveedor de Servicios, utilizando su clave pública",
+        "RequireSignedArtifactResponsesHelp": "Hace que IdentityServer firme las Respuestas de Artefacto para el proveedor de servicios"
+      }
+    }
+  }
+}

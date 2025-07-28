@@ -1,0 +1,74 @@
+<section id="batting">
+  <h3>Batting</h3>
+  <ng-container *ngFor="let matchType of listOfSortedMatchType; index as ndx">
+    <ng-container *ngIf="(playerBattingOverall$ | async) as  playerBattingOverall">
+      <section *ngIf="(playerBattingOverall[matchType] != null)">
+        {{ initialiseRunningTotals() //noinspection VoidFunctionReturnValueUsed}}
+        <div class="collapse-container">
+          <app-collapse (hideOrShow)="hideOrShow(ndx)" [hidden]="getShouldHide(ndx)"></app-collapse>
+          <section class="title">{{ getTitle(matchType) }}</section>
+          <table [ngClass]="getShouldHide(ndx) ? 'hidden' : ''" class="player-details">
+            <thead>
+            <tr>
+              <td class="align-text-cell teamname">Team</td>
+              <td class="align-text-cell opponents">Opponents</td>
+              <td class="align-text-cell ground">Ground</td>
+              <td class="align-numeric-cell startDate">Start Date</td>
+              <td class="align-numeric-cell score">Score<span class='position'>(pos)</span></td>
+              <td class="align-text-cell dismissal">Dismissal</td>
+              <td class="align-numeric-cell batBalls">Balls</td>
+              <td class="align-numeric-cell minutes">Minutes</td>
+              <td class="align-numeric-cell batFours">Fours</td>
+              <td class="align-numeric-cell batSixes">Sixes</td>
+              <td class="align-numeric-cell batSixes">SR</td>
+              <td class="align-numeric-cell">Total Runs</td>
+              <td class="align-numeric-cell">Total Balls</td>
+              <td class="align-numeric-cell">Rolling Average</td>
+              <td class="align-numeric-cell">Rolling SR</td>
+              <td *ngIf="isLimitedOverMatchType(matchType)" class="align-numeric-cell">Rolling BI</td>
+              <td></td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let row of playerBattingOverall[matchType]" [ngClass]="getRowClass(row.matchId, row.matchType)">
+              {{ updateRunningTotals(row) //noinspection VoidFunctionReturnValueUsed }}
+              <td [innerHTML]="getHomeTeam(row)" [ngClass]="row.captain != 0 ? 'cwk' : ''"
+                  class="teamname align-text-cell"></td>
+              <td class="opponents align-text-cell">{{ getStringValueOrEmpty(row.matchId, row.opponents) }}</td>
+              <td class="ground align-text-cell">{{ getStringValueOrEmpty(row.matchId, row.ground) }}</td>
+              <td
+                class="startDate align-numeric-cell">{{ asDate(getStringValueOrEmpty(row.matchId, row.matchStartDate)) }}
+              </td>
+              <td [innerHTML]="getScore(row)" class="score align-numeric-cell"></td>
+              <td class="dismissal align-text-cell">{{ row.dismissal }}</td>
+              <td class="dismissal align-numeric-cell">{{ getBalls(row) }}</td>
+              <td class="dismissal align-numeric-cell">{{ getMinutes(row) }}</td>
+              <td class="dismissal align-numeric-cell">{{ getFours(row) }}</td>
+              <td class="dismissal align-numeric-cell">{{ getSixes(row) }}</td>
+              <td class="dismissal align-numeric-cell">{{ getSR(row) }}</td>
+              <td class="align-numeric-cell">{{ getRollingRuns() }}</td>
+              <td class="align-numeric-cell">{{ getRollingBalls() }}</td>
+              <td class="align-numeric-cell">{{ getRollingAverage() }}</td>
+              <td class="align-numeric-cell">{{ getRollingSR() }}</td>
+              <td *ngIf="isLimitedOverMatchType(matchType)" class="align-numeric-cell">{{ getRollingBI(matchType) }}
+              </td>
+              <td *ngIf="row.matchId != previousMatchId" class="align-text-cell" nowrap="nowrap">
+                <a [routerLink]="getMatchLink(row)" class="record-item-header-link btn-link">
+                  <fa-icon [icon]="faLink"></fa-icon>
+                </a>
+              </td>
+              <td *ngIf="row.matchId == previousMatchId" class="align-text-cell" nowrap="nowrap">
+              </td>
+              {{ setPreviousMatchId(row.matchId) }}
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </ng-container>
+
+  </ng-container>
+
+
+</section>

@@ -1,0 +1,1 @@
+export class Timestamp { public static readonly stamp = '2025-07-22T13:41:43.447Z'; }

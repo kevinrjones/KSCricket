@@ -1,0 +1,8 @@
+<div (click)="raiseHideOrShow()" class="collapse-control">
+      <span [ngClass]="hidden ? 'hidden' : ''">Hide
+        <fa-icon *ngIf="!hidden" [icon]="faCircleUp"></fa-icon>
+      </span>
+  <span [ngClass]="hidden ? '' : 'hidden'">Show
+        <fa-icon *ngIf="hidden" [icon]="faCircleDown"></fa-icon>
+     </span>
+</div>

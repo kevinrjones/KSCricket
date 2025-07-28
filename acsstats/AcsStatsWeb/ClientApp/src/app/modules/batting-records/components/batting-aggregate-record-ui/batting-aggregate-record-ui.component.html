@@ -1,0 +1,234 @@
+<h2>{{ title }}</h2>
+
+<app-records-header (first)="navigate(0)" (goto)="gotoPage($event)"
+                    (last)="navigate($event)" (next)="navigate($event)" (pageSizeChange)="pageSizeChange($event)"
+                    (previous)="navigate($event)"
+                    [currentPage]="currentPage"
+                    [exportParams]=findBattingParams
+                    [pageSize]="pageSize" [recordSummary$]="battingSummaryModel$"
+                    [returnUrl]="'/records/battingrecords'"
+                    [totalItems]="count" [venue]="venue">
+</app-records-header>
+
+<table class="table table-striped table-hover table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th class="record-item-index-cell"></th>
+    <th class="align-text-cell record-item-text-cell">
+      <a (click)="sort(importedSortOrder.name)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.name == sortOrder}">Name
+        <fa-icon *ngIf="importedSortOrder.name == sortOrder" [icon]="getSortClass(importedSortOrder.name)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showTeam" class="align-text-cell record-item-text-cell">
+      <a (click)="sort(importedSortOrder.team)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.team == sortOrder}">Team
+        <fa-icon *ngIf="importedSortOrder.team == sortOrder" [icon]="getSortClass(importedSortOrder.team)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showOpposition" class="align-text-cell record-item-text-cell">
+      <a (click)="sort(importedSortOrder.opponents)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}">Opposition
+        <fa-icon *ngIf="importedSortOrder.opponents == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.opponents)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showCountry" class="align-text-cell record-item-text-cell">
+      <a (click)="sort(importedSortOrder.hostCountry)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.hostCountry == sortOrder}">Host Country
+        <fa-icon *ngIf="importedSortOrder.hostCountry == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.hostCountry)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showGround" class="align-numeric-cell record-item-text-cell">
+      <a (click)="sort(importedSortOrder.knownAs)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.knownAs == sortOrder}">Ground
+        <fa-icon *ngIf="importedSortOrder.knownAs == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.knownAs)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showYear" class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.season)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.season == sortOrder}">Year
+        <fa-icon *ngIf="importedSortOrder.season == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.season)"></fa-icon>
+      </a>
+    </th>
+    <th *ngIf="showSeason" class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.season)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.season == sortOrder}">Season
+        <fa-icon *ngIf="importedSortOrder.season == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.season)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.matches)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.matches == sortOrder}">M
+        <fa-icon *ngIf="importedSortOrder.matches == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.matches)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.innings)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}">I
+        <fa-icon *ngIf="importedSortOrder.innings == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.innings)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.notOuts)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.notOuts == sortOrder}">NOs
+        <fa-icon *ngIf="importedSortOrder.notOuts == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.notOuts)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.runs)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.runs == sortOrder}">Runs
+        <fa-icon *ngIf="importedSortOrder.runs == sortOrder" [icon]="getSortClass(importedSortOrder.runs)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.hs)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.hs == sortOrder}">HS
+        <fa-icon *ngIf="importedSortOrder.hs == sortOrder" [icon]="getSortClass(importedSortOrder.hs)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.avg)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.avg == sortOrder}">Avg
+        <fa-icon *ngIf="importedSortOrder.avg == sortOrder" [icon]="getSortClass(importedSortOrder.avg)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.hundreds)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.hundreds == sortOrder}">100s
+        <fa-icon *ngIf="importedSortOrder.hundreds == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.hundreds)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.fifties)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.fifties == sortOrder}">50s
+        <fa-icon *ngIf="importedSortOrder.fifties == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.fifties)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.ducks)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.ducks == sortOrder}">0s
+        <fa-icon *ngIf="importedSortOrder.ducks == sortOrder" [icon]="getSortClass(importedSortOrder.ducks)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.fours)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.fours == sortOrder}">4s
+        <fa-icon *ngIf="importedSortOrder.fours == sortOrder" [icon]="getSortClass(importedSortOrder.fours)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.sixes)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.sixes == sortOrder}">6s
+        <fa-icon *ngIf="importedSortOrder.sixes == sortOrder" [icon]="getSortClass(importedSortOrder.sixes)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.balls)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.balls == sortOrder}">Balls
+        <fa-icon *ngIf="importedSortOrder.balls == sortOrder" [icon]="getSortClass(importedSortOrder.balls)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.strikeRate)" class="record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.strikeRate == sortOrder}">SR
+        <fa-icon *ngIf="importedSortOrder.strikeRate == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.strikeRate)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a (click)="sort(importedSortOrder.battingImpact)" class="me-1 record-item-header-link btn-link"
+         [ngClass]="{'bold-sort-column': importedSortOrder.battingImpact == sortOrder}"
+         pTooltip="Batting Impact">BtI
+        <fa-icon *ngIf="importedSortOrder.battingImpact == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.battingImpact)"></fa-icon>
+      </a>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of (battingUIModel$ | async)?.sqlResults?.data; index as ndx;">
+    <td>{{ getIndex(ndx) }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.name == sortOrder}" class="align-text-cell" nowrap="nowrap"><a
+      [routerLink]="['/player/', row.playerId]">{{ row.name }}({{ row.debut }} - {{ row.end }})</a></td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.team == sortOrder}" *ngIf="showTeam" class="align-text-cell"
+        nowrap="nowrap">
+          <span class="ellipsed-cell me-1" pTooltip="{{row.team}}"
+                tooltipPosition="right">{{ row.team }}</span>
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}" *ngIf="showOpposition"
+        class="align-text-cell" nowrap="nowrap">
+      <span class="ellipsed-cell me-1" pTooltip="{{row.opponents}}"
+            tooltipPosition="right">{{ row.opponents }}</span>
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.hostCountry == sortOrder}" *ngIf="showCountry"
+        class="align-text-cell" nowrap="nowrap">
+      <span class="ellipsed-cell me-1">{{ row.countryName }}</span>
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.knownAs == sortOrder}" *ngIf="showGround"
+        class="align-numeric-cell" nowrap="nowrap">{{ row.ground }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.season == sortOrder}" *ngIf="showYear"
+        class="align-numeric-cell" nowrap="nowrap">{{ row.year }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.season == sortOrder}" *ngIf="showSeason"
+        class="align-numeric-cell" nowrap="nowrap">{{ row.year }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.matches == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.matches }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.innings == null ? "-" : row.innings }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.notOuts == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ getNotOuts(row.innings, row.notOuts) }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.runs == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.runs == null ? "-" : row.runs }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.hs == sortOrder}" [innerHTML]="formatHighestScore(row)"
+        class="align-numeric-cell" nowrap="nowrap"></td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.avg == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ getAverage(row.innings, row.notOuts, row.avg) }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.hundreds == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.hundreds == 0 ? "-" : row.hundreds }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.fifties == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.fifties == 0 ? "-" : row.fifties }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.ducks == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.ducks == 0 ? "-" : row.ducks }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.fours == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.fours == 0 ? "-" : row.fours }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.sixes == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.sixes == 0 ? "-" : row.sixes }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.balls == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.balls == 0 ? "-" : row.balls }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.strikeRate == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.sr == null ? "-" : row.sr.toFixed(2) }}
+    </td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.battingImpact == sortOrder}" class="align-numeric-cell"
+        nowrap="nowrap">{{ row.bi == null ? "-" : row.bi.toFixed(2) }}
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<app-records-footer (first)="navigate(0)" (goto)="gotoPage($event)" (last)="navigate($event)"
+                    (next)="navigate($event)" (previous)="navigate($event)" [currentPage]="currentPage"
+                    [pageSize]="pageSize"
+                    [totalItems]="count"></app-records-footer>

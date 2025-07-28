@@ -1,0 +1,575 @@
+/usr/sbin/mariadbd, Version: 11.4.5-MariaDB-0ubuntu0.24.10.1-log (Ubuntu 24.10). started with:
+Tcp port: 0  Unix socket: /run/mysqld/mysqld.sock
+Time		    Id Command	Argument
+250718  9:39:41	     3 Connect	root@localhost on mysql using SSL/TLS
+		     3 Query	SET SQL_LOG_BIN=0, WSREP_ON=OFF
+		     3 Query	show variables like 'datadir'
+		     3 Quit	
+		     4 Connect	root@localhost on  using SSL/TLS
+250718  9:39:42	     4 Query	SELECT count(*) FROM mysql.user WHERE user='root' and password='' and password_expired='N' and plugin in ('', 'mysql_native_password', 'mysql_old_password')
+		     4 Quit	
+		     5 Connect	root@localhost on  using SSL/TLS
+		     5 Query	SELECT CONCAT('select count(*) into @discard from `', TABLE_SCHEMA, '`.`', TABLE_NAME, '`')
+    FROM information_schema.TABLES WHERE TABLE_SCHEMA<>"INFORMATION_SCHEMA" AND TABLE_SCHEMA<>"PERFORMANCE_SCHEMA"
+    AND (ENGINE="MyISAM" OR ENGINE="Aria")
+		     5 Quit	
+		     6 Connect	root@localhost on  using SSL/TLS
+		     6 Query	select count(*) into @discard from `sys`.`sys_config`
+		     6 Quit	
+		     7 Connect	root@localhost on  using SSL/TLS
+		     7 Query	select count(*) into @discard from `mysql`.`proxies_priv`
+		     7 Quit	
+		     8 Connect	root@localhost on  using SSL/TLS
+		     8 Query	select count(*) into @discard from `mysql`.`time_zone_leap_second`
+		     8 Quit	
+		     9 Connect	root@localhost on  using SSL/TLS
+		     9 Query	select count(*) into @discard from `mysql`.`time_zone`
+		     9 Quit	
+		    10 Connect	root@localhost on  using SSL/TLS
+250718  9:39:43	    10 Query	select count(*) into @discard from `mysql`.`columns_priv`
+		    10 Quit	
+		    11 Connect	root@localhost on  using SSL/TLS
+		    11 Query	select count(*) into @discard from `mysql`.`func`
+		    11 Quit	
+		    12 Connect	root@localhost on  using SSL/TLS
+		    12 Query	select count(*) into @discard from `mysql`.`proc`
+		    12 Quit	
+		    13 Connect	root@localhost on  using SSL/TLS
+		    13 Query	select count(*) into @discard from `mysql`.`event`
+		    13 Quit	
+		    14 Connect	root@localhost on  using SSL/TLS
+		    14 Query	select count(*) into @discard from `mysql`.`help_relation`
+		    14 Quit	
+		    15 Connect	root@localhost on  using SSL/TLS
+250718  9:39:44	    15 Query	select count(*) into @discard from `mysql`.`roles_mapping`
+		    15 Quit	
+		    16 Connect	root@localhost on  using SSL/TLS
+		    16 Query	select count(*) into @discard from `mysql`.`time_zone_transition_type`
+		    16 Quit	
+		    17 Connect	root@localhost on  using SSL/TLS
+		    17 Query	select count(*) into @discard from `mysql`.`time_zone_name`
+		    17 Quit	
+		    18 Connect	root@localhost on  using SSL/TLS
+		    18 Query	select count(*) into @discard from `mysql`.`plugin`
+		    18 Quit	
+		    19 Connect	root@localhost on  using SSL/TLS
+		    19 Query	select count(*) into @discard from `mysql`.`help_category`
+		    19 Quit	
+		    20 Connect	root@localhost on  using SSL/TLS
+		    20 Query	select count(*) into @discard from `mysql`.`index_stats`
+		    20 Quit	
+		    21 Connect	root@localhost on  using SSL/TLS
+		    21 Query	select count(*) into @discard from `mysql`.`column_stats`
+		    21 Quit	
+250718  9:39:45	    22 Connect	root@localhost on  using SSL/TLS
+		    22 Query	select count(*) into @discard from `mysql`.`tables_priv`
+		    22 Quit	
+		    23 Connect	root@localhost on  using SSL/TLS
+		    23 Query	select count(*) into @discard from `mysql`.`procs_priv`
+		    23 Quit	
+		    24 Connect	root@localhost on  using SSL/TLS
+		    24 Query	select count(*) into @discard from `mysql`.`help_topic`
+		    24 Quit	
+		    25 Connect	root@localhost on  using SSL/TLS
+		    25 Query	select count(*) into @discard from `mysql`.`time_zone_transition`
+		    25 Quit	
+		    26 Connect	root@localhost on  using SSL/TLS
+		    26 Query	select count(*) into @discard from `mysql`.`table_stats`
+		    26 Quit	
+		    27 Connect	root@localhost on  using SSL/TLS
+		    27 Query	select count(*) into @discard from `mysql`.`help_keyword`
+		    27 Quit	
+		    28 Connect	root@localhost on  using SSL/TLS
+250718  9:39:46	    28 Query	select count(*) into @discard from `mysql`.`servers`
+		    28 Quit	
+		    29 Connect	root@localhost on  using SSL/TLS
+		    29 Query	select count(*) into @discard from `mysql`.`db`
+		    29 Quit	
+		    30 Connect	root@localhost on  using SSL/TLS
+		    30 Query	select count(*) into @discard from `mysql`.`global_priv`
+		    30 Quit	
+250718  9:40:05	    31 Connect	identity-staging@localhost on  using SSL/TLS
+		    31 Query	SET NAMES utf8mb4
+		    31 Query	USE `identity-staging`
+		    31 Quit	
+		    32 Connect	identity-staging@localhost on identity-staging using SSL/TLS
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+250718  9:40:06	    33 Connect	identity-staging@localhost on  using SSL/TLS
+		    33 Query	SET NAMES utf8mb4
+		    33 Query	USE `identity-staging`
+		    33 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    34 Connect	identity-staging@localhost on  using SSL/TLS
+		    34 Query	SET NAMES utf8mb4
+		    34 Query	USE `identity-staging`
+		    34 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    35 Connect	identity-staging@localhost on  using SSL/TLS
+		    35 Query	SET NAMES utf8mb4
+		    35 Query	USE `identity-staging`
+		    35 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+250718  9:40:07	    36 Connect	identity-staging@localhost on  using SSL/TLS
+		    36 Query	SET NAMES utf8mb4
+		    36 Query	USE `identity-staging`
+		    36 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    37 Connect	identity-staging@localhost on  using SSL/TLS
+		    37 Query	SET NAMES utf8mb4
+		    37 Query	USE `identity-staging`
+		    37 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    38 Connect	identity-staging@localhost on  using SSL/TLS
+		    38 Query	SET NAMES utf8mb4
+		    38 Query	USE `identity-staging`
+		    38 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    39 Connect	identity-staging@localhost on  using SSL/TLS
+		    39 Query	SET NAMES utf8mb4
+		    39 Query	USE `identity-staging`
+		    39 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    40 Connect	identity-staging@localhost on  using SSL/TLS
+		    40 Query	SET NAMES utf8mb4
+		    40 Query	USE `identity-staging`
+		    40 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    41 Connect	identity-staging@localhost on  using SSL/TLS
+		    41 Query	SET NAMES utf8mb4
+		    41 Query	USE `identity-staging`
+		    41 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    42 Connect	identity-staging@localhost on  using SSL/TLS
+		    42 Query	SET NAMES utf8mb4
+		    42 Query	USE `identity-staging`
+		    42 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    43 Connect	identity-staging@localhost on  using SSL/TLS
+		    43 Query	SET NAMES utf8mb4
+		    43 Query	USE `identity-staging`
+		    43 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    44 Connect	identity-staging@localhost on  using SSL/TLS
+		    44 Query	SET NAMES utf8mb4
+		    44 Query	USE `identity-staging`
+		    44 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    45 Connect	identity-staging@localhost on  using SSL/TLS
+		    45 Query	SET NAMES utf8mb4
+		    45 Query	USE `identity-staging`
+		    45 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    46 Connect	identity-staging@localhost on  using SSL/TLS
+		    46 Query	SET NAMES utf8mb4
+		    46 Query	USE `identity-staging`
+		    46 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    47 Connect	identity-staging@localhost on  using SSL/TLS
+		    47 Query	SET NAMES utf8mb4
+		    47 Query	USE `identity-staging`
+		    47 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    48 Connect	identity-staging@localhost on  using SSL/TLS
+		    48 Query	SET NAMES utf8mb4
+		    48 Query	USE `identity-staging`
+		    48 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    49 Connect	identity-staging@localhost on  using SSL/TLS
+		    49 Query	SET NAMES utf8mb4
+		    49 Query	USE `identity-staging`
+		    49 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    50 Connect	identity-staging@localhost on  using SSL/TLS
+		    50 Query	SET NAMES utf8mb4
+		    50 Query	USE `identity-staging`
+		    50 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+		    51 Connect	identity-staging@localhost on  using SSL/TLS
+		    51 Query	SET NAMES utf8mb4
+		    51 Query	USE `identity-staging`
+		    51 Quit	
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT GET_LOCK('__identity-staging_EFMigrationsLock', 259200)
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    32 Query	CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4
+		    32 Query	commit
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+		    52 Connect	identity-staging@localhost on  using SSL/TLS
+		    52 Query	SET NAMES utf8mb4
+		    52 Query	USE `identity-staging`
+		    52 Quit	
+		    32 Query	SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='identity-staging' AND TABLE_NAME='__EFMigrationsHistory'
+		    32 Query	SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`
+		    32 Query	commit
+		    32 Query	SELECT RELEASE_LOCK('__identity-staging_EFMigrationsLock')
+250718  9:40:08	    32 Query	SET NAMES utf8mb4
+		    32 Query	SELECT `c`.`Key`, `c`.`Value`
+FROM `ConfigurationEntries` AS `c`
+WHERE `c`.`Key` = 'starterModeConsent'
+LIMIT 1
+		    32 Query	SET NAMES utf8mb4
+		    32 Query	set session transaction isolation level repeatable read
+		    32 Query	start transaction
+250718  9:40:09	    53 Connect	identity-staging@localhost on identity-staging using SSL/TLS
+		    53 Query	SET NAMES utf8mb4
+		    53 Query	SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Description`, `a`.`Name`, `a`.`NormalizedName`, `a`.`Reserved`, `a0`.`UserId`, `a0`.`RoleId`
+FROM `AspNetRoles` AS `a`
+LEFT JOIN `AspNetUserRoles` AS `a0` ON `a`.`Id` = `a0`.`RoleId`
+WHERE `a`.`NormalizedName` LIKE '%ADMINUI ADMINISTRATOR%'
+ORDER BY `a`.`Name`, `a`.`Id`, `a0`.`UserId`
+		    32 Query	SELECT `c`.`Key`, `c`.`Value`
+FROM `ConfigurationEntries` AS `c`
+WHERE `c`.`Key` = 'bootstrapconfig'
+LIMIT 1
+		    53 Query	SET NAMES utf8mb4
+		    53 Query	SELECT COUNT(*)
+FROM `AspNetUsers` AS `a`
+		    53 Query	SET NAMES utf8mb4
+		    53 Query	SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Description`, `a`.`DisplayName`, `a`.`Name`, `a`.`NormalizedName`, `a`.`Required`, `a`.`Reserved`, `a`.`Rule`, `a`.`RuleValidationFailureDescription`, `a`.`UserEditable`, `a`.`ValueType`, `e`.`ClaimTypeId`, `e`.`Value`
+FROM `AspNetClaimTypes` AS `a`
+LEFT JOIN `EnumClaimTypeAllowedValues` AS `e` ON `a`.`Id` = `e`.`ClaimTypeId`
+ORDER BY `a`.`Id`, `e`.`ClaimTypeId`
+		    53 Query	SET NAMES utf8mb4
+		    53 Query	SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Description`, `a`.`DisplayName`, `a`.`Name`, `a`.`NormalizedName`, `a`.`Required`, `a`.`Reserved`, `a`.`Rule`, `a`.`RuleValidationFailureDescription`, `a`.`UserEditable`, `a`.`ValueType`
+FROM `AspNetClaimTypes` AS `a`
+WHERE FALSE
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `IdentityResources` AS `i`
+    WHERE `i`.`Name` = 'openid')
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `IdentityResources` AS `i`
+    WHERE `i`.`Name` = 'profile')
+		    32 Query	SELECT COUNT(*)
+FROM `ExtendedClients` AS `e`
+		    32 Query	SELECT COUNT(*)
+FROM `Clients` AS `c`
+		    32 Query	SELECT COUNT(*)
+FROM `ExtendedApiResources` AS `e`
+		    32 Query	SELECT COUNT(*)
+FROM `ApiResources` AS `a`
+		    32 Query	SELECT COUNT(*)
+FROM `ExtendedIdentityResources` AS `e`
+		    32 Query	SELECT COUNT(*)
+FROM `IdentityResources` AS `i`
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `ApiResources` AS `a`
+    WHERE EXISTS (
+        SELECT 1
+        FROM `ApiResourceScopes` AS `a0`
+        WHERE (`a`.`Id` = `a0`.`ApiResourceId`) AND (`a0`.`Scope` = 'admin_api')))
+		    32 Query	SELECT `a1`.`Id`, `a1`.`Created`, `a1`.`Description`, `a1`.`DisplayName`, `a1`.`Emphasize`, `a1`.`Enabled`, `a1`.`LastAccessed`, `a1`.`Name`, `a1`.`NonEditable`, `a1`.`Required`, `a1`.`ShowInDiscoveryDocument`, `a1`.`Updated`, `a0`.`Id`, `a0`.`ScopeId`, `a0`.`Type`
+FROM (
+    SELECT `a`.`Id`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Emphasize`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`Required`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`
+    FROM `ApiScopes` AS `a`
+    WHERE `a`.`Name` = 'admin_api'
+    LIMIT 1
+) AS `a1`
+LEFT JOIN `ApiScopeClaims` AS `a0` ON `a1`.`Id` = `a0`.`ScopeId`
+ORDER BY `a1`.`Id`
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `IdentityResources` AS `i`
+    WHERE `i`.`Name` = 'admin_ui_profile')
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `ApiResources` AS `a`
+    WHERE EXISTS (
+        SELECT 1
+        FROM `ApiResourceScopes` AS `a0`
+        WHERE (`a`.`Id` = `a0`.`ApiResourceId`) AND (`a0`.`Scope` = 'admin_ui_webhooks')))
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `ConfigurationEntries` AS `c`
+    WHERE `c`.`Key` = 'webhooks')
+250718  9:40:10	    32 Query	SELECT `c5`.`Id`, `c5`.`AbsoluteRefreshTokenLifetime`, `c5`.`AccessTokenLifetime`, `c5`.`AccessTokenType`, `c5`.`AllowAccessTokensViaBrowser`, `c5`.`AllowOfflineAccess`, `c5`.`AllowPlainTextPkce`, `c5`.`AllowRememberConsent`, `c5`.`AllowedIdentityTokenSigningAlgorithms`, `c5`.`AlwaysIncludeUserClaimsInIdToken`, `c5`.`AlwaysSendClientClaims`, `c5`.`AuthorizationCodeLifetime`, `c5`.`BackChannelLogoutSessionRequired`, `c5`.`BackChannelLogoutUri`, `c5`.`CibaLifetime`, `c5`.`ClientClaimsPrefix`, `c5`.`ClientId`, `c5`.`ClientName`, `c5`.`ClientUri`, `c5`.`ConsentLifetime`, `c5`.`CoordinateLifetimeWithUserSession`, `c5`.`Created`, `c5`.`DPoPClockSkew`, `c5`.`DPoPValidationMode`, `c5`.`Description`, `c5`.`DeviceCodeLifetime`, `c5`.`EnableLocalLogin`, `c5`.`Enabled`, `c5`.`FrontChannelLogoutSessionRequired`, `c5`.`FrontChannelLogoutUri`, `c5`.`IdentityTokenLifetime`, `c5`.`IncludeJwtId`, `c5`.`InitiateLoginUri`, `c5`.`LastAccessed`, `c5`.`LogoUri`, `c5`.`NonEditable`, `c5`.`PairWiseSubjectSalt`, `c5`.`PollingInterval`, `c5`.`ProtocolType`, `c5`.`PushedAuthorizationLifetime`, `c5`.`RefreshTokenExpiration`, `c5`.`RefreshTokenUsage`, `c5`.`RequireClientSecret`, `c5`.`RequireConsent`, `c5`.`RequireDPoP`, `c5`.`RequirePkce`, `c5`.`RequirePushedAuthorization`, `c5`.`RequireRequestObject`, `c5`.`SlidingRefreshTokenLifetime`, `c5`.`UpdateAccessTokenClaimsOnRefresh`, `c5`.`Updated`, `c5`.`UserCodeType`, `c5`.`UserSsoLifetime`, `c0`.`Id`, `c0`.`ClientId`, `c0`.`RedirectUri`, `c1`.`Id`, `c1`.`ClientId`, `c1`.`PostLogoutRedirectUri`, `c2`.`Id`, `c2`.`ClientId`, `c2`.`Origin`, `c3`.`Id`, `c3`.`ClientId`, `c3`.`GrantType`, `c4`.`Id`, `c4`.`ClientId`, `c4`.`Created`, `c4`.`Description`, `c4`.`Expiration`, `c4`.`Type`, `c4`.`Value`
+FROM (
+    SELECT `c`.`Id`, `c`.`AbsoluteRefreshTokenLifetime`, `c`.`AccessTokenLifetime`, `c`.`AccessTokenType`, `c`.`AllowAccessTokensViaBrowser`, `c`.`AllowOfflineAccess`, `c`.`AllowPlainTextPkce`, `c`.`AllowRememberConsent`, `c`.`AllowedIdentityTokenSigningAlgorithms`, `c`.`AlwaysIncludeUserClaimsInIdToken`, `c`.`AlwaysSendClientClaims`, `c`.`AuthorizationCodeLifetime`, `c`.`BackChannelLogoutSessionRequired`, `c`.`BackChannelLogoutUri`, `c`.`CibaLifetime`, `c`.`ClientClaimsPrefix`, `c`.`ClientId`, `c`.`ClientName`, `c`.`ClientUri`, `c`.`ConsentLifetime`, `c`.`CoordinateLifetimeWithUserSession`, `c`.`Created`, `c`.`DPoPClockSkew`, `c`.`DPoPValidationMode`, `c`.`Description`, `c`.`DeviceCodeLifetime`, `c`.`EnableLocalLogin`, `c`.`Enabled`, `c`.`FrontChannelLogoutSessionRequired`, `c`.`FrontChannelLogoutUri`, `c`.`IdentityTokenLifetime`, `c`.`IncludeJwtId`, `c`.`InitiateLoginUri`, `c`.`LastAccessed`, `c`.`LogoUri`, `c`.`NonEditable`, `c`.`PairWiseSubjectSalt`, `c`.`PollingInterval`, `c`.`ProtocolType`, `c`.`PushedAuthorizationLifetime`, `c`.`RefreshTokenExpiration`, `c`.`RefreshTokenUsage`, `c`.`RequireClientSecret`, `c`.`RequireConsent`, `c`.`RequireDPoP`, `c`.`RequirePkce`, `c`.`RequirePushedAuthorization`, `c`.`RequireRequestObject`, `c`.`SlidingRefreshTokenLifetime`, `c`.`UpdateAccessTokenClaimsOnRefresh`, `c`.`Updated`, `c`.`UserCodeType`, `c`.`UserSsoLifetime`
+    FROM `Clients` AS `c`
+    WHERE `c`.`ClientId` = 'admin_ui'
+    LIMIT 1
+) AS `c5`
+LEFT JOIN `ClientRedirectUris` AS `c0` ON `c5`.`Id` = `c0`.`ClientId`
+LEFT JOIN `ClientPostLogoutRedirectUris` AS `c1` ON `c5`.`Id` = `c1`.`ClientId`
+LEFT JOIN `ClientCorsOrigins` AS `c2` ON `c5`.`Id` = `c2`.`ClientId`
+LEFT JOIN `ClientGrantTypes` AS `c3` ON `c5`.`Id` = `c3`.`ClientId`
+LEFT JOIN `ClientSecrets` AS `c4` ON `c5`.`Id` = `c4`.`ClientId`
+ORDER BY `c5`.`Id`, `c0`.`Id`, `c1`.`Id`, `c2`.`Id`, `c3`.`Id`
+		    32 Query	SELECT `e`.`Id`, `e`.`ClientId`, `e`.`ClientType`, `e`.`Description`, `e`.`NormalizedClientId`, `e`.`NormalizedClientName`, `e`.`Reserved`
+FROM `ExtendedClients` AS `e`
+WHERE `e`.`ClientId` = 'admin_ui'
+LIMIT 1
+		    32 Query	SELECT `a1`.`Id`, `a1`.`AllowedAccessTokenSigningAlgorithms`, `a1`.`Created`, `a1`.`Description`, `a1`.`DisplayName`, `a1`.`Enabled`, `a1`.`LastAccessed`, `a1`.`Name`, `a1`.`NonEditable`, `a1`.`RequireResourceIndicator`, `a1`.`ShowInDiscoveryDocument`, `a1`.`Updated`, `a0`.`Id`, `a0`.`ApiResourceId`, `a0`.`Created`, `a0`.`Description`, `a0`.`Expiration`, `a0`.`Type`, `a0`.`Value`
+FROM (
+    SELECT `a`.`Id`, `a`.`AllowedAccessTokenSigningAlgorithms`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`RequireResourceIndicator`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`
+    FROM `ApiResources` AS `a`
+    WHERE `a`.`Name` = 'admin_api'
+    LIMIT 1
+) AS `a1`
+LEFT JOIN `ApiResourceSecrets` AS `a0` ON `a1`.`Id` = `a0`.`ApiResourceId`
+ORDER BY `a1`.`Id`
+		    32 Query	SELECT EXISTS (
+    SELECT 1
+    FROM `ConfigurationEntries` AS `c`
+    WHERE `c`.`Key` = 'policy')
+		    32 Query	SAVEPOINT `__EFSavePoint`
+		    32 Query	UPDATE `ApiResources` SET `AllowedAccessTokenSigningAlgorithms` = '', `Created` = timestamp('2025-07-18 09:06:42.142586'), `Description` = 'API backing the Admin UI Product', `DisplayName` = 'Admin API', `Enabled` = true, `LastAccessed` = NULL, `Name` = 'admin_api', `NonEditable` = true, `RequireResourceIndicator` = false, `ShowInDiscoveryDocument` = true, `Updated` = NULL
+WHERE `Id` = 1;
+SELECT ROW_COUNT();
+
+UPDATE `Clients` SET `AbsoluteRefreshTokenLifetime` = 86400, `AccessTokenLifetime` = 3600, `AccessTokenType` = 0, `AllowAccessTokensViaBrowser` = false, `AllowOfflineAccess` = true, `AllowPlainTextPkce` = false, `AllowRememberConsent` = true, `AllowedIdentityTokenSigningAlgorithms` = '', `AlwaysIncludeUserClaimsInIdToken` = false, `AlwaysSendClientClaims` = false, `AuthorizationCodeLifetime` = 300, `BackChannelLogoutSessionRequired` = true, `BackChannelLogoutUri` = NULL, `CibaLifetime` = NULL, `ClientClaimsPrefix` = NULL, `ClientId` = 'admin_ui', `ClientName` = 'Admin UI', `ClientUri` = NULL, `ConsentLifetime` = NULL, `CoordinateLifetimeWithUserSession` = NULL, `Created` = timestamp('2025-07-18 09:06:42.386520'), `DPoPClockSkew` = time '0:05:00.000000', `DPoPValidationMode` = 1, `Description` = 'IdentityExpress Admin UI', `DeviceCodeLifetime` = 300, `EnableLocalLogin` = true, `Enabled` = true, `FrontChannelLogoutSessionRequired` = true, `FrontChannelLogoutUri` = NULL, `IdentityTokenLifetime` = 300, `IncludeJwtId` = true, `InitiateLoginUri` = NULL, `LastAccessed` = timestamp('0001-01-01 00:00:00.000000'), `LogoUri` = NULL, `NonEditable` = true, `PairWiseSubjectSalt` = NULL, `PollingInterval` = NULL, `ProtocolType` = 'oidc', `PushedAuthorizationLifetime` = NULL, `RefreshTokenExpiration` = 1, `RefreshTokenUsage` = 0, `RequireClientSecret` = true, `RequireConsent` = false, `RequireDPoP` = false, `RequirePkce` = true, `RequirePushedAuthorization` = false, `RequireRequestObject` = false, `SlidingRefreshTokenLifetime` = 1296000, `UpdateAccessTokenClaimsOnRefresh` = false, `Updated` = timestamp('0001-01-01 00:00:00.000000'), `UserCodeType` = NULL, `UserSsoLifetime` = NULL
+WHERE `Id` = 1;
+SELECT ROW_COUNT()
+		    32 Query	RELEASE SAVEPOINT `__EFSavePoint`
+		    32 Query	commit
+250718  9:40:13	    54 Connect	identity-prod@localhost on identity-prod using SSL/TLS
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `i`.`Id`, `i`.`Created`, `i`.`Description`, `i`.`DisplayName`, `i`.`Emphasize`, `i`.`Enabled`, `i`.`Name`, `i`.`NonEditable`, `i`.`Required`, `i`.`ShowInDiscoveryDocument`, `i`.`Updated`, `i0`.`Id`, `i0`.`IdentityResourceId`, `i0`.`Type`, `i1`.`Id`, `i1`.`IdentityResourceId`, `i1`.`Key`, `i1`.`Value`
+FROM `IdentityResources` AS `i`
+LEFT JOIN `IdentityResourceClaims` AS `i0` ON `i`.`Id` = `i0`.`IdentityResourceId`
+LEFT JOIN `IdentityResourceProperties` AS `i1` ON `i`.`Id` = `i1`.`IdentityResourceId`
+ORDER BY `i`.`Id`, `i0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`AllowedAccessTokenSigningAlgorithms`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`RequireResourceIndicator`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ApiResourceId`, `a0`.`Created`, `a0`.`Description`, `a0`.`Expiration`, `a0`.`Type`, `a0`.`Value`, `a1`.`Id`, `a1`.`ApiResourceId`, `a1`.`Scope`, `a2`.`Id`, `a2`.`ApiResourceId`, `a2`.`Type`, `a3`.`Id`, `a3`.`ApiResourceId`, `a3`.`Key`, `a3`.`Value`
+FROM `ApiResources` AS `a`
+LEFT JOIN `ApiResourceSecrets` AS `a0` ON `a`.`Id` = `a0`.`ApiResourceId`
+LEFT JOIN `ApiResourceScopes` AS `a1` ON `a`.`Id` = `a1`.`ApiResourceId`
+LEFT JOIN `ApiResourceClaims` AS `a2` ON `a`.`Id` = `a2`.`ApiResourceId`
+LEFT JOIN `ApiResourceProperties` AS `a3` ON `a`.`Id` = `a3`.`ApiResourceId`
+ORDER BY `a`.`Id`, `a0`.`Id`, `a1`.`Id`, `a2`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Emphasize`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`Required`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ScopeId`, `a0`.`Type`, `a1`.`Id`, `a1`.`Key`, `a1`.`ScopeId`, `a1`.`Value`
+FROM `ApiScopes` AS `a`
+LEFT JOIN `ApiScopeClaims` AS `a0` ON `a`.`Id` = `a0`.`ScopeId`
+LEFT JOIN `ApiScopeProperties` AS `a1` ON `a`.`Id` = `a1`.`ScopeId`
+ORDER BY `a`.`Id`, `a0`.`Id`
+250718  9:40:14	    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `i`.`Id`, `i`.`Created`, `i`.`Description`, `i`.`DisplayName`, `i`.`Emphasize`, `i`.`Enabled`, `i`.`Name`, `i`.`NonEditable`, `i`.`Required`, `i`.`ShowInDiscoveryDocument`, `i`.`Updated`, `i0`.`Id`, `i0`.`IdentityResourceId`, `i0`.`Type`, `i1`.`Id`, `i1`.`IdentityResourceId`, `i1`.`Key`, `i1`.`Value`
+FROM `IdentityResources` AS `i`
+LEFT JOIN `IdentityResourceClaims` AS `i0` ON `i`.`Id` = `i0`.`IdentityResourceId`
+LEFT JOIN `IdentityResourceProperties` AS `i1` ON `i`.`Id` = `i1`.`IdentityResourceId`
+ORDER BY `i`.`Id`, `i0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`AllowedAccessTokenSigningAlgorithms`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`RequireResourceIndicator`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ApiResourceId`, `a0`.`Created`, `a0`.`Description`, `a0`.`Expiration`, `a0`.`Type`, `a0`.`Value`, `a1`.`Id`, `a1`.`ApiResourceId`, `a1`.`Scope`, `a2`.`Id`, `a2`.`ApiResourceId`, `a2`.`Type`, `a3`.`Id`, `a3`.`ApiResourceId`, `a3`.`Key`, `a3`.`Value`
+FROM `ApiResources` AS `a`
+LEFT JOIN `ApiResourceSecrets` AS `a0` ON `a`.`Id` = `a0`.`ApiResourceId`
+LEFT JOIN `ApiResourceScopes` AS `a1` ON `a`.`Id` = `a1`.`ApiResourceId`
+LEFT JOIN `ApiResourceClaims` AS `a2` ON `a`.`Id` = `a2`.`ApiResourceId`
+LEFT JOIN `ApiResourceProperties` AS `a3` ON `a`.`Id` = `a3`.`ApiResourceId`
+ORDER BY `a`.`Id`, `a0`.`Id`, `a1`.`Id`, `a2`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Emphasize`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`Required`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ScopeId`, `a0`.`Type`, `a1`.`Id`, `a1`.`Key`, `a1`.`ScopeId`, `a1`.`Value`
+FROM `ApiScopes` AS `a`
+LEFT JOIN `ApiScopeClaims` AS `a0` ON `a`.`Id` = `a0`.`ScopeId`
+LEFT JOIN `ApiScopeProperties` AS `a1` ON `a`.`Id` = `a1`.`ScopeId`
+ORDER BY `a`.`Id`, `a0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `c`.`Id`, `c`.`AbsoluteRefreshTokenLifetime`, `c`.`AccessTokenLifetime`, `c`.`AccessTokenType`, `c`.`AllowAccessTokensViaBrowser`, `c`.`AllowOfflineAccess`, `c`.`AllowPlainTextPkce`, `c`.`AllowRememberConsent`, `c`.`AllowedIdentityTokenSigningAlgorithms`, `c`.`AlwaysIncludeUserClaimsInIdToken`, `c`.`AlwaysSendClientClaims`, `c`.`AuthorizationCodeLifetime`, `c`.`BackChannelLogoutSessionRequired`, `c`.`BackChannelLogoutUri`, `c`.`CibaLifetime`, `c`.`ClientClaimsPrefix`, `c`.`ClientId`, `c`.`ClientName`, `c`.`ClientUri`, `c`.`ConsentLifetime`, `c`.`CoordinateLifetimeWithUserSession`, `c`.`Created`, `c`.`DPoPClockSkew`, `c`.`DPoPValidationMode`, `c`.`Description`, `c`.`DeviceCodeLifetime`, `c`.`EnableLocalLogin`, `c`.`Enabled`, `c`.`FrontChannelLogoutSessionRequired`, `c`.`FrontChannelLogoutUri`, `c`.`IdentityTokenLifetime`, `c`.`IncludeJwtId`, `c`.`InitiateLoginUri`, `c`.`LastAccessed`, `c`.`LogoUri`, `c`.`NonEditable`, `c`.`PairWiseSubjectSalt`, `c`.`PollingInterval`, `c`.`ProtocolType`, `c`.`PushedAuthorizationLifetime`, `c`.`RefreshTokenExpiration`, `c`.`RefreshTokenUsage`, `c`.`RequireClientSecret`, `c`.`RequireConsent`, `c`.`RequireDPoP`, `c`.`RequirePkce`, `c`.`RequirePushedAuthorization`, `c`.`RequireRequestObject`, `c`.`SlidingRefreshTokenLifetime`, `c`.`UpdateAccessTokenClaimsOnRefresh`, `c`.`Updated`, `c`.`UserCodeType`, `c`.`UserSsoLifetime`
+FROM `Clients` AS `c`
+WHERE `c`.`ClientId` = 'admin_ui'
+ORDER BY `c`.`Id`
+250718  9:40:15	    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `i`.`Id`, `i`.`Created`, `i`.`Description`, `i`.`DisplayName`, `i`.`Emphasize`, `i`.`Enabled`, `i`.`Name`, `i`.`NonEditable`, `i`.`Required`, `i`.`ShowInDiscoveryDocument`, `i`.`Updated`, `i0`.`Id`, `i0`.`IdentityResourceId`, `i0`.`Type`, `i1`.`Id`, `i1`.`IdentityResourceId`, `i1`.`Key`, `i1`.`Value`
+FROM `IdentityResources` AS `i`
+LEFT JOIN `IdentityResourceClaims` AS `i0` ON `i`.`Id` = `i0`.`IdentityResourceId`
+LEFT JOIN `IdentityResourceProperties` AS `i1` ON `i`.`Id` = `i1`.`IdentityResourceId`
+ORDER BY `i`.`Id`, `i0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`AllowedAccessTokenSigningAlgorithms`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`RequireResourceIndicator`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ApiResourceId`, `a0`.`Created`, `a0`.`Description`, `a0`.`Expiration`, `a0`.`Type`, `a0`.`Value`, `a1`.`Id`, `a1`.`ApiResourceId`, `a1`.`Scope`, `a2`.`Id`, `a2`.`ApiResourceId`, `a2`.`Type`, `a3`.`Id`, `a3`.`ApiResourceId`, `a3`.`Key`, `a3`.`Value`
+FROM `ApiResources` AS `a`
+LEFT JOIN `ApiResourceSecrets` AS `a0` ON `a`.`Id` = `a0`.`ApiResourceId`
+LEFT JOIN `ApiResourceScopes` AS `a1` ON `a`.`Id` = `a1`.`ApiResourceId`
+LEFT JOIN `ApiResourceClaims` AS `a2` ON `a`.`Id` = `a2`.`ApiResourceId`
+LEFT JOIN `ApiResourceProperties` AS `a3` ON `a`.`Id` = `a3`.`ApiResourceId`
+ORDER BY `a`.`Id`, `a0`.`Id`, `a1`.`Id`, `a2`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Emphasize`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`Required`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ScopeId`, `a0`.`Type`, `a1`.`Id`, `a1`.`Key`, `a1`.`ScopeId`, `a1`.`Value`
+FROM `ApiScopes` AS `a`
+LEFT JOIN `ApiScopeClaims` AS `a0` ON `a`.`Id` = `a0`.`ScopeId`
+LEFT JOIN `ApiScopeProperties` AS `a1` ON `a`.`Id` = `a1`.`ScopeId`
+ORDER BY `a`.`Id`, `a0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `c`.`Id`, `c`.`AbsoluteRefreshTokenLifetime`, `c`.`AccessTokenLifetime`, `c`.`AccessTokenType`, `c`.`AllowAccessTokensViaBrowser`, `c`.`AllowOfflineAccess`, `c`.`AllowPlainTextPkce`, `c`.`AllowRememberConsent`, `c`.`AllowedIdentityTokenSigningAlgorithms`, `c`.`AlwaysIncludeUserClaimsInIdToken`, `c`.`AlwaysSendClientClaims`, `c`.`AuthorizationCodeLifetime`, `c`.`BackChannelLogoutSessionRequired`, `c`.`BackChannelLogoutUri`, `c`.`CibaLifetime`, `c`.`ClientClaimsPrefix`, `c`.`ClientId`, `c`.`ClientName`, `c`.`ClientUri`, `c`.`ConsentLifetime`, `c`.`CoordinateLifetimeWithUserSession`, `c`.`Created`, `c`.`DPoPClockSkew`, `c`.`DPoPValidationMode`, `c`.`Description`, `c`.`DeviceCodeLifetime`, `c`.`EnableLocalLogin`, `c`.`Enabled`, `c`.`FrontChannelLogoutSessionRequired`, `c`.`FrontChannelLogoutUri`, `c`.`IdentityTokenLifetime`, `c`.`IncludeJwtId`, `c`.`InitiateLoginUri`, `c`.`LastAccessed`, `c`.`LogoUri`, `c`.`NonEditable`, `c`.`PairWiseSubjectSalt`, `c`.`PollingInterval`, `c`.`ProtocolType`, `c`.`PushedAuthorizationLifetime`, `c`.`RefreshTokenExpiration`, `c`.`RefreshTokenUsage`, `c`.`RequireClientSecret`, `c`.`RequireConsent`, `c`.`RequireDPoP`, `c`.`RequirePkce`, `c`.`RequirePushedAuthorization`, `c`.`RequireRequestObject`, `c`.`SlidingRefreshTokenLifetime`, `c`.`UpdateAccessTokenClaimsOnRefresh`, `c`.`Updated`, `c`.`UserCodeType`, `c`.`UserSsoLifetime`
+FROM `Clients` AS `c`
+WHERE `c`.`ClientId` = 'admin_ui'
+ORDER BY `c`.`Id`
+250718  9:40:16	    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `i`.`Id`, `i`.`Created`, `i`.`Description`, `i`.`DisplayName`, `i`.`Emphasize`, `i`.`Enabled`, `i`.`Name`, `i`.`NonEditable`, `i`.`Required`, `i`.`ShowInDiscoveryDocument`, `i`.`Updated`, `i0`.`Id`, `i0`.`IdentityResourceId`, `i0`.`Type`, `i1`.`Id`, `i1`.`IdentityResourceId`, `i1`.`Key`, `i1`.`Value`
+FROM `IdentityResources` AS `i`
+LEFT JOIN `IdentityResourceClaims` AS `i0` ON `i`.`Id` = `i0`.`IdentityResourceId`
+LEFT JOIN `IdentityResourceProperties` AS `i1` ON `i`.`Id` = `i1`.`IdentityResourceId`
+ORDER BY `i`.`Id`, `i0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`AllowedAccessTokenSigningAlgorithms`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`RequireResourceIndicator`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ApiResourceId`, `a0`.`Created`, `a0`.`Description`, `a0`.`Expiration`, `a0`.`Type`, `a0`.`Value`, `a1`.`Id`, `a1`.`ApiResourceId`, `a1`.`Scope`, `a2`.`Id`, `a2`.`ApiResourceId`, `a2`.`Type`, `a3`.`Id`, `a3`.`ApiResourceId`, `a3`.`Key`, `a3`.`Value`
+FROM `ApiResources` AS `a`
+LEFT JOIN `ApiResourceSecrets` AS `a0` ON `a`.`Id` = `a0`.`ApiResourceId`
+LEFT JOIN `ApiResourceScopes` AS `a1` ON `a`.`Id` = `a1`.`ApiResourceId`
+LEFT JOIN `ApiResourceClaims` AS `a2` ON `a`.`Id` = `a2`.`ApiResourceId`
+LEFT JOIN `ApiResourceProperties` AS `a3` ON `a`.`Id` = `a3`.`ApiResourceId`
+ORDER BY `a`.`Id`, `a0`.`Id`, `a1`.`Id`, `a2`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `a`.`Id`, `a`.`Created`, `a`.`Description`, `a`.`DisplayName`, `a`.`Emphasize`, `a`.`Enabled`, `a`.`LastAccessed`, `a`.`Name`, `a`.`NonEditable`, `a`.`Required`, `a`.`ShowInDiscoveryDocument`, `a`.`Updated`, `a0`.`Id`, `a0`.`ScopeId`, `a0`.`Type`, `a1`.`Id`, `a1`.`Key`, `a1`.`ScopeId`, `a1`.`Value`
+FROM `ApiScopes` AS `a`
+LEFT JOIN `ApiScopeClaims` AS `a0` ON `a`.`Id` = `a0`.`ScopeId`
+LEFT JOIN `ApiScopeProperties` AS `a1` ON `a`.`Id` = `a1`.`ScopeId`
+ORDER BY `a`.`Id`, `a0`.`Id`
+		    54 Query	SET NAMES utf8mb4
+		    54 Query	SELECT `c`.`Id`, `c`.`AbsoluteRefreshTokenLifetime`, `c`.`AccessTokenLifetime`, `c`.`AccessTokenType`, `c`.`AllowAccessTokensViaBrowser`, `c`.`AllowOfflineAccess`, `c`.`AllowPlainTextPkce`, `c`.`AllowRememberConsent`, `c`.`AllowedIdentityTokenSigningAlgorithms`, `c`.`AlwaysIncludeUserClaimsInIdToken`, `c`.`AlwaysSendClientClaims`, `c`.`AuthorizationCodeLifetime`, `c`.`BackChannelLogoutSessionRequired`, `c`.`BackChannelLogoutUri`, `c`.`CibaLifetime`, `c`.`ClientClaimsPrefix`, `c`.`ClientId`, `c`.`ClientName`, `c`.`ClientUri`, `c`.`ConsentLifetime`, `c`.`CoordinateLifetimeWithUserSession`, `c`.`Created`, `c`.`DPoPClockSkew`, `c`.`DPoPValidationMode`, `c`.`Description`, `c`.`DeviceCodeLifetime`, `c`.`EnableLocalLogin`, `c`.`Enabled`, `c`.`FrontChannelLogoutSessionRequired`, `c`.`FrontChannelLogoutUri`, `c`.`IdentityTokenLifetime`, `c`.`IncludeJwtId`, `c`.`InitiateLoginUri`, `c`.`LastAccessed`, `c`.`LogoUri`, `c`.`NonEditable`, `c`.`PairWiseSubjectSalt`, `c`.`PollingInterval`, `c`.`ProtocolType`, `c`.`PushedAuthorizationLifetime`, `c`.`RefreshTokenExpiration`, `c`.`RefreshTokenUsage`, `c`.`RequireClientSecret`, `c`.`RequireConsent`, `c`.`RequireDPoP`, `c`.`RequirePkce`, `c`.`RequirePushedAuthorization`, `c`.`RequireRequestObject`, `c`.`SlidingRefreshTokenLifetime`, `c`.`UpdateAccessTokenClaimsOnRefresh`, `c`.`Updated`, `c`.`UserCodeType`, `c`.`UserSsoLifetime`
+FROM `Clients` AS `c`
+WHERE `c`.`ClientId` = 'admin_ui'
+ORDER BY `c`.`Id`
+250718  9:40:18	    53 Quit	
+		    32 Quit	

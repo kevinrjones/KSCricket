@@ -1,0 +1,137 @@
+<app-records-ui [initialLimit]="100" [limitText]="'Minimum Runs'" [selectList]="template"
+                [urlRoot]="'fowrecords'"></app-records-ui>
+
+<ng-template #template let-form="form">
+
+  <section [formGroup]="form" class="view-row">
+    <div id="format" [ngClass]="getPartnershipSelectionClassForTeam(form)"
+         class="teamSelect">
+      <section class="view-format-group1">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'1'" [value]="1" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"></p-radiobutton>
+          <label for="1" class="my-label">Partnership Summary</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'2'" [value]="2" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="2" class="my-label">Partnership List</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [ngClass]="isNotFirstClass(form) ? 'hidden' : ''" [inputId]="'3'" [value]="3" variant="filled"
+                         formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="3" class="my-label">Match Totals</label>
+        </div>
+      </section>
+      <section class="view-format-group2">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'4'" [value]="4" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="4" class="my-label">Series Averages</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'5'" [value]="5" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="5" class="my-label">Ground Averages</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [ngClass]="isNotFirstClass(form) ? 'hidden' : ''" [inputId]="'6'" [value]="6" variant="filled"
+                         formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="6" class="my-label">By Host Conutry</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'7'" [value]="7" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="7" class="my-label">By Opposition Team</label>
+        </div>
+      </section>
+      <section class="view-format-group3">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'8'" [value]="8" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="8" class="my-label">By Year Of Match Start</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'9'" [value]="9" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="9" class="my-label">By Season</label>
+        </div>
+      </section>
+    </div>
+
+    <div id="byWicket" [ngClass]="getPartnershipSelectionClassForWicket(form)"
+         class="teamSelect">
+      <section class="view-format-group1">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'101'" [value]="101" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="101" class="my-label">1st Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'102'" [value]="102" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="102" class="my-label">2nd Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'103'" [value]="103" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="103" class="my-label">3rd Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'104'" [value]="104" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="104" class="my-label">4th Wicket</label>
+        </div>
+      </section>
+      <section class="view-format-group2">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'105'" [value]="105" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="105" class="my-label">5th Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'106'" [value]="106" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="106" class="my-label">6th Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'107'" [value]="107" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="107" class="my-label">7th Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'108'" [value]="108" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="108" class="my-label">8th Wicket</label>
+        </div>
+      </section>
+      <section class="view-format-group3">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'109'" [value]="109" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="109" class="my-label">9th Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'110'" [value]="110" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="110" class="my-label">10th Wicket</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'100'" [value]="100" variant="filled" formControlName="format" class="my-radio"
+                         (onClick)="formatSelectionChangedEx($event)"/>
+          <label for="100" class="my-label">All Wickets</label>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section [formGroup]="form" class="extra-details-row" id="isForWicket">
+    <div class="internal-form-field">
+    <p-toggleswitch formControlName="isForWicket" class="my-toggle" (onChange)="byWicketSelectionChanged($event)" id="forWicketOrPlayer"/>
+    <label for="forWicketOrPlayer" class="my-label">By Wicket Partnerships</label>
+    </div>
+  </section>
+
+</ng-template>

@@ -1,0 +1,45 @@
+.navigate > div {
+  display: inline-block;
+  float: left;
+}
+
+
+.navigate > div > a {
+  background-color: var(--bg-brand-700);
+  color: white;
+}
+
+.navigate {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 900px) {
+  .return {
+    float: none;
+  }
+}
+
+.return {
+  background-color: var(--bg-brand-700);
+  color: white;
+  margin-left: -4px;
+  border-top: none;
+  border-bottom: none;
+  height: 2.7rem;
+  padding: 0.65rem .85rem;
+  width: 11rem;
+  border-radius: 6px;
+}
+
+.return > a:visited {
+  color: white;
+}
+
+.return > a {
+  text-decoration: none;
+}
+
+.gotoPage {
+  display: grid;
+  grid-template-columns: auto 20rem;
+}

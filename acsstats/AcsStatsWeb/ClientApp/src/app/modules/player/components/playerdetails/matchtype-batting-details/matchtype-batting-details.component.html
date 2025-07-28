@@ -1,0 +1,68 @@
+<table class="player-details">
+  <thead>
+  <tr>
+    <td class="align-text-cell">Match</td>
+    <td class="align-text-cell">Innings</td>
+    <td class="align-text-cell teamname">Team</td>
+    <td class="align-text-cell opponents">Opponents</td>
+    <td class="align-text-cell match-title">Title</td>
+    <td class="align-text-cell ground">Ground</td>
+    <td class="align-numeric-cell startDate">Start Date</td>
+    <td class="align-numeric-cell score">Score<span class='position'>(pos)</span></td>
+    <td class="align-text-cell dismissal">Dismissal</td>
+    <td class="playerDetailsHeader align-numeric-cell batBalls">Balls</td>
+    <td class="playerDetailsHeader align-numeric-cell minutes">Minutes</td>
+    <td class="playerDetailsHeader align-numeric-cell batFours">Fours</td>
+    <td class="playerDetailsHeader align-numeric-cell batSixes">Sixes</td>
+    <td class="playerDetailsHeader align-numeric-cell batSixes">SR</td>
+    <td class="playerDetailsHeader align-numeric-cell strike-rate">Total Runs</td>
+    <td class="playerDetailsHeader align-numeric-cell rolling-balls">Total Balls</td>
+    <td class="playerDetailsHeader align-numeric-cell rolling-average">Rolling Average</td>
+    <td class="playerDetailsHeader align-numeric-cell rolling-strike-rate">Rolling SR</td>
+    <td *ngIf="isLimitedOverMatchType(matchType)" class="playerDetailsHeader  align-numeric-cell rollling-batting-impact">Rolling BI</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  {{ initialiseRunningTotals() }}
+  <tr *ngFor="let row of playerBattingDetails" [ngClass]="getRowClass(row.matchId, row.matchType)">
+    {{ updateRunningTotals(row) }}
+    {{ updateMatchNumber(row.inningsNumber) }}
+    {{ updateInningsNumber(row.dismissalType) }}
+    <td
+      class="matchNumber align-numeric-cell">{{ getStringValueOrEmptyForMatchId(row.matchId, matchNumber.toString()) }}
+    </td>
+    <td class="inningsNumber align-numeric-cell">{{ getInningsNumber(row.dismissalType) }}</td>
+    <td [innerHTML]="getHomeTeam(row)" [ngClass]="row.captain != 0 ? 'cwk' : ''" class="teamname align-text-cell"></td>
+    <td class="opponents align-text-cell">{{ getStringValueOrEmptyForMatchId(row.matchId, row.opponents) }}</td>
+    <td class="details-match-title align-text-cell">{{ getStringValueOrEmptyForMatchId(row.matchId, row.matchTitle) }}
+    </td>
+    <td class="ground align-text-cell">{{ getStringValueOrEmptyForMatchId(row.matchId, row.ground) }}</td>
+    <td
+      class="start-date align-numeric-cell">{{ asDate(getStringValueOrEmptyForMatchId(row.matchId, row.matchStartDate)) }}
+    </td>
+    <td [innerHTML]="getScore(row)" class="score align-numeric-cell"></td>
+    <td class="dismissal align-text-cell">{{ row.dismissal }}</td>
+    <td class="batBalls align-numeric-cell">{{ getBalls(row) }}</td>
+    <td class="minutes align-numeric-cell">{{ getMinutes(row) }}</td>
+    <td class="batFours align-numeric-cell">{{ getFours(row) }}</td>
+    <td class="batSixes align-numeric-cell">{{ getSixes(row) }}</td>
+    <td class="strike-rate align-numeric-cell">{{ getSR(row) }}</td>
+    <td class="rolling-runs align-numeric-cell">{{ getRollingRuns() }}</td>
+    <td class="rolling-balls align-numeric-cell">{{ getRollingBalls() }}</td>
+    <td class="rolling-average align-numeric-cell">{{ getRollingAverage() }}</td>
+    <td class="rolling-strike-rate align-numeric-cell">{{ getRollingSR() }}</td>
+    <td *ngIf="isLimitedOverMatchType(matchType)"
+        class="rolling-batting-impact align-numeric-cell">{{ getRollingBI(matchType) }}
+    </td>
+    <td *ngIf="row.matchId != previousMatchId" class="align-text-cell" nowrap="nowrap">
+      <a [routerLink]="getMatchLink(row)" class="record-item-header-link btn-link">
+        <fa-icon [icon]="faLink"></fa-icon>
+      </a>
+    </td>
+    <td *ngIf="row.matchId == previousMatchId" class="align-text-cell" nowrap="nowrap">
+    </td>
+    {{ setPreviousMatchId(row.matchId) }}
+  </tr>
+  </tbody>
+</table>

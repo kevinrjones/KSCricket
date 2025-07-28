@@ -1,0 +1,11 @@
+<section id="summary">
+  <span [innerHTML]="getTeamDetails()" id="teamLine"></span>
+  <span [innerHTML]="getGroundDetails()" id="groundLine"></span>
+  <span [innerHTML]="getHostDetails()" id="hostLine"></span>
+  <span [innerHTML]="getVenueDetails()" id="venueLine"></span>
+  <span id="typeLine"> for <span class="detail" id="typeDetail">{{ (this.recordSummary$ | async)?.matchType }}
+    ({{ (this.recordSummary$ | async)?.matchSubType }})</span></span>
+  <span [innerHTML]="getDateAndSeason()" id="dateandseason"></span>
+  <span [innerHTML]="getResultDetails()" id="resultLine"></span>
+  <div id="limitLine"> Search limit is <span class="detail" id="limitDetail">{{ (this.recordSummary$ | async)?.limit }}</span></div>
+</section>

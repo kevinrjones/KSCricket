@@ -1,0 +1,107 @@
+<div class="search-form-style">
+
+  <form (ngSubmit)="find()" [formGroup]="scorecardSearchForm">
+    <div>
+      <label for="homeTeam">Team:</label><input formControlName="homeTeam" id="HomeTeam" type="text"/>
+      <span>
+        <label for="ExactHomeTeamMatch">Exact Match?</label>
+        <input [ngClass]="{'is-invalid': homeTeamMessage}" id="ExactHomeTeamMatch" type="checkbox" value="true"/>
+        <span class="invalid-feedback">
+          {{ homeTeamMessage }}
+        </span>
+      </span>
+    </div>
+    <div>
+      <label for="awayTeam">Against:</label><input formControlName="awayTeam" id="AwayTeam" type="text"/>
+      <span>
+        <label for="ExactAwayTeamMatch">Exact Match?</label>
+        <input [ngClass]="{'is-invalid': awayTeamMessage}" id="ExactAwayTeamMatch" type="checkbox" value="true">
+        <span class="invalid-feedback">
+          {{ awayTeamMessage }}
+        </span>
+      </span>
+    </div>
+    <div class="venue">
+      <label>Venue</label>
+      <span>
+          <label for="homeVenue" id="all-label">
+              <span>All</span>
+              <input checked="checked" formControlName="venue" id="all" name="venue" type="radio" value="0">
+          </label>
+      </span>
+      <span>
+          <label for="homeVenue">
+              <span>Home</span>
+              <input formControlName="venue" id="homeVenue" name="venue" type="radio" value="1">
+          </label>
+      </span>
+      <span>
+          <label for="awayVenue">
+              <span>Away</span>
+              <input formControlName="venue" id="awayVenue" name="venue" type="radio" value="2">
+          </label>
+      </span>
+      <span>
+          <label for="neutralVenue">
+              <span>Neutral</span>
+              <input formControlName="venue" id="neutralVenue" name="venue" type="radio" value="4">
+          </label>
+      </span>
+      <div>
+        <label>Dates</label>
+        <label class="start-date-label" for="startDate">Start</label><input formControlName="startDate" id="StartDate"
+                                                                            type="date"/>
+        <div class="invalid-feedback">
+        </div>
+        <label class="end-date-label" for="endDate">End</label><input formControlName="endDate" id="EndDate"
+                                                                      type="date"/>
+        <div class="invalid-feedback">
+        </div>
+      </div>
+      <div>
+        <label for="matchType">Match Type</label>
+
+        <select formControlName="matchType" id="matchType" name="matchType">
+          <option value="all">All Matches</option>
+          <option value="t">Test Matches</option>
+          <option value="o">ODIs</option>
+          <option value="itt">International T20</option>
+          <option value="f">First Class</option>
+          <option value="a">List-A</option>
+          <option value="tt">T20</option>
+          <option value="wt">Women's Test Matches</option>
+          <option value="wo">Women's ODIs</option>
+          <option value="witt">Women's International T20</option>
+          <option value="wf">Women's First Class</option>
+          <option value="wa">Women's ListA</option>
+          <option value="wtt">Women's T20</option>
+          <option value="sec">Second XI Championship</option>
+        </select>
+      </div>
+      <div>
+        <div>
+          <label for="matchResult">Result</label>
+          <select formControlName="matchResult" id="matchResult" name="matchResult">
+            <option value="0">All</option>
+            <option value="1">Won</option>
+            <option value="2">Won by Innings</option>
+            <option value="3">Won by Runs</option>
+            <option value="4">Won by Wickets</option>
+            <option value="5">Lost</option>
+            <option value="6">Lost by Innings</option>
+            <option value="7">Lost by Runs</option>
+            <option value="8">Lost by Wickets</option>
+            <option value="9">Match Drawn</option>
+            <option value="10">Tied</option>
+            <option value="11">No Result</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button [disabled]="!scorecardSearchForm.valid" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+
+

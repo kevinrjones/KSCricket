@@ -1,0 +1,60 @@
+<nav class="page-container">
+  <div class="page-information">Page <span>{{ currentPage }}</span> of <span>{{ totalPages }}</span></div>
+  <div class="item-information">Showing <span>{{ currentFirstItem }}</span> to <span>{{ currentLastItem }}</span> of
+    <span>{{ totalItems }}</span></div>
+  <!-- disable if on first row -->
+  <ul>
+    <li (click)="clickFirst()" aria-label="first" class="button-left">
+      <button [ngClass]="isNavLeftDisabled()" class="item item-left">
+        <fa-icon [icon]="faAnglesLeft"></fa-icon>
+        First
+      </button>
+    </li>
+    <li (click)="clickPrevious()" aria-label="previous" class="button-left">
+      <button [ngClass]="isNavLeftDisabled()" class="item">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+        Previous
+      </button>
+    </li>
+    <li (click)="clickNext()" aria-label="previous" class="button-right">
+      <button [ngClass]="isNavRightDisabled()" class="item" id="next-button">Next <span><fa-icon
+        [icon]="faAngleRight"></fa-icon></span></button>
+    </li>
+    <!-- disable if on last row -->
+    <li (click)="clickLast()" aria-label="last" class="button-right">
+      <button [ngClass]="isNavRightDisabled()" class="item item-right" id="last-button">Last
+        <fa-icon [icon]="faAnglesRight"></fa-icon>
+      </button>
+    </li>
+  </ul>
+
+  <div class="pageSize">
+    <label>Page Size</label>
+    <select (change)="onPageSizeChange()" [(ngModel)]="pageSize" class="pageSizeValues">
+      <option [value]=50>50</option>
+      <option [value]=100>100</option>
+      <option [value]=200>200</option>
+      <option [value]=500>500</option>
+    </select>
+  </div>
+
+  <div>
+    <p-menu #exportMenuEx [model]="exportMenuItems" popup></p-menu>
+    <p-button type="button" (click)="exportMenuEx.toggle($event)" class="my-auth-popup">
+      Export
+      <fa-icon [icon]="faCaretDown"></fa-icon>
+    </p-button>
+  </div>
+
+  <div [ngClass]="shouldShowGotoControl()" class="item-goto">
+    <button
+      (click)="clickGoto()">Go to page:
+    </button>
+    <input [(ngModel)]="gotoPageNumber" class="goto-page-number"
+           name="gotoPageNumber"
+           type="text"></div>
+
+</nav>
+
+
+

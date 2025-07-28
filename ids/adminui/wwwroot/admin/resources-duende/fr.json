@@ -1,0 +1,40 @@
+{
+  "Permission": {
+    "UserManager": "User Manager",
+    "UserManagerReadOnly": "User Manager Read Only",
+    "Auditer": "Auditer",
+    "All": "All",
+    "AllReadOnly": "All Read Only",
+    "AuthorizationServerManager": "IdentityServer Manager",
+    "AuthorizationServerManagerReadOnly": "IdentityServer Manager Read Only"
+  },
+  "ServerDependent": {
+    "LandingPage": {
+      "IntroParagraph1": "L'outil leader de gestion des utilisateurs et de configuration pour IdentityServer.",
+      "IdentityServerError": "Impossible de contacter IdentityServer{{error}}. Plus d'aide est disponible <a href='{{link}}' target='_blank'>ici</a>."
+    },
+    "Users": {
+      "Applications": {
+        "Access": "Applications auxquelles l'utilisateur a donné son consentement ou pour lesquelles il possède actuellement des jetons IdentityServer.",
+        "DataEncrypted": "Les portées peuvent ne pas s'afficher ici en raison de la configuration de protection des données d'IdentityServer."
+      }
+    },
+    "UserDetails": {
+      "EnabledTwoFactorHelp": "Selon votre implémentation d'IdentityServer, cela peut ne pas avoir d'effet."
+    },
+    "Notifications": {
+      "Support": "Contactez-nous à support@identityserver.com pour plus d'assistance."
+    },
+    "InitialAdminCreation": {
+      "LoginMessage": "Vous pouvez maintenant vous connecter à AdminUI et gérer votre solution IdentityServer."
+    },
+    "Clients": {
+      "Saml": {
+        "RequireRequestDestinationHelp": "Les requêtes entrantes nécessitent une destination pour qu'IdentityServer puisse confirmer qu'il en est le destinataire prévu",
+        "SignAssertionsHelp": "Fait en sorte qu'IdentityServer signe à la fois les messages SAML et les assertions (recommandé)",
+        "EncryptAssertionsHelp": "Fait en sorte qu'IdentityServer chiffre les assertions envoyées au fournisseur de services, en utilisant leur clé publique",
+        "RequireSignedArtifactResponsesHelp": "Fait en sorte qu'IdentityServer signe les réponses d'artefacts pour le fournisseur de services"
+      }
+    }
+  }
+}

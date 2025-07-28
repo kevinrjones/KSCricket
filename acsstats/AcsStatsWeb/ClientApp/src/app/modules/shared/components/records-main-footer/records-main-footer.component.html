@@ -1,0 +1,8 @@
+<div class="gotoPage">
+  <div>
+    <app-paging (first)="raiseFirst()" (goto)="raiseGoto($event)" (last)="raiseLast($event)" (next)="raiseNext($event)"
+                (previous)="raisePrevious($event)"
+                [currentPage]="currentPage" [pageSize]="pageSize" [showGotoPage]="true"
+                [totalItems]="totalItems"></app-paging>
+  </div>
+</div>

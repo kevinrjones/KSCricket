@@ -1,0 +1,20 @@
+<div *ngIf="loading" class="loading-container flex flex-content-center">
+  <svg class="spinner" height="65px" viewBox="0 0 100 100" width="65px" xmlns="http://www.w3.org/2000/svg">
+    <circle class="path" cx="50" cy="50" fill="none" r="45" stroke-linecap="round" stroke-width="6"></circle>
+  </svg>
+</div>
+
+<app-header></app-header>
+<app-nav-menu></app-nav-menu>
+<main class="pb-3" role="main">
+  <div class="main-outer">
+    <div class="sidebar">
+
+    </div>
+    <div class="main-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <p-toast></p-toast>
+</main>
+<footer>Copyright © 2025 Kevin Jones <span id="timestamp">Last updated: {{ stamp }}</span></footer>

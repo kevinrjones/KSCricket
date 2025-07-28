@@ -1,0 +1,41 @@
+.header {
+  display: grid;
+  grid: auto-flow min-content/repeat(6, 1fr);
+}
+
+.header > div {
+  margin: 0 0.1rem;
+}
+
+.header > div > a {
+  color: white;
+}
+
+.active {
+  --tw-bg-opacity: 1;
+  background-color: darkgreen;
+}
+
+.inactive {
+  background-color: green;
+  cursor: pointer;
+}
+
+.header > .inactive > a.btn {
+  color: darkseagreen;
+}
+
+.active > a {
+  cursor: default;
+}
+
+.header > div > a {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.headerItem > a {
+  font-size: 0.85rem;
+}
+

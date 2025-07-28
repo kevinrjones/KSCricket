@@ -1,0 +1,57 @@
+<app-records-ui [defaultSortOrder]="5" [initialLimit]="10" [limitText]="'Minimum Wkts'" [selectList]="template"
+                [urlRoot]="'bowlingrecords'"></app-records-ui>
+
+<ng-template #template let-form="form">
+  <section [formGroup]="form" class="view-row">
+    <div id="format" [ngClass]="'teamSelect'">
+      <section class="view-format-group1">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'1'" [value]="1" variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="1" class="my-label">Player Summary</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'2'" [value]="2" variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="2" class="my-label">Innings by Innings List</label>
+        </div>
+        <div [ngClass]="isNotMultiDay(form) ? 'hidden' : ''" class="internal-form-field">
+          <p-radiobutton [inputId]="'3'" [value]="3" variant="filled"
+                         formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="3" class="my-label">Match Totals</label>
+        </div>
+      </section>
+      <section class="view-format-group2">
+        <div [ngClass]="isNotInternational(form) ? 'hidden' : ''" class="internal-form-field">
+          <p-radiobutton [inputId]="'4'" [value]="4"
+                         variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="4" class="my-label">Series Averages</label>
+        </div>
+        <div [ngClass]="isNotInternational(form) ? 'hidden' : ''" class="internal-form-field">
+          <p-radiobutton [inputId]="'5'" [value]="5" variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="5" class="my-label">Ground Averages</label>
+        </div>
+        <div [ngClass]="isNotInternational(form) ? 'hidden' : ''" class="internal-form-field">
+          <p-radiobutton [inputId]="'6'" [value]="6"
+                         variant="filled"
+                         formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="6" class="my-label">By Host Country</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'7'" [value]="7" variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="7" class="my-label">By Opposition Team</label>
+        </div>
+      </section>
+      <section class="view-format-group3">
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'8'" [value]="8" variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="8" class="my-label">By Year Of Match Start</label>
+        </div>
+        <div class="internal-form-field">
+          <p-radiobutton [inputId]="'9'" [value]="9" variant="filled" formControlName="format" class="my-radio" (onClick)="selectionChanged($event)"/>
+          <label for="9" class="my-label">By Season</label>
+        </div>
+      </section>
+    </div>
+  </section>
+
+
+</ng-template>

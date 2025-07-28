@@ -1,0 +1,16 @@
+<div class="summary">
+  <app-records-summary [recordSummary$]="recordSummary$" [venue]="venue"
+  ></app-records-summary>
+</div>
+<div class="gotoPage">
+  <div>
+    <app-paging (first)="raiseFirst()" (goto)="raiseGoto($event)" (last)="raiseLast($event)" (next)="raiseNext($event)"
+                (pageSizeChange)="onPageSizeChange($event)"
+                (previous)="raisePrevious($event)"
+                [currentPage]="currentPage" [exportParams]=exportParams [pageSize]="pageSize"
+                [showGotoPage]="false" [totalItems]="totalItems"></app-paging>
+  </div>
+  <div class="return">
+    <a [routerLink]="[returnUrl]">Return to main form</a>
+  </div>
+</div>

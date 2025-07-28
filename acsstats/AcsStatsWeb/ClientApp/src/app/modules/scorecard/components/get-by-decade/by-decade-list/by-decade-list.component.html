@@ -1,0 +1,12 @@
+<ng-container *ngIf="byYearList$ | async as byYearList">
+  <ul>
+    <li *ngFor="let decade of byYearList | keyvalue">The {{ decade.key }}s
+      <div>
+        <a *ngFor="let year of decade.value"
+           [routerLink]="['/scorecard/byyear/' + name +  '/'+ encodeDate(year)]">{{ year }}</a>
+      </div>
+    </li>
+  </ul>
+</ng-container>
+
+

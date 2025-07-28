@@ -1,0 +1,59 @@
+<h2>{{ title }}</h2>
+
+<app-records-header (first)="navigate(0)" (goto)="gotoPage($event)"
+                    (last)="navigate($event)" (next)="navigate($event)" (pageSizeChange)="pageSizeChange($event)"
+                    (previous)="navigate($event)"
+                    [currentPage]="currentPage"
+                    [exportParams]=findTeamParams
+                    [pageSize]="pageSize" [recordSummary$]="teamSummary$" [returnUrl]="'/records/teamrecords'"
+                    [totalItems]="count" [venue]="venue">
+</app-records-header>
+
+<table class="table table-striped table-hover table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th class="record-item-index-cell"></th>
+    <th class="record-item-index-cell align-numeric-cell">
+      {{ targetColumnTitle }}
+    </th>
+    <th class="record-item-index-cell align-text-cell">
+      Teams
+    </th>
+    <th class="align-numeric-cell record-item-text-cell">
+      Date
+    </th>
+    <th class="align-text-cell record-item-text-cell">
+      Series
+    </th>
+    <th class="align-text-cell record-item-text-cell">
+      Where
+    </th>
+    <th class="align-text-cell record-item-text-cell">
+      Result
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of (teamUIModel$ | async)?.sqlResults?.data; index as ndx;">
+    <td>{{ getIndex(ndx) }}</td>
+    <td class="align-numeric-cell" nowrap="nowrap">{{ row.target }}</td>
+    <td class="align-text-cell" nowrap="nowrap">{{ row.winningTeam }} v {{ row.losingTeam }}</td>
+    <td class="align-numeric-cell" nowrap="nowrap">{{ row.matchDate }}</td>
+    <td class="align-text-cell" nowrap="nowrap">{{ row.matchTitle }}</td>
+    <td class="align-text-cell" nowrap="nowrap">{{ row.ground }}</td>
+    <td class="align-text-cell" nowrap="nowrap">{{ row.resultString }}</td>
+    <td class="align-text-cell" nowrap="nowrap">
+      <a [routerLink]="getMatchLink(row)" class="record-item-header-link btn-link">
+        <fa-icon [icon]="faLink"></fa-icon>
+      </a>
+    </td>
+
+  </tr>
+  </tbody>
+</table>
+
+<app-records-footer (first)="navigate(0)" (goto)="gotoPage($event)" (last)="navigate($event)"
+                    (next)="navigate($event)" (previous)="navigate($event)" [currentPage]="currentPage"
+                    [pageSize]="pageSize"
+                    [totalItems]="count"></app-records-footer>

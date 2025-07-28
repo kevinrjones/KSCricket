@@ -1,0 +1,20 @@
+<div class="header">
+  <div class="{{battingClass}} headerItem">
+    <a (click)="onClick()" [routerLink]="['/records/battingrecords']" class="btn">Batting</a>
+  </div>
+  <div class="{{bowlingClass}} headerItem">
+    <a (click)="onClick()" [routerLink]="['/records/bowlingrecords']" class="btn">Bowling</a>
+  </div>
+  <div (click)="onClick()" class="{{fieldingClass}} headerItem">
+    <a [routerLink]="['/records/fieldingrecords']" class="btn">Fielding</a>
+  </div>
+  <div (click)="onClick()" class="{{teamClass}} headerItem">
+    <a [routerLink]="['/records/teamrecords']" class="btn">Team</a>
+  </div>
+  <div (click)="onClick()" class="{{partnershipClass}} headerItem">
+    <a [routerLink]="['/records/fowrecords']" class="btn">Partnerships</a>
+  </div>
+  <div (click)="onClick()" class="{{umpiresClass}} headerItem">
+    <a class="btn">Officials</a>
+  </div>
+</div>

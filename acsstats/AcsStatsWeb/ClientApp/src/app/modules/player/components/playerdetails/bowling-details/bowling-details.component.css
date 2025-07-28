@@ -1,0 +1,26 @@
+.bowlFours, .bowlSixes, .wides, .noBalls {
+  max-width: 0.2rem;
+  color: #909090;
+  font-size: 0.95rem;
+}
+
+.wides {
+  padding-left: 0.4rem;
+}
+
+.overs, .maidens, .bowlRuns, .wickets {
+  max-width: 0.2rem;
+}
+
+.textrotate {
+  transform: rotate(-90deg);
+  vertical-align: bottom;
+}
+
+.opponents, .teamname {
+  max-width: 1.5rem;
+}
+
+.startDate {
+  max-width: 1rem;
+}
