@@ -1332,10 +1332,10 @@
         "DcosLink": "Die Dokumentation finden Sie <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"\" target=\"_blank\">hier</a>."
       },
       "Placeholder": "Anmeldeschema eingeben...",
-      "Help": "Diese Einstellung kann überschrieben werden. Weitere Informationen findest du <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">hier</a>.",
+      "Help": "Diese Einstellung kann überschrieben werden. Weitere Informationen findest du <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">hier</a>.",
       "IdSExternalLogin": {
         "Name": "IdentityServer Externes Anmeldeverfahren",
-        "Help": "'Idsrv.External' Verwende dies, wenn du die Standard-Cookies von IdentityServer verwendest"
+        "Help": "'idsrv.external' Verwende dies, wenn du die Standard-Cookies von IdentityServer verwendest"
       },
       "AspNetExternalLogin": {
         "Name": "Asp.Identity Externes Anmeldeverfahren",
@@ -1348,7 +1348,7 @@
     },
     "SignOutScheme": {
       "Label": "Abmeldeverfahren",
-      "Help": "Diese Einstellung kann überschrieben werden. Weitere Informationen findest du <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">hier</a>.",
+      "Help": "Diese Einstellung kann überschrieben werden. Weitere Informationen findest du <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">hier</a>.",
       "Placeholder": "Abmeldeverfahren eingeben..."
     },
     "SignedOutCallbackPath": {
@@ -1523,7 +1523,7 @@
         "SAML": {
           "Name": "SAML Provider",
           "Title": "Security Assertion Markup Language",
-          "Description": "Ein Provider, der SAML verwendet, um einen Benutzer zu authentifizieren. <br/>Die Dokumentation, die Provider hinzufügt, ist <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html\" target=\"_blank\">hier</a>."
+          "Description": "Ein Provider, der SAML verwendet, um einen Benutzer zu authentifizieren. <br/>Die Dokumentation, die Provider hinzufügt, ist <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider\" target=\"_blank\">hier</a>."
         },
         "TypeLabel": "Providertyp für dynamische Authentifizierung"
       },

@@ -1315,10 +1315,10 @@
         "DcosLink": "Puede encontrar documentación <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"\" target=\"_blank\">aquí</a>."
       },
       "Placeholder": "Introducir Scheme de inicion de sesión...",
-      "Help": "Esta configuración se puede anular, puedes obtener más información <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">aquí</a>.",
+      "Help": "Esta configuración se puede anular, puedes obtener más información <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">aquí</a>.",
       "IdSExternalLogin": {
         "Name": "Esquema de Inicio de Sesión Externo de IdentityServer",
-        "Help": "'Idsrv.External' Úsalo si estás utilizando las cookies predeterminadas de IdentityServer"
+        "Help": "'idsrv.external' Úsalo si estás utilizando las cookies predeterminadas de IdentityServer"
       },
       "AspNetExternalLogin": {
         "Name": "Esquema de Inicio de Sesión Externo de Asp.Identity",
@@ -1411,7 +1411,7 @@
         "SAML": {
           "Name": "Proveedor SAML",
           "Title": "Security Assertion Markup Language",
-          "Description": "Un proveedor que usa SAML para autenticar a los usuarios. <br/>La documentación para añadir proveedores se encuentra <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html\" target=\"_blank\">aquí</a>."
+          "Description": "Un proveedor que usa SAML para autenticar a los usuarios. <br/>La documentación para añadir proveedores se encuentra <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider\" target=\"_blank\">aquí</a>."
         },
         "TypeLabel": "Tipo de proveedor de Dynamic Authentication"
       },
@@ -1472,7 +1472,7 @@
     },
     "SignOutScheme": {
       "Label": "Esquema de Cierre de Sesión",
-      "Help": "Esta configuración se puede anular, puedes obtener más información <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">aquí</a>.",
+      "Help": "Esta configuración se puede anular, puedes obtener más información <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">aquí</a>.",
       "Placeholder": "Ingresa el esquema de cierre de sesión..."
     },
     "EntityId": {

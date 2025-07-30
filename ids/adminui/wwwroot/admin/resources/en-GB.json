@@ -1331,11 +1331,11 @@
     },
     "SignInScheme": {
       "Label": "Sign In Scheme",
-      "Help": "This setting could be overridden, you can learn more <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">here</a>.",
+      "Help": "This setting could be overridden, you can learn more <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">here</a>.",
       "Placeholder": "Enter Sign-In scheme...",
       "IdSExternalLogin": {
         "Name": "IdentityServer External Login Scheme",
-        "Help": "'Idsrv.External' Use this if you are using the IdentityServer Default cookies"
+        "Help": "'idsrv.external' Use this if you are using the IdentityServer Default cookies"
       },
       "AspNetExternalLogin": {
         "Name": "Asp.Identity External Login Scheme",
@@ -1348,7 +1348,7 @@
     },
     "SignOutScheme": {
       "Label": "Sign Out Scheme",
-      "Help": "This setting could be overridden, you can learn more <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">here</a>.",
+      "Help": "This setting could be overridden, you can learn more <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">here</a>.",
       "Placeholder": "Enter Sign-Out scheme..."
     },
     "ClientSecret": {
@@ -1370,7 +1370,19 @@
     },
     "ResponseMode": {
       "Label": "Response Mode",
-      "Help": "Specifies the response mode to use, which decides how parameters are encoded in the response."
+      "Help": "Specifies the response mode to use, which decides how parameters are encoded in the response"
+    },
+    "PAR": {
+      "Label": "PAR (Pushed Authorisation Request)",
+      "Help": "This allows the client to send authorization properties to the server without exposing them to the user agent"
+    },
+    "AdditionalParameters": {
+      "Label": "Additional Parameters",
+      "Help": "Additional parameters to include in the authorisation request. Use the format 'key=value'",
+      "None": "No additional parameters found",
+      "View": "View Additional Parameters",
+      "Add": "Add Additional Parameter",
+      "Update": "Update Additional Parameter"
     },
     "Prompt": {
       "Label": "Prompt",
@@ -1465,7 +1477,7 @@
         "SAML": {
           "Name": "SAML Provider",
           "Title": "Security Assertion Markup Language",
-          "Description": "A provider that uses SAML to authenticate a user. <br/>Documentation adding providers is <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html\" target=\"_blank\">here</a>."
+          "Description": "A provider that uses SAML to authenticate a user. <br/>Documentation adding providers is <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider\" target=\"_blank\">here</a>."
         },
         "TypeLabel": "Dynamic Authentication Provider Type"
       },

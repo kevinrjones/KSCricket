@@ -380,6 +380,17 @@
 
                     
                         
+<li class="lg:border-0 lg:mb-2 ">
+    <a class="flex items-start px-6 py-4 text-left lg:font-normal lg:px-0 lg:py-0" href="../Custom_CSP/Custom_CSP.html" style="word-break: break-word">
+      
+        <span class="flex-no-shrink hidden mt-1 lg:inline-block fas fa-fw fa-angle-right text-grey-light mr-2"></span>
+      
+      Custom CSP
+    </a>
+</li>
+
+                    
+                        
   <li class="lg:mb-2 js-has-children">
     <span class="js-toggle cursor-pointer flex items-start px-6 py-4 font-bold text-left lg:font-normal lg:px-0 lg:py-0">
       <span class="js-icon flex-no-shrink mt-1 lg:inline-block fas fa-fw fa-plus text-grey-lighter mr-2"></span>
@@ -1416,6 +1427,17 @@
 
         
             
+<li class="lg:border-0 lg:mb-2 ">
+    <a class="flex items-start px-6 py-4 text-left lg:font-normal lg:px-0 lg:py-0" href="../Custom_CSP/Custom_CSP.html" style="word-break: break-word">
+      
+        <span class="flex-no-shrink hidden mt-1 lg:inline-block fas fa-fw fa-angle-right text-grey-light mr-2"></span>
+      
+      Custom CSP
+    </a>
+</li>
+
+        
+            
   <li class="lg:mb-2 js-has-children">
     <span class="js-toggle cursor-pointer flex items-start px-6 py-4 font-bold text-left lg:font-normal lg:px-0 lg:py-0">
       <span class="js-icon flex-no-shrink mt-1 lg:inline-block fas fa-fw fa-plus text-grey-lighter mr-2"></span>
@@ -2097,6 +2119,9 @@
                 <li class="flex mb-2"><span class="font-bold mr-2">-</span><a class="break-words max-w-full" href="#overwriting-dataprotection">Overwriting DataProtection</a></li>
                 
             
+                <li class="flex mb-2"><span class="font-bold mr-2">-</span><a class="break-words max-w-full" href="#overwriting-forwarded-headers">Overwriting Forwarded Headers</a></li>
+                
+            
         </ul>
     
 </aside>
@@ -2233,6 +2258,19 @@ app.Run();
 }
 </code></pre></p>
 <p>Notice that in the Program.cs file, <code>AddDataProtection()</code> comes after <code>AddAdminUI()</code> to overwrite the internal method. Also, remember that you must create your migrations for this new DbContext.</p>
+<h2 id="overwriting-forwarded-headers">Overwriting Forwarded Headers</h2>
+<p>AdminUI applies default settings for forwarded headers, specifically X-Forwarded-Proto and X-Forwarded-Host. Aditionally it also clears known networks and proxies which addresses a known issue in .NET versions 8.0.17 and 9.0.6 related to reverse proxy support.</p>
+<p>If you need to enhance security by specifying your own trusted proxy addresses, you can do so by configuring <code>ForwardedHeadersOptions</code> after calling <code>AddAdminUI()</code>. Doing so will overwrite the default configuration applied by AdminUI. For example, to add a known proxy and network:</p>
+<p> <pre><code class=language-csharp>builder.Configure(args);
+
+builder.Services.AddAdminUI(...);
+
+builder.Services.Configure&lt;ForwardedHeadersOptions&gt;(options =&gt;
+{
+    options.KnownProxies.Add(IPAddress.Parse(&quot;10.1.1.1&quot;));
+    options.KnownNetworks.Add(new IPNetwork(IPAddress.Parse(&quot;10.0.0.0&quot;), 8));
+});
+</code></pre></p>
                             </div>
                         
                         
@@ -2256,7 +2294,7 @@ app.Run();
     <footer class="bg-grey-darkest text-grey-lighter p-6 relative z-20 no-print">
     <div class="container text-sm text-center mx-auto flex-wrap flex items-center justify-center">
         <span class="w-full mb-2">Copyright &copy; <script>document.write(new Date().getFullYear())</script> <a class='font-bold' href='https://www.rocksolidknowledge.com' target='_blank' rel='noopener'>Rock Solid Knowledge</a></span>
-        <span class="text-xs">Last updated Friday 13 June 2025</span>
+        <span class="text-xs">Last updated Friday 04 July 2025</span>
     </div>
 </footer>
     <script src="../js/jquery-3.5.1.min.js"></script>

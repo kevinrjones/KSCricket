@@ -380,6 +380,17 @@
 
                     
                         
+<li class="lg:border-0 lg:mb-2 ">
+    <a class="flex items-start px-6 py-4 text-left lg:font-normal lg:px-0 lg:py-0" href="../Custom_CSP/Custom_CSP.html" style="word-break: break-word">
+      
+        <span class="flex-no-shrink hidden mt-1 lg:inline-block fas fa-fw fa-angle-right text-grey-light mr-2"></span>
+      
+      Custom CSP
+    </a>
+</li>
+
+                    
+                        
   <li class="lg:mb-2 js-has-children">
     <span class="js-toggle cursor-pointer flex items-start px-6 py-4 font-bold text-left lg:font-normal lg:px-0 lg:py-0">
       <span class="js-icon flex-no-shrink mt-1 lg:inline-block fas fa-fw fa-plus text-grey-lighter mr-2"></span>
@@ -1416,6 +1427,17 @@
 
         
             
+<li class="lg:border-0 lg:mb-2 ">
+    <a class="flex items-start px-6 py-4 text-left lg:font-normal lg:px-0 lg:py-0" href="../Custom_CSP/Custom_CSP.html" style="word-break: break-word">
+      
+        <span class="flex-no-shrink hidden mt-1 lg:inline-block fas fa-fw fa-angle-right text-grey-light mr-2"></span>
+      
+      Custom CSP
+    </a>
+</li>
+
+        
+            
   <li class="lg:mb-2 js-has-children">
     <span class="js-toggle cursor-pointer flex items-start px-6 py-4 font-bold text-left lg:font-normal lg:px-0 lg:py-0">
       <span class="js-icon flex-no-shrink mt-1 lg:inline-block fas fa-fw fa-plus text-grey-lighter mr-2"></span>
@@ -2109,6 +2131,9 @@
                 <li class="flex mb-2"><span class="font-bold mr-2">-</span><a class="break-words max-w-full" href="#when-running-adminui-migration-a-timout-occurs-causing-them-to-fail">When running AdminUI migration a timout occurs causing them to fail</a></li>
                 
             
+                <li class="flex mb-2"><span class="font-bold mr-2">-</span><a class="break-words max-w-full" href="#when-loging-in-adminui-identityserver-reports-invalid-redirect_uri">When loging in AdminUI, IdentityServer reports invalid redirect_uri</a></li>
+                
+            
         </ul>
     
 </aside>
@@ -2164,6 +2189,10 @@
 </ul>
 <h2 id="when-running-adminui-migration-a-timout-occurs-causing-them-to-fail">When running AdminUI migration a timout occurs causing them to fail</h2>
 <p>If you experience timeouts when running migrations, you can specify a custom timeout length using the 'TimoutLengthInSeconds' setting. This setting will override the default CommandTimeout value on the dbContext with the value you provide.</p>
+<h2 id="when-loging-in-adminui-identityserver-reports-invalid-redirect_uri">When loging in AdminUI, IdentityServer reports invalid redirect_uri</h2>
+<p>If you're encountering an "invalid redirect_uri" error when attempting to log in to AdminUI, and your AdminUI sits behind a reverse proxy, this is likely due to a <a href="https://github.com/dotnet/core/issues/9930">known issue .NET 8.0.17 and 9.0.6 related with forwarded headers</a>.</p>
+<p>This issue has been resolved in <strong>AdminUI v10.2.0</strong>.</p>
+<p>In addition to fixing the redirect issue, this version introduces related configuration and security changes. You can learn more about those adjustments <a href="../Configuration_and_Integration/Configuring_AdminUI_NuGet/">here</a>.</p>
                             </div>
                         
                         
@@ -2187,7 +2216,7 @@
     <footer class="bg-grey-darkest text-grey-lighter p-6 relative z-20 no-print">
     <div class="container text-sm text-center mx-auto flex-wrap flex items-center justify-center">
         <span class="w-full mb-2">Copyright &copy; <script>document.write(new Date().getFullYear())</script> <a class='font-bold' href='https://www.rocksolidknowledge.com' target='_blank' rel='noopener'>Rock Solid Knowledge</a></span>
-        <span class="text-xs">Last updated Friday 13 June 2025</span>
+        <span class="text-xs">Last updated Friday 04 July 2025</span>
     </div>
 </footer>
     <script src="../js/jquery-3.5.1.min.js"></script>

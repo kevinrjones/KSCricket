@@ -1329,10 +1329,10 @@
         "DcosLink": "Vous pouvez consulter la documentation <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"\" target=\"_blank\">ici</a>."
       },
       "Placeholder": "Saisir le schéma de connexion…",
-      "Help": "Ce paramètre peut être remplacé. Pour en savoir plus, consultez <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">ici</a>.",
+      "Help": "Ce paramètre peut être remplacé. Pour en savoir plus, consultez <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">ici</a>.",
       "IdSExternalLogin": {
         "Name": "Schéma de connexion externe d'IdentityServer",
-        "Help": "'Idsrv.External' Utilisez ceci si vous utilisez les cookies par défaut d'IdentityServer"
+        "Help": "'idsrv.external' Utilisez ceci si vous utilisez les cookies par défaut d'IdentityServer"
       },
       "AspNetExternalLogin": {
         "Name": "Schéma de connexion externe Asp.Identity",
@@ -1345,7 +1345,7 @@
     },
     "SignOutScheme": {
       "Label": "Schéma de déconnexion",
-      "Help": "Ce paramètre peut être remplacé. Pour en savoir plus, consultez <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">ici</a>.",
+      "Help": "Ce paramètre peut être remplacé. Pour en savoir plus, consultez <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">ici</a>.",
       "Placeholder": "Entrer le schéma de déconnexion..."
     },
     "SignedOutCallbackPath": {
@@ -1458,7 +1458,7 @@
         "SAML": {
           "Name": "Fournisseur SAML",
           "Title": "Security Assertion Markup Language",
-          "Description": "Un fournisseur utilisant SAML pour authentifier un utilisateur. <br/>La documentation sur l’ajout de fournisseurs est <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html\" target=\"_blank\">ici</a>."
+          "Description": "Un fournisseur utilisant SAML pour authentifier un utilisateur. <br/>La documentation sur l’ajout de fournisseurs est <a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider\" target=\"_blank\">ici</a>."
         },
         "TypeLabel": "Type de fournisseur d’authentification dynamique"
       },

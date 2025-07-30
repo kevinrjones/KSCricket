@@ -1325,10 +1325,10 @@
         "DcosLink": "您可以在<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"\" target=\"_blank\">此处</a>找到文档。"
       },
       "Placeholder": "输入登录方案……",
-      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
+      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
       "IdSExternalLogin": {
         "Name": "IdentityServer外部登錄方案",
-        "Help": "'Idsrv.External' 若您使用IdentityServer默認Cookie，請使用此選項"
+        "Help": "'idsrv.external' 若您使用IdentityServer默認Cookie，請使用此選項"
       },
       "AspNetExternalLogin": {
         "Name": "Asp.Identity外部登錄方案",
@@ -1355,7 +1355,7 @@
     },
     "SignOutScheme": {
       "Label": "登出方案",
-      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
+      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
       "Placeholder": "輸入登出方案..."
     },
     "EntityId": {
@@ -1454,7 +1454,7 @@
         "SAML": {
           "Name": "SAML 提供程序",
           "Title": "安全断言标记语言",
-          "Description": "使用 SAML 对用户进行身份验证的提供程序。<br/>文档添加提供程序在<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html\" target=\"_blank\">此处</a>。"
+          "Description": "使用 SAML 对用户进行身份验证的提供程序。<br/>文档添加提供程序在<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider\" target=\"_blank\">此处</a>。"
         },
         "TypeLabel": "动态身份验证提供程序类型"
       },

@@ -1323,10 +1323,10 @@
         "DcosLink": "您可以在<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"\" target=\";_blank\">此處</a>找到文件。"
       },
       "Placeholder": "輸入登入配置……",
-      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
+      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
       "IdSExternalLogin": {
         "Name": "IdentityServer 外部登入方案",
-        "Help": "'Idsrv.External' 若您使用 IdentityServer 預設 Cookie，請使用此選項"
+        "Help": "'idsrv.external' 若您使用 IdentityServer 預設 Cookie，請使用此選項"
       },
       "AspNetExternalLogin": {
         "Name": "Asp.Identity 外部登入方案",
@@ -1353,7 +1353,7 @@
     },
     "SignOutScheme": {
       "Label": "登出方案",
-      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
+      "Help": "此設置可被覆蓋。詳細資訊請參閱<a class=\"tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider/#identityserver-overriding-sign-inout-schemes\" target=\"_blank\">此處</a>。",
       "Placeholder": "輸入登出方案..."
     },
     "EntityId": {
@@ -1452,7 +1452,7 @@
         "SAML": {
           "Name": "SAML 提供者",
           "Title": "安全性聲明標記語言",
-          "Description": "使用 SAML 驗證使用者的提供者。<br/>新增文件的提供者在<a class=\";tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider.html\" target=\"_blank\">這裡</a>。"
+          "Description": "使用 SAML 驗證使用者的提供者。<br/>新增文件的提供者在<a class=\";tw-inline-block tw-text-blue-500 hover:tw-text-body trans\" href=\"documentation/DynamicAuthentication/Adding_a_Saml_Dynamic_Provider\" target=\"_blank\">這裡</a>。"
         },
         "TypeLabel": "動態驗證提供者類型",
         "DocsLink": ""

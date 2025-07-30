@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UserSecretsId>1a9a0c27-3d75-4de2-a246-349035ca9538</UserSecretsId>
@@ -12,23 +12,23 @@
 		<PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="7.2.4" />
 		<PackageReference Include="Duende.IdentityServer.EntityFramework" Version="7.2.4" />
 
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.7" />
 
-		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.7" />
 
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.7" />
 
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.7" />
 
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.18">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.7">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 
-		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-rc.1.efcore.9.0.0" />
 
 		<PackageReference Include="SendGrid" Version="9.29.3" />
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
 	</ItemGroup>
 
 
