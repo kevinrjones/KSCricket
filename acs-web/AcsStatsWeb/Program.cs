@@ -1,21 +1,17 @@
-using System;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AcsStatsWeb.Config;
 using AcsStatsWeb.Utils;
 using Duende.Bff.Yarp;
+using Elastic.Channels;
+using Elastic.Ingest.Elasticsearch;
+using Elastic.Ingest.Elasticsearch.DataStreams;
+using Elastic.Serilog.Sinks;
+using Elastic.Transport;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
@@ -30,8 +26,43 @@ public static class Program
 
         builder.Host.UseSerilog();
         
+        Serilog.Debugging.SelfLog.Enable(Console.Error) ;
+        
+        var elasticSearchUser = builder.Configuration["ElasticSearch:UserName"];
+        var elasticSearchPassword = builder.Configuration["ElasticSearch:Password"];
+        var elasticSearchApiKey = builder.Configuration["ElasticSearch:APIKey"];
+        var elasticSearchUri = builder.Configuration["ElasticSearch:URI"];
+
+        if (elasticSearchUser == null || elasticSearchPassword == null || elasticSearchApiKey == null || elasticSearchUri == null)
+        {
+            throw new Exception("ElasticSearch credentials not configured. Please updates the dotnet secrets or add the appropriate parameters to the command line");
+        }
+        
         Log.Logger = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .Enrich.WithMachineName()
+            .Enrich.WithProcessId()
+            .Enrich.WithProcessName()
+            .Enrich.WithThreadId()
+            .Enrich.WithCorrelationId()
             .ReadFrom.Configuration(builder.Configuration)
+            .WriteTo.Elasticsearch(new [] { new Uri(elasticSearchUri )}, opts =>
+            {
+                opts.DataStream = new DataStreamName("logs", "kscricket", "acsweb");
+                opts.BootstrapMethod = BootstrapMethod.Failure;
+                // opts.ConfigureChannel = channelOpts =>
+                // {
+                //     channelOpts.BufferOptions = new BufferOptions 
+                //     { 
+                //         
+                //         ConcurrentConsumers = 10 
+                //     };
+                // };
+            }, transport =>
+            {
+                transport.Authentication(new BasicAuthentication(elasticSearchUser, elasticSearchPassword));
+                transport.Authentication(new ApiKey(elasticSearchApiKey));
+            })
             .CreateLogger();
 
         Log.Information("App starting");

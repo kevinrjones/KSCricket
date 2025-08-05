@@ -100,6 +100,7 @@ dependencies {
 
 
     implementation(libs.logback)
+    implementation(libs.logback.logstash)
 
 
     testImplementation(libs.ktor.server.testHost)

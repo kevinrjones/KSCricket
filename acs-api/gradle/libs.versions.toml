@@ -13,6 +13,7 @@ logback_version = "1.5.16"
 mariaDb_version = "3.5.2"
 prometheus_version = "1.14.4"
 updateVersion_version = "0.52.0"
+logback_logstash_version = "8.1"
 
 [libraries]
 apache-poi = { module = "org.apache.poi:poi", version.ref = "apache_poi_version" }
@@ -48,6 +49,7 @@ ktor-server-statusPages = { module = "io.ktor:ktor-server-status-pages-jvm", ver
 ktor-server-swaggerJvm = { module = "io.ktor:ktor-server-swagger-jvm", version.ref = "ktor_version" }
 ktor-server-testHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor_version" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback_version" }
+logback-logstash = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logback_logstash_version" }
 mariadb = { module = "org.mariadb.jdbc:mariadb-java-client", version.ref = "mariaDb_version" }
 micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "prometheus_version" }
 
