@@ -16,8 +16,12 @@ for details on configuring this project to bundle and minify static web assets. 
 
 }
 
-* {
+div, button, input, select, textarea {
   font-size: 12px !important;
+}
+
+p {
+  font-size: 16px;
 }
 
 tr {

@@ -37,33 +37,40 @@ public static class Program
         {
             throw new Exception("ElasticSearch credentials not configured. Please updates the dotnet secrets or add the appropriate parameters to the command line");
         }
-        
-        Log.Logger = new LoggerConfiguration()
-            .Enrich.FromLogContext()
-            .Enrich.WithMachineName()
-            .Enrich.WithProcessId()
-            .Enrich.WithProcessName()
-            .Enrich.WithThreadId()
-            .Enrich.WithCorrelationId()
-            .ReadFrom.Configuration(builder.Configuration)
-            .WriteTo.Elasticsearch(new [] { new Uri(elasticSearchUri )}, opts =>
-            {
-                opts.DataStream = new DataStreamName("logs", "kscricket", "acsweb");
-                opts.BootstrapMethod = BootstrapMethod.Failure;
-                // opts.ConfigureChannel = channelOpts =>
-                // {
-                //     channelOpts.BufferOptions = new BufferOptions 
-                //     { 
-                //         
-                //         ConcurrentConsumers = 10 
-                //     };
-                // };
-            }, transport =>
-            {
-                transport.Authentication(new BasicAuthentication(elasticSearchUser, elasticSearchPassword));
-                transport.Authentication(new ApiKey(elasticSearchApiKey));
-            })
-            .CreateLogger();
+
+        try
+        {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .Enrich.WithMachineName()
+                .Enrich.WithProcessId()
+                .Enrich.WithProcessName()
+                .Enrich.WithThreadId()
+                .Enrich.WithCorrelationId()
+                .ReadFrom.Configuration(builder.Configuration)
+                .WriteTo.Elasticsearch(new[] { new Uri(elasticSearchUri) }, opts =>
+                {
+                    opts.DataStream = new DataStreamName("logs", "kscricket", "acsweb");
+                    opts.BootstrapMethod = BootstrapMethod.Failure;
+                    // opts.ConfigureChannel = channelOpts =>
+                    // {
+                    //     channelOpts.BufferOptions = new BufferOptions 
+                    //     { 
+                    //         
+                    //         ConcurrentConsumers = 10 
+                    //     };
+                    // };
+                }, transport =>
+                {
+                    transport.Authentication(new BasicAuthentication(elasticSearchUser, elasticSearchPassword));
+                    transport.Authentication(new ApiKey(elasticSearchApiKey));
+                })
+                .CreateLogger();
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Unable to configure ElasticSearch sink", e);
+        }
 
         Log.Information("App starting");
 

@@ -1,6 +1,28 @@
 <div class="text-center">
-  <h1 class="display-4">Welcome</h1>
+  <h1>Welcome</h1>
+</div>
 
+  <p *ngIf="anonymous$ | async">
+    If you are have registered, please login.
+  </p>
+
+  <p *ngIf="anonymous$ | async">
+    If you are have not registered, then you can register by clicking on the 'Anonymous' link on the top right of this screen.
+  </p>
+
+  <p *ngIf="anonymous$ | async">
+    There are a couple of reasons for registration. At some point in the future I'd like to allow people to save their searches against a user account.
+    It also allows me to set up the data so it's only accesable from this application
+  </p>
+
+  <p *ngIf="anonymous$ | async">
+    If you do not want to create an account on thia site then you have the option to use your Google account, if you have one.
+    To do that click on the 'Anonymous' link on the top right of this screen and select 'Login' from there click on the Google
+    button an you should be able to authenticate using your google account.
+  </p>
+
+
+<div class="text-center">
   <ul *ngIf="authenticated$ | async">
     <li><a [routerLink]="['records/battingrecords']">Batting Records</a></li>
     <li><a [routerLink]="['records/bowlingrecords']">Bowling Records</a></li>
