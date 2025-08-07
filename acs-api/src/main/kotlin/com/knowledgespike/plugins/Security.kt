@@ -38,15 +38,34 @@ fun Application.configureSecurity(jwksUrl: String, issuer: String, realm: String
             }
 
             validate { credential ->
-                val scopes = credential.payload.getClaim("scope").asArray(String::class.java)
-                val roles = credential.payload.getClaim("role").asArray(String::class.java)
+                val scopes = getClaim(credential, "scope")
+                val roles = getClaim(credential, "role")
 
-                validateUserScopesAndRoles(scopes, roles, credential)
+                if (scopes != null && roles != null) {
+                    validateUserScopesAndRoles(scopes, roles, credential)
+                } else {
+                    if(scopes == null)
+                        this@configureSecurity.log.error("No scopes found in JWT")
+                    if(roles == null)
+                        this@configureSecurity.log.error("No roles found in JWT")
+                    null
+                }
 
             }
 
         }
     }
+}
+
+private fun getClaim(credential: JWTCredential, claimName: String): Array<String>? {
+    var claims = credential.payload.getClaim(claimName).asArray(String::class.java)
+    if (claims == null) {
+        val claim = credential.payload.getClaim(claimName).asString()
+        if (claim != null) {
+            claims = arrayOf(claim)
+        }
+    }
+    return claims
 }
 
 private val VALID_SCOPES = setOf("acs.api.read", "acs.api.write")
