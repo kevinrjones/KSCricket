@@ -139,11 +139,11 @@ object JooqTeamByYearOfMatchStart {
 
         )
 
-        val average = iif(
-            field("${totalTableName}.ballsBowled", Int::class.java).eq(0),
-            cast(inline(0.0, Double::class.java), DECIMAL(7, 2)),
-            cast(field("runs", Int::class.java).div(sum(field("ballsBowled", Int::class.java))), DECIMAL(7, 2))
-        ).`as`("avg")
+//        val average = iif(
+//            field("${totalTableName}.ballsBowled", Int::class.java).eq(0),
+//            cast(inline(0.0, Double::class.java), DECIMAL(7, 2)),
+//            cast(field("runs", Int::class.java).div(sum(field("ballsBowled", Int::class.java))), DECIMAL(7, 2))
+//        ).`as`("avg")
 
         val compareTeamId = if (isForBattingTeam)
             INNINGS.TEAMID

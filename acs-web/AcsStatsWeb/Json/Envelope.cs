@@ -37,4 +37,12 @@ namespace AcsStatsWeb.Json
             return new Envelope(errorMessage);
         }
     }
+
+
+    class SqlResultsEnvelope<T>
+    {
+        public int Count { get; set; }
+        public T Data { get; set; }
+        
+    }
 }

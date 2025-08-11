@@ -37,16 +37,54 @@ fun Application.configureSecurity(jwksUrl: String, issuer: String, realm: String
                 acceptLeeway(AUTH_LEEWAY_SECONDS)
             }
 
+            /*
+            * This is a new version of the validate method, I'm leaving the old one in (below) as I', not sure I'm
+            * doing the right thing. This checks that the scope is valid ("acs.api.read") but is not not checking the
+            * roles.
+            *
+            * I think I need to move the role checks to individual methods. This *only* becomes an issue when/if I
+            * have this app also doing updates
+             */
             validate { credential ->
-                val scopes = credential.payload.getClaim("scope").asArray(String::class.java)
-                val roles = credential.payload.getClaim("role").asArray(String::class.java)
+                val scopes = getClaim(credential, "scope")
 
-                validateUserScopesAndRoles(scopes, roles, credential)
+                if (scopes != null) {
+                    validateUserScopesAndRoles(scopes, credential)
+                } else {
+                    this@configureSecurity.log.error("No scopes found in JWT")
+                    null
+                }
 
             }
+//            validate { credential ->
+//                val scopes = getClaim(credential, "scope")
+//                val roles = getClaim(credential, "role")
+//
+//                if (scopes != null && roles != null) {
+//                    validateUserScopesAndRoles(scopes, roles, credential)
+//                } else {
+//                    if(scopes == null)
+//                        this@configureSecurity.log.error("No scopes found in JWT")
+//                    if(roles == null)
+//                        this@configureSecurity.log.error("No roles found in JWT")
+//                    null
+//                }
+//
+//            }
 
         }
     }
+}
+
+private fun getClaim(credential: JWTCredential, claimName: String): Array<String>? {
+    var claims = credential.payload.getClaim(claimName).asArray(String::class.java)
+    if (claims == null) {
+        val claim = credential.payload.getClaim(claimName).asString()
+        if (claim != null) {
+            claims = arrayOf(claim)
+        }
+    }
+    return claims
 }
 
 private val VALID_SCOPES = setOf("acs.api.read", "acs.api.write")
@@ -76,6 +114,16 @@ private fun validateUserScopesAndRoles(
     credential: JWTCredential
 ): JWTPrincipal? {
     return if (hasValidScope(userScopes) && hasValidRole(userRoles)) {
+        JWTPrincipal(credential.payload)
+    } else {
+        null
+    }
+}
+private fun validateUserScopesAndRoles(
+    userScopes: Array<String>,
+    credential: JWTCredential
+): JWTPrincipal? {
+    return if (hasValidScope(userScopes)) {
         JWTPrincipal(credential.payload)
     } else {
         null

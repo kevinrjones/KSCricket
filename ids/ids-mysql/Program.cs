@@ -1,4 +1,8 @@
-﻿using ids_mysql;
+﻿using Elastic.Ingest.Elasticsearch;
+using Elastic.Ingest.Elasticsearch.DataStreams;
+using Elastic.Serilog.Sinks;
+using Elastic.Transport;
+using ids_mysql;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -16,6 +20,16 @@ try
     Console.WriteLine(
         builder.Configuration.GetConnectionString("identity"));
 
+    var elasticSearchUser = builder.Configuration["ElasticSearch:UserName"];
+    var elasticSearchPassword = builder.Configuration["ElasticSearch:Password"];
+    var elasticSearchApiKey = builder.Configuration["ElasticSearch:APIKey"];
+    var elasticSearchUri = builder.Configuration["ElasticSearch:URI"];
+
+    if (elasticSearchUser == null || elasticSearchPassword == null || elasticSearchApiKey == null || elasticSearchUri == null)
+    {
+        throw new Exception("ElasticSearch credentials not configured. Please updates the dotnet secrets or add the appropriate parameters to the command line");
+    }
+
     builder.Host.UseSerilog((ctx, lc) =>
     {
         lc.MinimumLevel.Debug()
@@ -27,8 +41,23 @@ try
                 outputTemplate:
                 "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
                 theme: AnsiConsoleTheme.Code)
+            .WriteTo.Elasticsearch(new [] { new Uri(elasticSearchUri )}, opts =>
+            {
+                opts.DataStream = new DataStreamName("logs", "kscricket", "acsweb");
+                opts.BootstrapMethod = BootstrapMethod.Failure;
+            }, transport =>
+            {
+                transport.Authentication(new BasicAuthentication(elasticSearchUser, elasticSearchPassword));
+                transport.Authentication(new ApiKey(elasticSearchApiKey));
+            })
+            .Enrich.WithMachineName()
+            .Enrich.WithProcessId()
+            .Enrich.WithProcessName()
+            .Enrich.WithThreadId()
+            .Enrich.WithCorrelationId()
             .Enrich.FromLogContext();
     });
+    
 
     var app = builder
         .ConfigureServices()
