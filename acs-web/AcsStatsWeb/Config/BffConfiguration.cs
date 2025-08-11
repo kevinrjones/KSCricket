@@ -28,13 +28,3 @@ public class BffApi
     public string? RemoteUrl { get; set; }
     public TokenType RequiredToken { get; set; }
 }
-
-internal class IdentityServerConfiguration
-{
-    public string? Authority { get; set; }
-    public string? ClientId { get; set; }
-    public string? ClientSecret { get; set; }
-    public List<string>? ApiScopes { get; set; }
-    public string? ApiResourceName { get; set; }
-    public string? IdentityScope { get; set; }
-}

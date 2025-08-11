@@ -14,7 +14,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  public getSession(ignoreCache: boolean = false) {
+  public getSession(ignoreCache: boolean = false): Observable<Session> {
     if (!this.session$ || ignoreCache) {
       this.session$ = this.http.get<Session>('bff/user').pipe(
         catchError(err => {
