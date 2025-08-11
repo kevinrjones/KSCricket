@@ -76,3 +76,10 @@ footer > span#timestamp {
   font-size: smaller;
 }
 
+footer > span#datatimestamp {
+  float: right;
+  font-size: smaller;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
