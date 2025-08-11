@@ -1,3 +1,26 @@
-li {
+ul > li.scoreRow {
+  font-size: 16px;
+  padding-bottom: 1rem;
   list-style-type: none;
+}
+
+.teamName {
+
+}
+
+.teamScore {
+  color: blue;
+}
+
+h3.latestResults {
+  padding-top: 5rem;
+}
+
+span.result {
+  font-weight: bold;
+  font-style: italic;
+}
+
+span.matchType {
+  font-style: italic;
 }

@@ -1,5 +1,6 @@
 using System.Text;
 using AcsStatsWeb.Config;
+using AcsStatsWeb.Services;
 using AcsStatsWeb.Utils;
 using Duende.Bff.Yarp;
 using Elastic.Channels;
@@ -106,6 +107,7 @@ public static class Program
         services.AddLogging();
 
         services.AddAuthorization();
+        services.AddSingleton<ITokenService, TokenService>();
 
         services.AddControllersWithViews();
         services.AddBff(options =>
@@ -166,11 +168,13 @@ public static class Program
 
     private static void ConfigureIdentityServer(IServiceCollection services, ConfigurationManager configuration)
     {
-        var configSection = configuration.GetSection("IdentityServer");
+        var idsConfigSection = configuration.GetSection("IdentityServer");
+        var apiServerConfigSection = configuration.GetSection("APIServer");
 
-        services.Configure<IdentityServerConfiguration>(configSection);
+        services.Configure<IdentityServerConfiguration>(idsConfigSection);
+        services.Configure<ApiServerConfiguration>(apiServerConfigSection);
 
-        IdentityServerConfiguration? idsConfig = configSection.Get<IdentityServerConfiguration>();
+        IdentityServerConfiguration? idsConfig = idsConfigSection.Get<IdentityServerConfiguration>();
 
         services.AddAuthentication(options =>
             {
