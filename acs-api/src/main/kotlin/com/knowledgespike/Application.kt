@@ -2,6 +2,7 @@ package com.knowledgespike
 
 import com.knowledgespike.feature.battingrecords.presentation.routeBattingRecords
 import com.knowledgespike.feature.bowlingrecords.presentation.routeBowlingRecords
+import com.knowledgespike.feature.datainfo.presentation.routeDataInfo
 import com.knowledgespike.feature.fieldingrecords.presentation.routeFieldingRecords
 import com.knowledgespike.feature.frontpage.presentation.routeFrontPage
 import com.knowledgespike.feature.partnershiprecords.presentation.routePartnershipRecords
@@ -63,6 +64,7 @@ fun Application.module() {
     routeScorecard()
     routePlayers()
     routeFrontPage()
+    routeDataInfo()
     configureRouting()
 }
 
