@@ -34,6 +34,8 @@ class PrimaryBattingTest {
             year = "2023",
             ground = "Stadium1",
             countryName = "Country1",
+            debut = "",
+            end = "",
         )
 
         val expectedCsv =
@@ -68,6 +70,8 @@ class PrimaryBattingTest {
             year = "2023",
             ground = "Stadium1",
             countryName = "Country1",
+            debut = "",
+            end = "",
         )
 
         val expectedHeader = """Name , Team , Opponents , Year , 
@@ -109,6 +113,8 @@ Ground , CountryName"""
             year = "2023",
             ground = "Stadium1",
             countryName = "Country1",
+            debut = "",
+            end = "",
         )
 
         primaryBatting.addHeader(sheet)
@@ -148,6 +154,8 @@ Ground , CountryName"""
             year = "2023",
             ground = "Stadium1",
             countryName = "Country1",
+            debut = "",
+            end = "",
         )
 
         primaryBatting.addLine(sheet, 1)

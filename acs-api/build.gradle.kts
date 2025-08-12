@@ -34,10 +34,6 @@ tasks.withType<KotlinCompile>().configureEach {
 //        freeCompilerArgs.add("-Xcontext-receivers")
 //        freeCompilerArgs.add("-Xconsistent-data-class-copy-visibility")
     }
-    // replaces
-//    kotlinOptions {
-//        freeCompilerArgs = freeCompilerArgs + "-Xcontext-receivers -Xconsistent-data-class-copy-visibility"
-//    }
 }
 
 java {
@@ -124,15 +120,15 @@ tasks.withType<DependencyUpdatesTask> {
 }
 sourceSets {
     this.main {
-        val generatedDir= layout.projectDirectory.dir("generated/jooq/kotlin")
+        val generatedDir= layout.projectDirectory.dir("src/generated/jooq/kotlin")
         java.srcDir(generatedDir)
     }
 }
 jooq {
-    val output = layout.buildDirectory.dir(".")
-//    val dir = "${layout.projectDirectory}/../"
+//    val output = layout.buildDirectory.dir(".")
+    val output = layout.projectDirectory.dir("src")
     configuration {
-        basedir = "${output.get()}"
+        basedir = "${output}"
         jdbc {
             driver = "org.mariadb.jdbc.Driver"
             url = "jdbc:mariadb://localhost:3306/cricketarchive"
@@ -157,5 +153,5 @@ jooq {
 }
 
 tasks.compileKotlin {
-    dependsOn(tasks["jooqCodegen"])
+//    dependsOn(tasks["jooqCodegen"])
 }
