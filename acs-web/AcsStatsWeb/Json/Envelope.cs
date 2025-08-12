@@ -3,11 +3,11 @@ namespace AcsStatsWeb.Json
 
     public class Envelope<T>
     {
-        public T Result { get; }
-        public string ErrorMessage { get; }
+        public T? Result { get; }
+        public string? ErrorMessage { get; }
         public DateTime TimeGenerated { get; }
 
-        public Envelope(T result, string errorMessage)
+        public Envelope(T? result, string? errorMessage)
         {
             Result = result;
             ErrorMessage = errorMessage;
@@ -17,7 +17,7 @@ namespace AcsStatsWeb.Json
 
     public sealed class Envelope : Envelope<string>
     {
-        private Envelope(string errorMessage)
+        private Envelope(string? errorMessage)
             : base(null, errorMessage)
         {
         }
@@ -42,7 +42,7 @@ namespace AcsStatsWeb.Json
     class SqlResultsEnvelope<T>
     {
         public int Count { get; set; }
-        public T Data { get; set; }
+        public required T Data { get; set; }
         
     }
 }

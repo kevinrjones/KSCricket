@@ -65,7 +65,7 @@ try
 
     app.Run();
 }
-catch (HostAbortedException ex)
+catch (HostAbortedException)
 {
     // this is expected in certain situations = will see it when creating migrations
     // https://github.com/dotnet/efcore/issues/29809#issuecomment-1344101370
