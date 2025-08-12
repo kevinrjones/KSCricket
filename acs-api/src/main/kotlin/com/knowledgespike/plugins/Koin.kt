@@ -2,6 +2,7 @@ package com.knowledgespike.plugins
 
 import com.knowledgespike.feature.battingrecords.di.battingRecordsModule
 import com.knowledgespike.feature.bowlingrecords.di.bowlingRecordsModule
+import com.knowledgespike.feature.datainfo.di.dataInfoModule
 import com.knowledgespike.feature.fieldingrecords.di.fieldingRecordsModule
 import com.knowledgespike.feature.frontpage.di.frontPageModule
 import com.knowledgespike.feature.partnershiprecords.di.partnershipRecordsModule
@@ -58,6 +59,7 @@ fun Application.configureKoin(jdbcUrl: String, userName: String, password: Strin
             scorecardModule,
             playerModule,
             frontPageModule,
+            dataInfoModule
         )
     }
 }

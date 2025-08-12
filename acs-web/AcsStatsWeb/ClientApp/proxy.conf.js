@@ -7,6 +7,7 @@ const PROXY_CONFIG = [
   {
     context: [
       "/api/frontpage",
+      "/api/helpers",
       "/api/config",
       "/api/batting",
       "/api/bowling",

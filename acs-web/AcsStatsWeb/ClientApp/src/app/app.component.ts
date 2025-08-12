@@ -8,7 +8,9 @@ import {ErrorLookupService} from './services/error-lookup.service';
 import {LoadingService} from './services/loading.service';
 import {Timestamp} from './timestamp/Timestamp';
 import {DateTime} from 'luxon';
-import { MessageService } from 'primeng/api';
+import {MessageService} from 'primeng/api';
+import {DatabaseDateService} from "./services/databasedate.service";
+import {Envelope} from "./models/envelope";
 
 
 @Component({
@@ -21,12 +23,15 @@ export class AppComponent implements OnInit {
   title = 'ACS Cricket Records';
   loading: boolean = false;
   stamp: string;
+  public dateOfLastChange: string = "";
+  private dateOfLastChange$: Observable<Envelope<string>>;
   private errorState$: Observable<ErrorDetails>;
   private loadingState$: Observable<boolean>;
 
   constructor(private appStore: Store<AppState>,
               private messageService: MessageService,
               private errorLookupService: ErrorLookupService,
+              private databaseDateService: DatabaseDateService,
               private _loading: LoadingService) {
 
     this.resetErrorState()
@@ -38,6 +43,7 @@ export class AppComponent implements OnInit {
 
     this.errorState$ = this.appStore.select(s => s.errorState);
     this.loadingState$ = this.appStore.select(s => s.loading)
+    this.dateOfLastChange$ = this.databaseDateService.getDateOfLastAddedMatch()
   }
 
   ngOnInit(): void {
@@ -61,6 +67,10 @@ export class AppComponent implements OnInit {
     this.loadingState$.subscribe(state => {
       this.loading = state;
     });
+
+    this.dateOfLastChange$.subscribe(s => {
+      this.dateOfLastChange = DateTime.fromISO(s.result).toLocaleString(DateTime.DATETIME_FULL)
+    })
   }
 
   resetErrorState() {
