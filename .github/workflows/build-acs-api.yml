@@ -73,5 +73,4 @@ jobs:
       with:
         name: Package
         path: build/libs
-        working-directory: acs-api
       
