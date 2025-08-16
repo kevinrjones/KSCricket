@@ -3,7 +3,6 @@ using AcsStatsWeb.Config;
 using AcsStatsWeb.Services;
 using AcsStatsWeb.Utils;
 using Duende.Bff.Yarp;
-using Elastic.Channels;
 using Elastic.Ingest.Elasticsearch;
 using Elastic.Ingest.Elasticsearch.DataStreams;
 using Elastic.Serilog.Sinks;
@@ -16,6 +15,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using Serilog.Debugging;
 
 namespace AcsStatsWeb;
 
@@ -27,7 +27,7 @@ public static class Program
 
         builder.Host.UseSerilog();
         
-        Serilog.Debugging.SelfLog.Enable(Console.Error) ;
+        SelfLog.Enable(Console.Error) ;
         
         var elasticSearchUser = builder.Configuration["ElasticSearch:UserName"];
         var elasticSearchPassword = builder.Configuration["ElasticSearch:Password"];
@@ -53,14 +53,6 @@ public static class Program
                 {
                     opts.DataStream = new DataStreamName("logs", "kscricket", "acsweb");
                     opts.BootstrapMethod = BootstrapMethod.Failure;
-                    // opts.ConfigureChannel = channelOpts =>
-                    // {
-                    //     channelOpts.BufferOptions = new BufferOptions 
-                    //     { 
-                    //         
-                    //         ConcurrentConsumers = 10 
-                    //     };
-                    // };
                 }, transport =>
                 {
                     transport.Authentication(new BasicAuthentication(elasticSearchUser, elasticSearchPassword));

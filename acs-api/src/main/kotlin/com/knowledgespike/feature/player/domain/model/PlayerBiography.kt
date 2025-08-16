@@ -18,6 +18,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PlayerBiography(
     val fullName: String,
+    val expandedFullName: String,
     val activeUntil: Long,
     val birthDate: String,
     val dateDied: String,
