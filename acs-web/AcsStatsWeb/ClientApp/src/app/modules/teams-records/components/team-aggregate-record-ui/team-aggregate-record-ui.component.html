@@ -114,6 +114,24 @@
                  [icon]="getSortClass(importedSortOrder.strikeRate)"></fa-icon>
       </a>
     </th>
+    <th class="align-numeric-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}" (click)="sort(importedSortOrder.innings)" class="record-item-header-link btn-link">Innings
+        <fa-icon *ngIf="importedSortOrder.innings == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.innings)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.hs == sortOrder}" (click)="sort(importedSortOrder.hs)" class="record-item-header-link btn-link">HS
+        <fa-icon *ngIf="importedSortOrder.hs == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.hs)"></fa-icon>
+      </a>
+    </th>
+    <th class="align-numeric-cell">
+      <a [ngClass]="{'bold-sort-column': importedSortOrder.ls == sortOrder}" (click)="sort(importedSortOrder.ls)" class="record-item-header-link btn-link">LS
+        <fa-icon *ngIf="importedSortOrder.ls == sortOrder"
+                 [icon]="getSortClass(importedSortOrder.ls)"></fa-icon>
+      </a>
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -144,6 +162,9 @@
     <td [ngClass]="{'bold-sort-column': importedSortOrder.avg == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.avg == null ? "-" : row.avg.toFixed(2) }}</td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.rpo == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.rpo == null ? "-" : row.rpo.toFixed(2) }}</td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.strikeRate == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.sr == null ? "-" : row.sr.toFixed(2) }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.innings == null ? "-" : row.innings }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.hs == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.hs == null ? "-" : row.hs }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.ls == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.ls == null ? "-" : row.ls }}</td>
   </tr>
   </tbody>
 </table>

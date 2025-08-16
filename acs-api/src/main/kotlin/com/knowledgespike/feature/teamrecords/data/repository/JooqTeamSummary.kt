@@ -109,6 +109,7 @@ object JooqTeamSummary {
                 .join(MATCHES).on(field("${scoresTempTableName}.id").eq(MATCHES.ID))
                 .join(INNINGS).on(field("${scoresTempTableName}.id").eq(INNINGS.MATCHID))
                 .where(field("${scoresTempTableName}.teamid").eq(compareTeamId))
+                .and(INNINGS.FORFEITED.eq(0))
                 .groupBy(field("${scoresTempTableName}.teamid"))
         ).execute()
     }

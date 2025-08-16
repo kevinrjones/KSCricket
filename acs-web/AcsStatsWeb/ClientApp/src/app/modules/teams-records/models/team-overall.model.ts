@@ -11,6 +11,8 @@ export interface TeamRecordDto {
   wickets: number;
   avg: number;
   rpo: number;
+  hs: number;
+  ls: number;
   sr: number;
   seriesDate: string;
   matchStartYear: string;
