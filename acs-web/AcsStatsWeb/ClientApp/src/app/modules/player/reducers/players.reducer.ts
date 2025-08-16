@@ -35,7 +35,7 @@ export const playersSuccessReducer = createReducer(
   })
 );
 
-export const initialPlayerBiographyState = new PlayerBiography(new PlayerDetail("", 0, "", "", "", ""));
+export const initialPlayerBiographyState = new PlayerBiography(new PlayerDetail("", "",0, "", "", "", ""));
 
 export const playerBiographySuccessReducer = createReducer(
   initialPlayerBiographyState,

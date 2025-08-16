@@ -33,6 +33,7 @@ object JooqPlayerBiography {
             PLAYERS.BATTINGHAND,
             PLAYERS.SHORTBOWLINGSTYLES,
             PLAYERS.FULLNAME,
+            PLAYERS.EXPANDEDFULLNAME,
             PLAYERS.ACTIVEUNTIL,
         ).from(PLAYERS)
             .where(PLAYERS.ID.eq(id.id))
@@ -47,11 +48,12 @@ object JooqPlayerBiography {
 
         val biography = PlayerBiography(
             fullName = record.get("FullName", String::class.java),
+            expandedFullName = record.get("ExpandedFullName", String::class.java),
             activeUntil = record.get("ActiveUntil", Long::class.java),
-            birthDate = record.getValueOrNull("BirthdateAsText", String::class.java) ?: "",
-            dateDied = record.getValueOrNull("DateDiedAsText", String::class.java) ?: "",
+            birthDate = record.getValue("BirthdateAsText", String::class.java) ?: "",
+            dateDied = record.getValue("DateDiedAsText", String::class.java) ?: "",
             battingHand = getBattingHand(record.getValueOrNull("BattingHand", String::class.java)),
-            bowlingMode = record.getValueOrNull("ShortBowlingStyles", String::class.java) ?: "",
+            bowlingMode = record.getValue("ShortBowlingStyles", String::class.java) ?: "",
         )
 
 
@@ -69,8 +71,8 @@ object JooqPlayerBiography {
      */
     private fun getBattingHand(battingHandAsInt: String?): String {
         return when (battingHandAsInt) {
-            "1" -> "Right handed bat"
-            "2" -> "Left handed bat"
+            "1" -> "RHB"
+            "2" -> "LHB"
             else -> "unknown"
         }
     }

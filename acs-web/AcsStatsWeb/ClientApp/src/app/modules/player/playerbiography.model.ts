@@ -1,5 +1,6 @@
 export class PlayerDetail {
   constructor(public fullName: string,
+              public expandedFullName: string,
               public activeUntil: number,
               public birthDate: string,
               public dateDied: string,
