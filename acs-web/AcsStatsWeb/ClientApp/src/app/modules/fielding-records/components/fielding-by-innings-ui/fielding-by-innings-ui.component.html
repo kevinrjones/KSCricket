@@ -112,7 +112,7 @@
     <td [ngClass]="{'bold-sort-column': importedSortOrder.inningsNumber == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.dismissals == null ? "-" : row.inningsNumber }}</td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.opponents }}</td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.knownAs == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.ground }}</td>
-    <td [ngClass]="{'bold-sort-column': importedSortOrder.matchStartDate == sortOrder}" class="align-numeric-cell" nowrap="now rap">{{ row.matchDate }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.matchStartDate == sortOrder}" class="align-numeric-cell" nowrap="now rap">{{ dateHelperService.asDate(row.matchDate) }}</td>
     <td class="align-text-cell" nowrap="nowrap">
       <a [routerLink]="getMatchLink(row)" class="record-item-header-link btn-link">
         <fa-icon [icon]="faLink"></fa-icon>

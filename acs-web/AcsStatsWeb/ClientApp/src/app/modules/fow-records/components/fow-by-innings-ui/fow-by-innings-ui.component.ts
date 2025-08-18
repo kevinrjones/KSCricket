@@ -14,6 +14,7 @@ import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {NavigateValues} from '../../../../models/navigate.model';
 import {faLink} from '@fortawesome/free-solid-svg-icons';
 import {DateTime} from 'luxon';
+import {DateHelperService} from "../../../shared/services/dateHelperService";
 
 @Component({
     selector: 'app-fow-by-innings-ui',
@@ -48,7 +49,8 @@ export class FowByInningsUiComponent implements OnInit {
               private route: ActivatedRoute,
               private fowStore: Store<FowOverallState>,
               private fowHelperService: FowHelperService,
-              private recordHelperService: RecordHelperService) {
+              private recordHelperService: RecordHelperService,
+              public dateHelperService: DateHelperService,) {
   }
 
   ngOnDestroy(): void {
@@ -140,10 +142,6 @@ export class FowByInningsUiComponent implements OnInit {
 
   getMatchLink(row: IndividualFowDetailsDto) {
     return "/scorecard/cardbyid/" + row.matchId
-  }
-
-  toFormattedDate(date: string) {
-    return DateTime.fromFormat(date, "yyyy-MM-dd").toLocaleString(DateTime.DATE_MED)
   }
 
 }

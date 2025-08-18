@@ -44,17 +44,24 @@ export class BattingHelperService {
     }))
   }
 
-  formatHighestScore(notOut: boolean, score: number | null) {
-    if (score === null) return '<strong>dnb</strong>'
-    return notOut ? `${score}*` : `${score}&nbsp;`;
+  formatHighestScore(notOut: boolean, score: number | null, bat1: number | null, bat2: number | null, notout1: boolean | null, notout2: boolean | null) {
+    let s1 = this.formatScoreWithNotOut(score, notOut)
+    let s2 = this.formatScoreWithNotOut(bat1, notout1)
+    let s3 = this.formatScoreWithNotOut(bat2, notout2)
+    return `${s1}(${s2}, ${s3})`
   }
 
   formatHighestScoreForInnings(innings: number, score: number | null) {
     if (score == null)
-      return innings == 0 ? '-' : this.formatHighestScore(false, score);
+      return innings == 0 ? '-' : this.formatHighestScore(false, score, null, null, null, null);
 
     let notOut = Math.trunc(score) < score
-    return innings == 0 ? '-' : this.formatHighestScore(notOut, Math.trunc(score));
+    return innings == 0 ? '-' : this.formatHighestScore(notOut, Math.trunc(score), null, null, null, null);
   }
 
+  private formatScoreWithNotOut(score: number | null, notOut: boolean | null) {
+    if (score === null || score === undefined) return 'dnb'
+    return notOut ? `${score}*&nbsp;` : `${score}&nbsp;`;
+  }
+  
 }

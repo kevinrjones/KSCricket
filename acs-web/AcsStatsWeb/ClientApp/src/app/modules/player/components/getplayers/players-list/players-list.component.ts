@@ -6,6 +6,7 @@ import {SortOrder} from '../../../../../models/sortorder.model';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {RecordHelperService} from '../../../../../services/record-helper.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DateHelperService} from "../../../../shared/services/dateHelperService";
 
 interface SearchCriteria {
   exactMatch: boolean
@@ -38,7 +39,8 @@ export class PlayersListComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private recordHelperService: RecordHelperService) {
+              private recordHelperService: RecordHelperService,
+              private dateHelperService: DateHelperService,) {
   }
 
   private _exactMatch = false
@@ -69,13 +71,6 @@ export class PlayersListComponent implements OnInit {
     return this.recordHelperService.getSortClass(sortOrder, this.sortDirection)
   }
 
-  getDate(date: string, replacementDateText: string): string {
-    if (date == null || date == '') return replacementDateText
-
-    const dt = DateTime.fromISO(date)
-    return dt.toLocaleString(DateTime.DATE_FULL)
-  }
-
   getNameAndTeam() {
     let text = `<span>'${this.name}'</span> playing for`
     if (this.team == "") text = text + " <span>any team</span>"
@@ -85,7 +80,7 @@ export class PlayersListComponent implements OnInit {
 
   getDisplayText() {
     return `You searched for ${this.getNameAndTeam()} with <span>${this.exactMatch ? "an exact match" : "no exact match"}</span>
-    who is active between <span>${this.getDate(this.debutDate, 'any start date')}</span> and <span>${this.getDate(this.activeUntilDate, 'any end date')}`
+    who is active between <span>${this.dateHelperService.asDate(this.debutDate, 'any start date')}</span> and <span>${this.dateHelperService.asDate(this.activeUntilDate, 'any end date')}`
   }
 
   sort(newSortOrder: SortOrder) {

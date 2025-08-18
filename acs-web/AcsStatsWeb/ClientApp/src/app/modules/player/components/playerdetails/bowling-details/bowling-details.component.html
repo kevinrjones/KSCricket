@@ -30,7 +30,7 @@
               <td class="align-text-cell opponents">{{ getStringValueOrEmpty(row.matchId, row.opponents) }}</td>
               <td class="align-text-cell ground">{{ getStringValueOrEmpty(row.matchId, row.ground) }}</td>
               <td
-                class="align-numeric-cell startDate">{{ getStringValueOrEmpty(row.matchId, asDate(row.matchStartDate)) }}
+                class="align-numeric-cell startDate">{{ getStringValueOrEmpty(row.matchId, dateHelper.asDate(row.matchStartDate)) }}
               </td>
               <td class="align-numeric-cell overs">{{ caluclateOvers(row.balls, row.ballsPerOver) }}</td>
               <td

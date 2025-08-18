@@ -13,6 +13,7 @@ import {IndividualFieldingDetailsDto} from '../../models/individual-fielding-det
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {NavigateValues} from '../../../../models/navigate.model';
 import {faLink} from '@fortawesome/free-solid-svg-icons';
+import {DateHelperService} from "../../../shared/services/dateHelperService";
 
 @Component({
     selector: 'app-fielding-by-innings-ui',
@@ -46,7 +47,8 @@ export class FieldingByInningsUiComponent implements OnInit {
               private route: ActivatedRoute,
               private fieldingStore: Store<FieldingOverallState>,
               private fieldingHelperService: FieldingHelperService,
-              private recordHelperService: RecordHelperService) {
+              private recordHelperService: RecordHelperService,
+              public dateHelperService: DateHelperService,) {
   }
 
   ngOnDestroy(): void {

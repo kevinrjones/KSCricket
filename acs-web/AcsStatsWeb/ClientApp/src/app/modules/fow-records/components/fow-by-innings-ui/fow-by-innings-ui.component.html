@@ -99,7 +99,7 @@
     <td [ngClass]="{'bold-sort-column': importedSortOrder.innings == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ row.innings }}</td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.opponents }}</td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.knownAs == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.ground }}</td>
-    <td [ngClass]="{'bold-sort-column': importedSortOrder.matchStartDate == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ toFormattedDate(row.matchStartDate) }}</td>
+    <td [ngClass]="{'bold-sort-column': importedSortOrder.matchStartDate == sortOrder}" class="align-numeric-cell" nowrap="nowrap">{{ dateHelperService.asDate(row.matchStartDate) }}</td>
     <td class="align-numeric-cell" nowrap="nowrap">{{ row.matchTitle }}</td>
     <td class="align-numeric-cell" nowrap="nowrap">{{ row.resultString }}</td>
     <td class="align-text-cell" nowrap="nowrap">

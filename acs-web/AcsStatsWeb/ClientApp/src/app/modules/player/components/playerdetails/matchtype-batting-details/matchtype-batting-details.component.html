@@ -39,7 +39,7 @@
     </td>
     <td class="ground align-text-cell">{{ getStringValueOrEmptyForMatchId(row.matchId, row.ground) }}</td>
     <td
-      class="start-date align-numeric-cell">{{ asDate(getStringValueOrEmptyForMatchId(row.matchId, row.matchStartDate)) }}
+      class="start-date align-numeric-cell">{{ dateHelperService.asDate(getStringValueOrEmptyForMatchId(row.matchId, row.matchStartDate)) }}
     </td>
     <td [innerHTML]="getScore(row)" class="score align-numeric-cell"></td>
     <td class="dismissal align-text-cell">{{ row.dismissal }}</td>

@@ -14,6 +14,7 @@ import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {IndividualBowlingDetailsDto} from '../../models/individual-bowling-details.dto';
 import {NavigateValues} from '../../../../models/navigate.model';
 import {faLink} from '@fortawesome/free-solid-svg-icons';
+import {DateHelperService} from "../../../shared/services/dateHelperService";
 
 @Component({
     selector: 'app-bowling-by-innings-ui',
@@ -47,7 +48,8 @@ export class BowlingByInningsUiComponent implements OnInit {
               private route: ActivatedRoute,
               private bowlingStore: Store<BowlingOverallState>,
               private bowlingHelperService: BowlingHelperService,
-              private recordHelperService: RecordHelperService) {
+              private recordHelperService: RecordHelperService,
+              public dateHelperService: DateHelperService,) {
   }
 
   ngOnDestroy(): void {

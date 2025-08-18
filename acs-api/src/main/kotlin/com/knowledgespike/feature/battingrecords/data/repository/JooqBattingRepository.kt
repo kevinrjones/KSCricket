@@ -11,7 +11,7 @@ import com.knowledgespike.feature.recordsearch.domain.model.ValidatedSearchParam
 import com.knowledgespike.jooq.JooqHelpers
 import com.knowledgespike.plugins.DataSource
 import org.jooq.DSLContext
-import org.jooq.Record20
+import org.jooq.Record22
 import org.jooq.SelectConditionStep
 import org.jooq.SelectConnectByStep
 import org.jooq.impl.DSL.*
@@ -445,7 +445,7 @@ class JooqBattingRepository(private val dataSource: DataSource) : BattingReposit
             searchParameters = searchParameters,
         )
 
-        val resultsTable: SelectConditionStep<Record20<String?, String?, Int?, Int, Int, Int, Int, Int, Int, Int, Int, String, String, String?, Int?, String?, LocalDate?, Long?, String?, Double>> =
+        val resultsTable: SelectConditionStep<Record22<String?, String?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, String?, String?, String?, Int?, String?, LocalDate?, Long?, String?, Double?>?> =
             JooqBattingMatchRecords.createResultsCte(searchParameters, BATTING_TEMP_DETALS_TABLE)
 
         val totalCountsTable = JooqHelpers.totalCountsCte(RESULTS_TABLE)
@@ -573,7 +573,9 @@ class JooqBattingRepository(private val dataSource: DataSource) : BattingReposit
             playerScore = record.getValue("runs", Int::class.java),
             notOut = record.getValueOrNull("notout", Int::class.java),
             bat1 = record.getValueOrNull("bat1", Int::class.java),
+            notOut1 = record.getValueOrNull("notOut1", Int::class.java),
             bat2 = record.getValueOrNull("bat2", Int::class.java),
+            notOut2 = record.getValueOrNull("notOut2", Int::class.java),
             inningsNumber = record.getValueOrNull("inningsOrder", Int::class.java) ?: 0,
             team = record.getValue("teams", String::class.java),
             matchDate = record.getValue("MatchStartDate", String::class.java),

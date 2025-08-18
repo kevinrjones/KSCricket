@@ -11,7 +11,9 @@ export interface IndividualBattingDetailsDto {
   playerScore: number | null
   sr: number
   bat1: number
+  notOut1: boolean
   bat2: number
+  notOut2: boolean
   notOut: boolean
   position: number
   balls: number

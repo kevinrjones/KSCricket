@@ -3,6 +3,7 @@ import {PlayerBowlingDetails} from '../../../playerbiography.model';
 import {PlayerHelpService} from '../../../services/playerhelp.service';
 import {DateTime} from 'luxon';
 import {faLink} from '@fortawesome/free-solid-svg-icons';
+import {DateHelperService} from "../../../../shared/services/dateHelperService";
 
 
 @Component({
@@ -25,7 +26,8 @@ export class MatchTypeBowlingDetailsComponent implements OnInit {
   previousMatchId: string = "";
   protected readonly faLink = faLink;
 
-  constructor(public playerHelpService: PlayerHelpService) {
+  constructor(public playerHelpService: PlayerHelpService,
+              public dateHelperService: DateHelperService,) {
   }
 
   ngOnInit(): void {
@@ -58,11 +60,6 @@ export class MatchTypeBowlingDetailsComponent implements OnInit {
 
   getTitle(matchType: string): string {
     return this.playerHelpService.getTitle(matchType)
-  }
-
-  asDate(maybeDate: string): string {
-    if (maybeDate.length == 0) return ''
-    return DateTime.fromISO(maybeDate).toLocaleString(DateTime.DATE_MED)
   }
 
   hideOrShow(ndx: number) {

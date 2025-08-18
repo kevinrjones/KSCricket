@@ -11,6 +11,7 @@ import {DateTime} from 'luxon';
 import {MessageService} from 'primeng/api';
 import {DatabaseDateService} from "./services/databasedate.service";
 import {Envelope} from "./models/envelope";
+import {DateHelperService} from "./modules/shared/services/dateHelperService";
 
 
 @Component({
@@ -32,14 +33,11 @@ export class AppComponent implements OnInit {
               private messageService: MessageService,
               private errorLookupService: ErrorLookupService,
               private databaseDateService: DatabaseDateService,
-              private _loading: LoadingService) {
+              private dateHelperService: DateHelperService,) {
 
     this.resetErrorState()
 
-    this.stamp = DateTime.fromISO(Timestamp.stamp).toLocaleString(DateTime.DATETIME_FULL)
-
-    // dt = DateTime.fromISO(date)
-    // return dt.toLocaleString(DateTime.DATE_FULL)
+    this.stamp = dateHelperService.asDate(Timestamp.stamp)
 
     this.errorState$ = this.appStore.select(s => s.errorState);
     this.loadingState$ = this.appStore.select(s => s.loading)
@@ -69,7 +67,7 @@ export class AppComponent implements OnInit {
     });
 
     this.dateOfLastChange$.subscribe(s => {
-      this.dateOfLastChange = DateTime.fromISO(s.result).toLocaleString(DateTime.DATETIME_FULL)
+      this.dateOfLastChange = this.dateHelperService.asDate(Timestamp.stamp, '', DateTime.DATETIME_FULL)
     })
   }
 

@@ -11,6 +11,7 @@ import com.knowledgespike.jooq.buildSearchConditions
 import org.jooq.DSLContext
 import org.jooq.Field
 import org.jooq.Record20
+import org.jooq.Record22
 import org.jooq.SelectConditionStep
 import org.jooq.impl.DSL.*
 import java.time.LocalDate
@@ -64,7 +65,9 @@ object JooqBattingMatchRecords {
                 field("bd1.OpponentsId", Int::class.java),
                 field("bd1.PlayerId", Int::class.java),
                 field("bd1.Score", Int::class.java).`as`("bat1"),
+                field("bd1.NotOut", Int::class.java).`as`("notOut1"),
                 field("bd2.Score", Int::class.java).`as`("bat2"),
+                field("bd2.NotOut", Int::class.java).`as`("notOut2"),
                 (coalesce(field("bd1.score", Int::class.java), 0)
                         + coalesce(field("bd2.score", Int::class.java), 0)).`as`("playerscore"),
                 (coalesce(field("bd1.Balls", Int::class.java), 0)
@@ -104,7 +107,7 @@ object JooqBattingMatchRecords {
     fun createResultsCte(
         searchParameters: ValidatedSearchParameters,
         tmpBattingDetailsName: String,
-    ): SelectConditionStep<Record20<String?, String?, Int?, Int, Int, Int, Int, Int, Int, Int, Int, String, String, String?, Int?, String?, LocalDate?, Long?, String?, Double>> {
+    ): SelectConditionStep<Record22<String?, String?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, Int?, String?, String?, String?, Int?, String?, LocalDate?, Long?, String?, Double?>?> {
 
 
         val searchCondition = buildSearchConditions(searchParameters)
@@ -116,7 +119,9 @@ object JooqBattingMatchRecords {
                 PLAYERS.ID.`as`("playerid"),
                 field("playerscore", Int::class.java).`as`("runs"),
                 field("bat1", Int::class.java),
+                field("notOut1", Int::class.java),
                 field("bat2", Int::class.java),
+                field("notOut2", Int::class.java),
                 field("balls", Int::class.java),
                 field("fours", Int::class.java),
                 field("sixes", Int::class.java),

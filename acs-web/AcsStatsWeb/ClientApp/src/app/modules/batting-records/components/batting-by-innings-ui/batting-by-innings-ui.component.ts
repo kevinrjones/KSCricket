@@ -13,13 +13,15 @@ import {IndividualBattingDetailsDto} from '../../models/individual-batting-detai
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {NavigateValues} from '../../../../models/navigate.model';
 import {faLink} from '@fortawesome/free-solid-svg-icons';
+import {DateTime} from "luxon";
+import {DateHelperService} from "../../../shared/services/dateHelperService";
 
 @Component({
-    selector: 'app-batting-by-innings-ui',
-    templateUrl: './batting-by-innings-ui.component.html',
-    styleUrls: ['./batting-by-innings-ui.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-batting-by-innings-ui',
+  templateUrl: './batting-by-innings-ui.component.html',
+  styleUrls: ['./batting-by-innings-ui.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class BattingByInningsUiComponent implements OnInit {
 
@@ -47,77 +49,124 @@ export class BattingByInningsUiComponent implements OnInit {
               private route: ActivatedRoute,
               private battingStore: Store<BattingOverallState>,
               private battingHelperService: BattingHelperService,
-              private recordHelperService: RecordHelperService) {
+              private recordHelperService: RecordHelperService,
+              public dateHelperService: DateHelperService
+) {
 
-  }
+}
 
-  ngOnDestroy(): void {
-    this.batInnByInnSub$.unsubscribe()
-  }
+ngOnDestroy()
+:
+void {
+  this.batInnByInnSub$.unsubscribe()
+}
 
-  ngOnInit(): void {
+ngOnInit()
+:
+void {
 
-    this.battingSummary$ = this.battingStore.select(s => {
-      return s.playerRecordSummary;
+  this.battingSummary$ = this.battingStore.select(s => {
+    return s.playerRecordSummary;
+  })
+
+  this.route.queryParams.subscribe(params => {
+
+    this.findBattingParams = params as FindRecords
+
+    this.venue = this.recordHelperService.setVenue(this.findBattingParams.homeVenue.toLowerCase() == 'true',
+      this.findBattingParams.awayVenue.toLowerCase() == 'true',
+      this.findBattingParams.neutralVenue.toLowerCase() == 'true')
+
+    this.dispatch.emit({payload: this.findBattingParams})
+
+    this.battingHelperService.loadSummaries(this.findBattingParams, this.battingStore)
+
+    let pageInfo = this.recordHelperService.getPageInformation(this.findBattingParams)
+
+    this.pageSize = pageInfo.pageSize
+    this.pageNumber = pageInfo.pageNumber
+
+    this.batInnByInnSub$ = this.battingUIModel$.subscribe(payload => {
+      this.sortOrder = payload.sortOrder
+      this.sortDirection = payload.sortDirection
+      this.count = payload.sqlResults.count;
+      this.currentPage = this.recordHelperService.getCurrentPage(this.findBattingParams)
     })
 
-    this.route.queryParams.subscribe(params => {
+  });
 
-      this.findBattingParams = params as FindRecords
+}
 
-      this.venue = this.recordHelperService.setVenue(this.findBattingParams.homeVenue.toLowerCase() == 'true',
-        this.findBattingParams.awayVenue.toLowerCase() == 'true',
-        this.findBattingParams.neutralVenue.toLowerCase() == 'true')
+sort(newSortOrder
+:
+SortOrder
+)
+{
+  this.recordHelperService.sort(this.sortOrder, newSortOrder, this.sortDirection, this.router)
+}
 
-      this.dispatch.emit({payload: this.findBattingParams})
-
-      this.battingHelperService.loadSummaries(this.findBattingParams, this.battingStore)
-
-      let pageInfo = this.recordHelperService.getPageInformation(this.findBattingParams)
-
-      this.pageSize = pageInfo.pageSize
-      this.pageNumber = pageInfo.pageNumber
-
-      this.batInnByInnSub$ = this.battingUIModel$.subscribe(payload => {
-        this.sortOrder = payload.sortOrder
-        this.sortDirection = payload.sortDirection
-        this.count = payload.sqlResults.count;
-        this.currentPage = this.recordHelperService.getCurrentPage(this.findBattingParams)
-      })
-
-    });
-
+formatHighestScore(row
+:
+IndividualBattingDetailsDto
+)
+{
+  let notOut = true
+  if (row.notOut1 !== null && row.notOut1 !== undefined && row.bat1 !== null && row.bat1 !== undefined) {
+    notOut = row.notOut1;
   }
-
-  sort(newSortOrder: SortOrder) {
-    this.recordHelperService.sort(this.sortOrder, newSortOrder, this.sortDirection, this.router)
+  if (row.notOut2 !== null && row.notOut2 !== undefined && row.bat2 !== null && row.bat2 !== undefined) {
+    notOut = notOut && row.notOut2;
   }
+  return this.battingHelperService.formatHighestScore(notOut, row.playerScore, row.bat1, row.bat2, row.notOut1, row.notOut2)
+}
 
-  formatHighestScore(row: IndividualBattingDetailsDto) {
-    return this.battingHelperService.formatHighestScore(row.notOut, row.playerScore)
-  }
+getSortClass(sortOrder
+:
+SortOrder
+):
+IconProp
+{
+  return this.recordHelperService.getSortClass(sortOrder, this.sortDirection)
+}
 
-  getSortClass(sortOrder: SortOrder): IconProp {
-    return this.recordHelperService.getSortClass(sortOrder, this.sortDirection)
-  }
+gotoPage(navigateValues
+:
+NavigateValues
+)
+{
+  this.recordHelperService.navigateToPage(navigateValues.startRow, navigateValues.pageSize, this.router)
+}
 
-  gotoPage(navigateValues: NavigateValues) {
-    this.recordHelperService.navigateToPage(navigateValues.startRow, navigateValues.pageSize, this.router)
-  }
+navigate(startRow
+:
+number
+)
+{
+  this.recordHelperService.navigateToPage(startRow, this.pageSize, this.router)
+}
 
-  navigate(startRow: number) {
-    this.recordHelperService.navigateToPage(startRow, this.pageSize, this.router)
-  }
+getIndex(ndx
+:
+number
+)
+{
+  return ((this.currentPage - 1) * this.pageSize) + ndx + 1
+}
 
-  getIndex(ndx: number) {
-    return ((this.currentPage - 1) * this.pageSize) + ndx + 1
-  }
+pageSizeChange($event
+:
+number
+)
+{
+  this.pageSize = $event
+}
 
-  pageSizeChange($event: number) {
-    this.pageSize = $event
-  }
+getMatchLink(row
+:
+IndividualBattingDetailsDto
+)
+{
+  return "/scorecard/cardbyid/" + row.matchId
+}
 
-  getMatchLink(row: IndividualBattingDetailsDto) {
-    return "/scorecard/cardbyid/" + row.matchId
-  }
 }

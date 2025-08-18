@@ -116,10 +116,6 @@ export class TeamByInningsExtrasUiComponent implements OnInit {
     return `${runs}/${wickets}`
   }
 
-  formatDate(startDate: string) {
-    DateTime.fromISO(startDate).toLocaleString(DateTime.DATETIME_FULL)
-  }
-
   pageSizeChange($event: number) {
     this.pageSize = $event
   }
