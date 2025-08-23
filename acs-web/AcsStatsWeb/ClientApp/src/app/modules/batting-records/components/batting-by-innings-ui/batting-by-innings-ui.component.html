@@ -55,7 +55,7 @@
                  [icon]="getSortClass(importedSortOrder.strikeRate)"></fa-icon>
       </a>
     </th>
-    <th [ngClass]="showInnings ? '' : 'hidden'" class="align-numeric-cell">
+    <th [ngClass]="isSingleInnings ? '' : 'hidden'" class="align-numeric-cell">
       <a [class.bold-sort-column]="importedSortOrder.inningsNumber == sortOrder" (click)="sort(importedSortOrder.inningsNumber)" class="record-item-header-link btn-link">Innings
         <fa-icon *ngIf="importedSortOrder.inningsNumber == sortOrder"
                  [icon]="getSortClass(importedSortOrder.inningsNumber)"></fa-icon>
@@ -95,7 +95,7 @@
     <td [ngClass]="{'bold-sort-column': importedSortOrder.strikeRate == sortOrder}" class="align-numeric-cell"
         nowrap="nowrap">{{ row.sr == null || row.balls == null || row.balls == 0 ? "-" : row.sr.toFixed(2) }}
     </td>
-    <td [class.bold-sort-column]="importedSortOrder.inningsNumber == sortOrder" [ngClass]="showInnings ? '' : 'hidden'" class="align-numeric-cell"
+    <td [class.bold-sort-column]="importedSortOrder.inningsNumber == sortOrder" [ngClass]="isSingleInnings ? '' : 'hidden'" class="align-numeric-cell"
         nowrap="nowrap">{{ row.playerScore == null ? "-" : row.inningsNumber }}
     </td>
     <td [ngClass]="{'bold-sort-column': importedSortOrder.opponents == sortOrder}" class="align-text-cell" nowrap="nowrap">{{ row.opponents }}</td>

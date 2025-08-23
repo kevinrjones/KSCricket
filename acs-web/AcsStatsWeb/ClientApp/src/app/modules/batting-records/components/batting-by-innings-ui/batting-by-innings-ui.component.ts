@@ -27,7 +27,7 @@ export class BattingByInningsUiComponent implements OnInit {
 
   @Input() battingUIModel$!: Observable<InningsByInningsUiModel>;
   @Input() title!: string;
-  @Input() showInnings: boolean = true;
+  @Input() isSingleInnings: boolean = true;
   @Input() searchType!: string
 
   @Output() dispatch: EventEmitter<{ payload: FindRecords }> = new EventEmitter();
@@ -51,122 +51,97 @@ export class BattingByInningsUiComponent implements OnInit {
               private battingHelperService: BattingHelperService,
               private recordHelperService: RecordHelperService,
               public dateHelperService: DateHelperService
-) {
+  ) {
 
-}
+  }
 
-ngOnDestroy()
-:
-void {
-  this.batInnByInnSub$.unsubscribe()
-}
+  ngOnDestroy(): void {
+    this.batInnByInnSub$.unsubscribe()
+  }
 
-ngOnInit()
-:
-void {
+  ngOnInit(): void {
 
-  this.battingSummary$ = this.battingStore.select(s => {
-    return s.playerRecordSummary;
-  })
-
-  this.route.queryParams.subscribe(params => {
-
-    this.findBattingParams = params as FindRecords
-
-    this.venue = this.recordHelperService.setVenue(this.findBattingParams.homeVenue.toLowerCase() == 'true',
-      this.findBattingParams.awayVenue.toLowerCase() == 'true',
-      this.findBattingParams.neutralVenue.toLowerCase() == 'true')
-
-    this.dispatch.emit({payload: this.findBattingParams})
-
-    this.battingHelperService.loadSummaries(this.findBattingParams, this.battingStore)
-
-    let pageInfo = this.recordHelperService.getPageInformation(this.findBattingParams)
-
-    this.pageSize = pageInfo.pageSize
-    this.pageNumber = pageInfo.pageNumber
-
-    this.batInnByInnSub$ = this.battingUIModel$.subscribe(payload => {
-      this.sortOrder = payload.sortOrder
-      this.sortDirection = payload.sortDirection
-      this.count = payload.sqlResults.count;
-      this.currentPage = this.recordHelperService.getCurrentPage(this.findBattingParams)
+    this.battingSummary$ = this.battingStore.select(s => {
+      return s.playerRecordSummary;
     })
 
-  });
+    this.route.queryParams.subscribe(params => {
 
-}
+      this.findBattingParams = params as FindRecords
 
-sort(newSortOrder
-:
-SortOrder
-)
-{
-  this.recordHelperService.sort(this.sortOrder, newSortOrder, this.sortDirection, this.router)
-}
+      this.venue = this.recordHelperService.setVenue(this.findBattingParams.homeVenue.toLowerCase() == 'true',
+        this.findBattingParams.awayVenue.toLowerCase() == 'true',
+        this.findBattingParams.neutralVenue.toLowerCase() == 'true')
 
-formatHighestScore(row
-:
-IndividualBattingDetailsDto
-)
-{
-  let notOut = true
-  if (row.notOut1 !== null && row.notOut1 !== undefined && row.bat1 !== null && row.bat1 !== undefined) {
-    notOut = row.notOut1;
+      this.dispatch.emit({payload: this.findBattingParams})
+
+      this.battingHelperService.loadSummaries(this.findBattingParams, this.battingStore)
+
+      let pageInfo = this.recordHelperService.getPageInformation(this.findBattingParams)
+
+      this.pageSize = pageInfo.pageSize
+      this.pageNumber = pageInfo.pageNumber
+
+      this.batInnByInnSub$ = this.battingUIModel$.subscribe(payload => {
+        this.sortOrder = payload.sortOrder
+        this.sortDirection = payload.sortDirection
+        this.count = payload.sqlResults.count;
+        this.currentPage = this.recordHelperService.getCurrentPage(this.findBattingParams)
+      })
+
+    });
+
   }
-  if (row.notOut2 !== null && row.notOut2 !== undefined && row.bat2 !== null && row.bat2 !== undefined) {
-    notOut = notOut && row.notOut2;
+
+  sort(newSortOrder: SortOrder
+  ) {
+    this.recordHelperService.sort(this.sortOrder, newSortOrder, this.sortDirection, this.router)
   }
-  return this.battingHelperService.formatHighestScore(notOut, row.playerScore, row.bat1, row.bat2, row.notOut1, row.notOut2)
-}
 
-getSortClass(sortOrder
-:
-SortOrder
-):
-IconProp
-{
-  return this.recordHelperService.getSortClass(sortOrder, this.sortDirection)
-}
+  formatHighestScore(row: IndividualBattingDetailsDto
+  ) {
+    let notOut = true
+    if(!this.isSingleInnings) {
+      if (row.notOut1 !== null && row.notOut1 !== undefined && row.bat1 !== null && row.bat1 !== undefined) {
+        notOut = row.notOut1;
+      }
+      if (row.notOut2 !== null && row.notOut2 !== undefined && row.bat2 !== null && row.bat2 !== undefined) {
+        notOut = notOut && row.notOut2;
+      }
+    } else {
+      notOut = row.notOut;
+    }
+    return this.battingHelperService.formatHighestScore(notOut, row.playerScore, row.bat1, row.bat2, row.notOut1, row.notOut2, this.isSingleInnings)
+  }
 
-gotoPage(navigateValues
-:
-NavigateValues
-)
-{
-  this.recordHelperService.navigateToPage(navigateValues.startRow, navigateValues.pageSize, this.router)
-}
+  getSortClass(sortOrder: SortOrder
+  ): IconProp {
+    return this.recordHelperService.getSortClass(sortOrder, this.sortDirection)
+  }
 
-navigate(startRow
-:
-number
-)
-{
-  this.recordHelperService.navigateToPage(startRow, this.pageSize, this.router)
-}
+  gotoPage(navigateValues: NavigateValues
+  ) {
+    this.recordHelperService.navigateToPage(navigateValues.startRow, navigateValues.pageSize, this.router)
+  }
 
-getIndex(ndx
-:
-number
-)
-{
-  return ((this.currentPage - 1) * this.pageSize) + ndx + 1
-}
+  navigate(startRow: number
+  ) {
+    this.recordHelperService.navigateToPage(startRow, this.pageSize, this.router)
+  }
 
-pageSizeChange($event
-:
-number
-)
-{
-  this.pageSize = $event
-}
+  getIndex(ndx: number
+  ) {
+    return ((this.currentPage - 1) * this.pageSize) + ndx + 1
+  }
 
-getMatchLink(row
-:
-IndividualBattingDetailsDto
-)
-{
-  return "/scorecard/cardbyid/" + row.matchId
-}
+  pageSizeChange($event: number
+  ) {
+    this.pageSize = $event
+  }
+
+  getMatchLink(row: IndividualBattingDetailsDto
+  ) {
+    return "/scorecard/cardbyid/" + row.matchId
+  }
 
 }
