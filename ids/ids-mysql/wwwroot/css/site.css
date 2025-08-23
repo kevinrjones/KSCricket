@@ -1,66 +1,74 @@
 ﻿.welcome-page .logo {
-  width: 64px;
+    width: 64px;
 }
 
 .icon-banner {
-  width: 32px;
+    width: 32px;
 }
 
 .bg-dark, .btn-primary {
-  /*background-color: green !important;*/
-  background-color: #346b3c !important;
+    /*background-color: green !important;*/
+    background-color: #346b3c !important;
 }
 
-input[type=checkbox]{
-  accent-color: #346b3c;
+input[type=checkbox] {
+    accent-color: #346b3c;
 }
 
 .center-text {
-  text-align: center;
+    text-align: center;
 }
 
 .body-container {
-  margin-top: 60px;
-  padding-bottom: 40px;
+    margin-top: 60px;
+    padding-bottom: 40px;
 }
 
 .welcome-page li {
-  list-style: none;
-  padding: 4px;
+    list-style: none;
+    padding: 4px;
 }
 
 .logged-out-page iframe {
-  display: none;
-  width: 0;
-  height: 0;
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 .grants-page .card {
-  margin-top: 20px;
-  border-bottom: 1px solid lightgray;
+    margin-top: 20px;
+    border-bottom: 1px solid lightgray;
 }
+
 .grants-page .card .card-title {
-  font-size: 120%;
-  font-weight: bold;
+    font-size: 120%;
+    font-weight: bold;
 }
+
 .grants-page .card .card-title img {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
+
 .grants-page .card label {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+    text-align: start;
 }
 
 
 .client-logo > img {
-  width: 200px;
+    width: 200px;
+}
+
+.text-danger > ul > li {
+    list-style: none;
+    margin-left: -35px;
 }

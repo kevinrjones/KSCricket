@@ -140,50 +140,57 @@ namespace Areas.Identity.Pages.Account
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-
-                if (result.Succeeded)
+                if (await _userManager.FindByEmailAsync(Input.Email) == null)
                 {
-                    _logger.LogInformation("Added roles to the user");
-                    await _userManager.AddToRoleAsync(user, "ACS.Stats.Reader");
+                    await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
-                    _logger.LogInformation("User created a new account with password.");
+                    user.FirstName = Input.FirstName;
+                    user.LastName = Input.LastName;
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    var result = await _userManager.CreateAsync(user, Input.Password);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"<p>Thank you for creating your account.</p><p>Please follow the link below to verify your email address. " +
-                        $"If your email address is not verified within 48 hours, your account will be deleted.</p>" +
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (result.Succeeded)
                     {
-                        return RedirectToPage("RegisterConfirmation",
-                            new { email = Input.Email, returnUrl = returnUrl });
+                        _logger.LogInformation("Added roles to the user");
+                        await _userManager.AddToRoleAsync(user, "ACS.Stats.Reader");
+
+                        _logger.LogInformation("User created a new account with password.");
+
+                        var userId = await _userManager.GetUserIdAsync(user);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                            protocol: Request.Scheme);
+
+                        await _emailSender.SendEmailAsync(Input.Email,
+                            "Confirm your email",
+                            $"<p>Thank you for creating your account.</p><p>Please follow the link below to verify your email address. " +
+                            $"If your email address is not verified within 48 hours, your account will be deleted.</p>" +
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                        {
+                            return RedirectToPage("RegisterConfirmation",
+                                new { email = Input.Email, returnUrl = returnUrl });
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            return LocalRedirect(returnUrl);
+                        }
                     }
-                    else
+
+                    foreach (var error in result.Errors)
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
-
-                foreach (var error in result.Errors)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    ModelState.AddModelError("Input.Email", "This email already exists, please use another one.");
                 }
             }
 

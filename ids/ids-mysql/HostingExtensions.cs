@@ -42,7 +42,8 @@ internal static class HostingExtensions
                 ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
         });
 
-        builder.Services.AddTransient<IEmailSender, SendGridEmailSender>();
+        // builder.Services.AddTransient<IEmailSender, SendGridEmailSender>();
+        builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
 
 
         var isBuilder = builder.Services.AddIdentityServer(options =>

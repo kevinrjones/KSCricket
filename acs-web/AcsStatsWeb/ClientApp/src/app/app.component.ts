@@ -12,13 +12,14 @@ import {MessageService} from 'primeng/api';
 import {DatabaseDateService} from "./services/databasedate.service";
 import {Envelope} from "./models/envelope";
 import {DateHelperService} from "./modules/shared/services/dateHelperService";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  standalone: false
 })
 export class AppComponent implements OnInit {
   title = 'ACS Cricket Records';
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
 
     this.resetErrorState()
 
-    this.stamp = dateHelperService.asDate(Timestamp.stamp)
+    this.stamp = dateHelperService.asDate(Timestamp.stamp, '', DateTime.DATETIME_FULL)
 
     this.errorState$ = this.appStore.select(s => s.errorState);
     this.loadingState$ = this.appStore.select(s => s.loading)
@@ -50,11 +51,10 @@ export class AppComponent implements OnInit {
         if (s.id != 0) {
           if (s.message != null) {
             message = this.errorLookupService.getErrorForCode(s.id) + ' - ' + s.message
-          }
-          else {
+          } else {
             message = this.errorLookupService.getErrorForCode(s.id)
           }
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: message, life: 3000 });
+          this.messageService.add({severity: 'error', summary: 'Error', detail: message, life: 3000});
 
           this.resetErrorState()
         }
@@ -66,8 +66,8 @@ export class AppComponent implements OnInit {
       this.loading = state;
     });
 
-    this.dateOfLastChange$.subscribe(s => {
-      this.dateOfLastChange = this.dateHelperService.asDate(Timestamp.stamp, '', DateTime.DATETIME_FULL)
+    this.dateOfLastChange$.subscribe(date => {
+      this.dateOfLastChange = this.dateHelperService.asDate(date.result, 'unknown', DateTime.DATETIME_FULL)
     })
   }
 

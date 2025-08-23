@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Duende.IdentityServer" Version="7.2.4" />
+      <PackageReference Include="MailKit" Version="4.13.0" />
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-rc.1.efcore.9.0.0" />
       <PackageReference Include="Rsk.AdminUI" Version="10.2.0" />
     </ItemGroup>

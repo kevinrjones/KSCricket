@@ -7,7 +7,7 @@
         <p>Choose how to login</p>
     </div>
 
-    <partial name="_ValidationSummary" />
+    <partial name="_ValidationSummary"/>
 
     <div class="row">
 
@@ -21,7 +21,7 @@
 
                     <div class="card-body">
                         <form asp-page="/Account/Login/Index">
-                            <input type="hidden" asp-for="Input.ReturnUrl" />
+                            <input type="hidden" asp-for="Input.ReturnUrl"/>
 
                             <div class="form-group">
                                 <label asp-for="Input.Username"></label>
@@ -29,9 +29,10 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Input.Password"></label>
-                                <input type="password" class="form-control" placeholder="Password" asp-for="Input.Password" autocomplete="off">
+                                <input type="password" class="form-control" placeholder="Password"
+                                       asp-for="Input.Password" autocomplete="off">
                             </div>
-                            
+
                             @if (Model.View.AllowRememberLogin)
                             {
                                 <div class="form-group">
@@ -43,19 +44,23 @@
                                     </div>
                                 </div>
                             }
-                            
+
                             <button class="btn btn-primary" name="Input.Button" value="login">Login</button>
                             <button class="btn btn-secondary" name="Input.Button" value="cancel">Cancel</button>
                         </form>
                         <div>
                             <p>
-                                <a id="forgot-password" asp-page="/Account/ForgotPassword/Index">Forgot your password?</a>
+                                <a id="forgot-password" asp-page="/Account/ForgotPassword/Index">Forgot your
+                                    password?</a>
                             </p>
-                            @* <p> *@
-                            @*     <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a> *@
-                            @* </p> *@
                             <p>
-                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                                <a asp-page="/Account/Register" asp-area="Identity"
+                                   asp-route-returnUrl="@Model.Input.ReturnUrl">Register as a new user</a>
+                            </p>
+                            <p>
+                                <a id="resend-confirmation"
+                                   asp-page="/Account/ResendEmailConfirmation"
+                                   asp-area="Identity">Resend email confirmation</a>
                             </p>
                         </div>
 

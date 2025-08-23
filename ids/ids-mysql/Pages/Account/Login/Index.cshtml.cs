@@ -33,7 +33,7 @@ public class Index : PageModel
 
     [BindProperty]
     public InputModel Input { get; set; } = null!;
-
+    
     public Index(
         IIdentityServerInteractionService interaction,
         IClientStore clientStore,
